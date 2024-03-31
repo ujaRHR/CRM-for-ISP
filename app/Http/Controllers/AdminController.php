@@ -34,21 +34,28 @@ class AdminController extends Controller
 
     public function adminLogin(Request $request)
     {
-        $email    = $request->input('email');
-        $password = $request->input('password');
+        try {
+            $email    = $request->input('email');
+            $password = $request->input('password');
 
-        $admin           = Admin::where('email', $email)->first();
-        $user_id         = $admin->id;
-        $hashed_password = $admin->password;
+            $admin           = Admin::where('email', $email)->first();
+            $user_id         = $admin->id;
+            $hashed_password = $admin->password;
 
-        if (Hash::check($password, $hashed_password)) {
-            $user_email = $email;
-            $token      = JWTToken::createToken($user_id, $user_email);
+            if (Hash::check($password, $hashed_password)) {
+                $user_email = $email;
+                $token      = JWTToken::createToken($user_id, $user_email);
 
+                return response()->json([
+                    'status'  => 'success',
+                    'message' => 'admin logged in successfully'
+                ], 200)->cookie('token', $token, (24 * 60));
+            }
+        } catch (\Exception $e) {
             return response()->json([
-                'status'  => 'success',
-                'message' => 'admin logged in successfully'
-            ], 200)->cookie('token', $token, (24 * 60));
+                'status'  => 'failed',
+                'message' => 'admin login failed, unauthorized!'
+            ]);
         }
     }
 

@@ -3,6 +3,7 @@
 namespace App\Helper;
 
 use \Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 class JWTToken
 {
@@ -22,7 +23,19 @@ class JWTToken
         return $token;
     }
 
-    public static function passwordResetToken() : string | object {
-        return "";
+    public static function verifyToken($encoded_token) : string|object
+    {
+        if ($encoded_token != null) {
+            $key     = env('JWT_SECRET');
+            $decoded = JWT::decode($encoded_token, new Key($key, 'HS256'));
+
+            return $decoded;
+
+        } else {
+            return response()->json([
+                'status'  => 'failed',
+                'message' => 'authentication failed, unauthorized!'
+            ]);
+        }
     }
 }

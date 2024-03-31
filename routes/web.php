@@ -9,3 +9,4 @@ Route::get('/', function () {
 
 // Admin
 Route::post('/create-admin', [AdminController::class, 'createAdmin']);
+Route::post('/admin-login', [AdminController::class, 'adminLogin']);
