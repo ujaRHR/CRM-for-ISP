@@ -21,4 +21,8 @@ class JWTToken
 
         return $token;
     }
+
+    public static function passwordResetToken() : string | object {
+        return "";
+    }
 }
