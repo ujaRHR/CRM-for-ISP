@@ -1,12 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Users\AdminController;
+use App\Http\Controllers\Users\CustomerController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Admin
-Route::post('/create-admin', [AdminController::class, 'createAdmin']);
+// Admin Routes
+Route::post('/admin-signup', [AdminController::class, 'adminSignup']);
 Route::post('/admin-login', [AdminController::class, 'adminLogin']);
+
+// User Routes
+Route::post('/customer-signup', [CustomerController::class, 'customerSignup']);
+Route::post('/customer-login', [CustomerController::class, 'customerLogin']);

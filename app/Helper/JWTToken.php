@@ -33,8 +33,8 @@ class JWTToken
 
         } else {
             return response()->json([
-                'status'  => 'failed',
-                'message' => 'authentication failed, unauthorized!'
+                'status'  => 'unauthorized',
+                'message' => 'authentication failed!'
             ]);
         }
     }

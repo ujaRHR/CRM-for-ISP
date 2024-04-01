@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Users;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Admin;
+use App\Models\Customer;
 use Illuminate\Support\Facades\Hash;
 use App\Helper\JWTToken;
 
 
-class AdminController extends Controller
+class UserController extends Controller
 {
-    public function createAdmin(Request $request)
+    public function customerSignup(Request $request)
     {
         try {
-            Admin::create([
+            Customer::create([
                 'fullname' => $request->input('fullname'),
                 'email'    => $request->input('email'),
                 'phone'    => $request->input('phone'),
@@ -22,7 +23,7 @@ class AdminController extends Controller
 
             return response()->json([
                 'status'  => 'success',
-                'message' => 'admin created successfully'
+                'message' => 'customer created successfully'
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
@@ -32,29 +33,34 @@ class AdminController extends Controller
         }
     }
 
-    public function adminLogin(Request $request)
+    public function customerLogin(Request $request)
     {
         try {
             $email    = $request->input('email');
             $password = $request->input('password');
 
-            $admin           = Admin::where('email', $email)->first();
-            $user_id         = $admin->id;
-            $hashed_password = $admin->password;
+            $customer        = Customer::where('email', $email)->first();
+            $customer_id     = $customer->id;
+            $hashed_password = $customer->password;
 
             if (Hash::check($password, $hashed_password)) {
-                $user_email = $email;
-                $token      = JWTToken::createToken($user_id, $user_email);
+                $customer_email = $email;
+                $token          = JWTToken::createToken($customer_id, $customer_email);
 
                 return response()->json([
                     'status'  => 'success',
-                    'message' => 'admin logged in successfully'
+                    'message' => 'customer logged in successfully'
                 ], 200)->cookie('token', $token, (24 * 60));
+            } else {
+                return response()->json([
+                    'status'  => 'failed',
+                    'message' => 'authentication failed, unauthorized!'
+                ]);
             }
         } catch (\Exception $e) {
             return response()->json([
                 'status'  => 'failed',
-                'message' => 'admin login failed, unauthorized!'
+                'message' => 'authentication failed, unauthorized!'
             ]);
         }
     }
