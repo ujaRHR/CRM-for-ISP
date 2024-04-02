@@ -12,10 +12,15 @@ return new class extends Migration {
     {
         Schema::create('notices', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('admin_id');
             $table->string('title');
             $table->string('description');
             $table->string('notice_img')->nullable();
             $table->timestamps();
+
+            $table->foreign('admin_id')->references('id')->on('admins')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
         });
     }
 

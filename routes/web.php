@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Users\AdminController;
 use App\Http\Controllers\Users\CustomerController;
 use App\Http\Controllers\Users\StaffController;
+use App\Http\Controllers\Users\NoticeController;
+use App\Http\Middleware\TokenVerificationMiddleware;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,4 +23,4 @@ Route::post('/customer-login', [CustomerController::class, 'customerLogin']);
 Route::post('/staff-signup', [StaffController::class, 'staffSignup']);
 
 // Notices Routes
-Route::post('/create-notice', []);
+Route::post('/create-notice', [NoticeController::class, 'createNotice']);
