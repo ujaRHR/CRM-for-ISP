@@ -9,16 +9,17 @@ use Illuminate\Support\Facades\Hash;
 use App\Helper\JWTToken;
 
 
-class UserController extends Controller
+class CustomerController extends Controller
 {
     public function customerSignup(Request $request)
     {
         try {
             Customer::create([
-                'fullname' => $request->input('fullname'),
-                'email'    => $request->input('email'),
-                'phone'    => $request->input('phone'),
-                'password' => Hash::make($request->input('password'))
+                'fullname'    => $request->input('fullname'),
+                'email'       => $request->input('email'),
+                'phone'       => $request->input('phone'),
+                'personal_id' => rand(1000001, 9999999),
+                'password'    => Hash::make($request->input('password'))
             ]);
 
             return response()->json([

@@ -16,13 +16,13 @@ return new class extends Migration
             $table->string('fullname');
             $table->string('email')->unique();
             $table->string('phone');
-            $table->bigInteger('personal_id');
-            $table->enum('type', ['personal', 'corporate']);
-            $table->enum('status', ['active', 'inactive']);
+            $table->bigInteger('personal_id')->unique();
+            $table->enum('type', ['personal', 'corporate'])->default('personal');
+            $table->enum('status', ['active', 'inactive'])->default('inactive');
             $table->string('avatar')->nullable();
-            $table->string('address');
+            $table->string('address')->nullable();
             $table->string('password');
-            $table->string('remember_token');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
