@@ -28,7 +28,7 @@ class NoticeController extends Controller
             return response()->json([
                 'status'  => 'failed',
                 'message' => 'something went wrong, try again...'
-            ], 200);
+            ]);
         }
     }
 }

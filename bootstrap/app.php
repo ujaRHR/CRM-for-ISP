@@ -16,6 +16,8 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->validateCsrfTokens(except: ['*']);
-        $middleware->append(TokenVerificationMiddleware::class);
+        $middleware->alias([
+            'token' => TokenVerificationMiddleware::class,
+        ]);
     })
     ->create();

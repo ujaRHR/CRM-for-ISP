@@ -65,4 +65,10 @@ class AdminController extends Controller
         }
     }
 
+    public function logout(Request $request)
+    {
+        cookie()->forget('token');
+        return redirect('/')->with('success', 'You have been logged out.');
+    }
+
 }
