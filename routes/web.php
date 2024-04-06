@@ -24,4 +24,4 @@ Route::get('/logout', [AdminController::class, 'logout'])->middleware('token');
 Route::post('/staff-signup', [StaffController::class, 'staffSignup']);
 
 // Notices Routes
-Route::post('/create-notice', [NoticeController::class, 'createNotice']);
+Route::post('/create-notice', [NoticeController::class, 'createNotice'])->middleware('token');
