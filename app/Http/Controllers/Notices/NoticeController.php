@@ -43,16 +43,23 @@ class NoticeController extends Controller
         try {
             $notice_id = $request->input('id');
 
-            Notice::where('admin_id', $admin_id)->where('id', $notice_id)->delete();
+            $deleted = Notice::where('admin_id', $admin_id)->where('id', $notice_id)->delete();
 
-            return response()->json([
-                'status'  => 'success',
-                'message' => 'notice deleted successfully'
-            ], 200);
+            if ($deleted) {
+                return response()->json([
+                    'status'  => 'success',
+                    'message' => 'notice deleted successfully'
+                ], 200);
+            } else {
+                return response()->json([
+                    'status'  => 'failed',
+                    'message' => 'failed to delete the notice!'
+                ]);
+            }
         } catch (Exception $e) {
             return response()->json([
                 'status'  => 'failed',
-                'message' => 'failed to delete notice!'
+                'message' => 'failed to delete the notice!'
             ]);
         }
     }
