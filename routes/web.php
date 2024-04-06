@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Users\AdminController;
 use App\Http\Controllers\Users\CustomerController;
 use App\Http\Controllers\Users\StaffController;
-use App\Http\Controllers\Users\NoticeController;
+use App\Http\Controllers\Notices\NoticeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,3 +25,4 @@ Route::post('/staff-signup', [StaffController::class, 'staffSignup']);
 
 // Notices Routes
 Route::post('/create-notice', [NoticeController::class, 'createNotice'])->middleware('token');
+Route::post('/delete-notice', [NoticeController::class, 'deleteNotice'])->middleware('token');
