@@ -7,6 +7,7 @@ use App\Http\Controllers\Users\StaffController;
 use App\Http\Controllers\Notices\NoticeController;
 use App\Http\Controllers\Plans\PlanController;
 use App\Http\Controllers\Subscription\SubscriptionController;
+use App\Http\Controllers\Tickets\TicketController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,4 +38,4 @@ Route::post('/delete-plan', [PlanController::class, 'deletePlan'])->middleware('
 Route::post('/create-subscription', [SubscriptionController::class, 'createSubscription'])->middleware('token');
 
 // Tickets Routes
-// Route
+Route:
