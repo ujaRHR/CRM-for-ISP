@@ -5,6 +5,8 @@ use App\Http\Controllers\Users\AdminController;
 use App\Http\Controllers\Users\CustomerController;
 use App\Http\Controllers\Users\StaffController;
 use App\Http\Controllers\Notices\NoticeController;
+use App\Http\Controllers\Plans\PlanController;
+use App\Http\Controllers\Subscription\SubscriptionController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,3 +28,13 @@ Route::post('/staff-signup', [StaffController::class, 'staffSignup']);
 // Notices Routes
 Route::post('/create-notice', [NoticeController::class, 'createNotice'])->middleware('token');
 Route::post('/delete-notice', [NoticeController::class, 'deleteNotice'])->middleware('token');
+
+// Plans Routes
+Route::post('/create-plan', [PlanController::class, 'createPlan'])->middleware('token');
+Route::post('/delete-plan', [PlanController::class, 'deletePlan'])->middleware('token');
+
+// Subscriptions Routes
+Route::post('/create-subscription', [SubscriptionController::class, 'createSubscription'])->middleware('token');
+
+// Tickets Routes
+// Route

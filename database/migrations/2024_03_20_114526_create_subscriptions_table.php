@@ -16,8 +16,8 @@ return new class extends Migration {
             $table->unsignedBigInteger('plan_id');
             $table->date('start_date');
             $table->date('next_billing_date');
-            $table->enum('status', ['active', 'inactive', 'restricted']);
-            $table->decimal('total_cost', 2);
+            $table->enum('status', ['active', 'inactive', 'restricted'])->default('inactive');
+            $table->decimal('total_cost', 6, 2);
             $table->timestamps();
 
             $table->foreign('customer_id')->references('id')->on('customers')
