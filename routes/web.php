@@ -39,3 +39,5 @@ Route::post('/create-subscription', [SubscriptionController::class, 'createSubsc
 
 // Tickets Routes
 Route::post('/create-ticket', [TicketController::class, 'createTicket'])->middleware('token');
+
+// Tasks Routes

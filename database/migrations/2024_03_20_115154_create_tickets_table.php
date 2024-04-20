@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('title');
             $table->string('description');
             $table->string('ticket_img')->nullable();
+            $table->enum('status', ['active', 'closed'])->default('active');
             $table->timestamps();
 
             $table->foreign('customer_id')->references('id')->on('customers')
