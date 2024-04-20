@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('ticket_id');
             $table->string('title');
             $table->string('description');
-            $table->string('task_img');
+            $table->string('task_img')->nullable();
             $table->timestamps();
 
             $table->foreign('staff_id')->references('id')->on('staffs')

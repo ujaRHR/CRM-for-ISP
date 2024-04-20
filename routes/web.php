@@ -8,6 +8,7 @@ use App\Http\Controllers\Notices\NoticeController;
 use App\Http\Controllers\Plans\PlanController;
 use App\Http\Controllers\Subscription\SubscriptionController;
 use App\Http\Controllers\Tickets\TicketController;
+use App\Http\Controllers\Tasks\TaskController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -41,3 +42,4 @@ Route::post('/create-subscription', [SubscriptionController::class, 'createSubsc
 Route::post('/create-ticket', [TicketController::class, 'createTicket'])->middleware('token');
 
 // Tasks Routes
+Route::post('/create-task', [TaskController::class, 'createTask'])->middleware('token');

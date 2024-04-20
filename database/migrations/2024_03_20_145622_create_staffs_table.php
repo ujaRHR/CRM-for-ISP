@@ -16,8 +16,8 @@ return new class extends Migration {
             $table->string('email')->unique();
             $table->string('phone');
             $table->string('avatar')->nullable();
-            $table->enum('position', ['default', 'engineer', 'sales', 'technician', 'field_worker']);
-            $table->decimal('salary',8, 2);
+            $table->enum('position', ['default', 'engineer', 'sales', 'technician', 'field_worker'])->default('default');
+            $table->decimal('salary', 8, 2);
             $table->timestamps();
         });
     }
