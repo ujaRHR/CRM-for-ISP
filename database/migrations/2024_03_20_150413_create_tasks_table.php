@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('staff_id');
-            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('admin_id');
             $table->unsignedBigInteger('ticket_id');
             $table->string('title');
             $table->string('description');
@@ -24,7 +24,7 @@ return new class extends Migration {
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
 
-            $table->foreign('customer_id')->references('id')->on('customers')
+            $table->foreign('admin_id')->references('id')->on('admins')
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
 
