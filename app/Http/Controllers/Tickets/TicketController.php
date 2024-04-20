@@ -8,5 +8,9 @@ use App\Models\Ticket;
 
 class TicketController extends Controller
 {
-    create 
+    public function createTicket(Request $request)
+    {
+        $customer_id = $request->header('id');
+        
+    }
 }

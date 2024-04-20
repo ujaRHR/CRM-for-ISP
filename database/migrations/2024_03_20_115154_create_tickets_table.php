@@ -13,17 +13,12 @@ return new class extends Migration {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('customer_id');
-            $table->unsignedBigInteger('subscription_id');
             $table->string('title');
             $table->string('description');
             $table->string('ticket_img')->nullable();
             $table->timestamps();
 
             $table->foreign('customer_id')->references('id')->on('customers')
-                ->cascadeOnUpdate()
-                ->restrictOnDelete();
-
-            $table->foreign('subscription_id')->references('id')->on('subscriptions')
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
         });

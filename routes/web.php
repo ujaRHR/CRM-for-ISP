@@ -21,7 +21,7 @@ Route::post('/admin-login', [AdminController::class, 'adminLogin']);
 Route::post('/customer-signup', [CustomerController::class, 'customerSignup']);
 Route::post('/customer-login', [CustomerController::class, 'customerLogin']);
 
-Route::get('/logout', [AdminController::class, 'logout'])->middleware('token');
+Route::get('/logout', [AdminController::class, 'logout']);
 
 // Staff Routes
 Route::post('/staff-signup', [StaffController::class, 'staffSignup']);
@@ -38,4 +38,4 @@ Route::post('/delete-plan', [PlanController::class, 'deletePlan'])->middleware('
 Route::post('/create-subscription', [SubscriptionController::class, 'createSubscription'])->middleware('token');
 
 // Tickets Routes
-Route:
+Route::post('/create-ticket', [TicketController::class, 'createTicket'])->middleware('token');
