@@ -11,6 +11,10 @@ use App\Helper\JWTToken;
 
 class AdminController extends Controller
 {
+    public function adminSignupPage(){
+        return view('signup');
+    }
+
     public function adminSignup(Request $request)
     {
         try {
