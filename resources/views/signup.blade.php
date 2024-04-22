@@ -71,11 +71,11 @@
         phone: document.getElementById('phone').value,
         password: document.getElementById('password').value
       }
-      let res = axios.post('/admin-signup', formData);
-      
-      if (res.status === 200) {
-        console.log("success");
-      }
+      axios.post('/admin-signup', formData).then(function (response) {
+        if (response.status == 200 && response.data.status == 'success') {
+          location.href = "/admin-login"
+        }
+      });
     });
 
   </script>
