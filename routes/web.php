@@ -18,7 +18,7 @@ Route::get('/', function () {
 Route::get('/admin-signup', [AdminController::class, 'adminSignupPage']);
 Route::post('/admin-signup', [AdminController::class, 'adminSignup']);
 Route::post('/admin-login', [AdminController::class, 'adminLogin']);
-
+Route::get('/admin-login', [AdminController::class, 'adminLoginPage']);
 
 // User Routes
 Route::post('/customer-signup', [CustomerController::class, 'customerSignup']);

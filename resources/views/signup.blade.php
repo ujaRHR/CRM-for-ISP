@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Sign up | Bootstrap Simple Admin Template</title>
+  <title>Sign up | EarthLink</title>
   <link href=" {{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('css/auth.css') }}" rel="stylesheet">
 </head>
@@ -52,7 +52,7 @@
             </div>
             <button class="btn btn-success shadow-2 mb-4">Register</button>
           </form>
-          <p class="mb-0 text-muted">Allready have an account? <a href="login.html">Log in</a></p>
+          <p class="mb-0 text-muted">Allready have an account? <a href="/admin-login">Log in</a></p>
         </div>
       </div>
     </div>

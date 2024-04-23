@@ -1,57 +1,76 @@
 <!doctype html>
-<!-- 
-* Bootstrap Simple Admin Template
-* Version: 2.1
-* Author: Alexis Luna
-* Website: https://github.com/alexis-luna/bootstrap-simple-admin-template
--->
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Login | Bootstrap Simple Admin Template</title>
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/auth.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Login | EarthLink</title>
+  <link rel="stylesheet" href=" {{ 'vendor/bootstrap/css/bootstrap.min.css' }} ">
+  <link rel="stylesheet" href=" {{ 'css/auth.css' }} ">
+  <link rel="stylesheet" href="{{ 'css/toastify.css' }}">
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="auth-content">
-            <div class="card">
-                <div class="card-body text-center">
-                    <div class="mb-4">
-                        <img class="brand" src=" {{ 'img/brand-logo.png' }} " alt="bootstraper logo">
-                    </div>
-                    <h6 class="mb-4 text-muted">Login to your account</h6>
-                    <form action="" method="">
-                        <div class="mb-3 text-start">
-                            <label for="email" class="form-label">Email adress</label>
-                            <input type="email" class="form-control" placeholder="Enter Email" required>
-                        </div>
-                        <div class="mb-3 text-start">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" placeholder="Password" required>
-                        </div>
-                        <div class="mb-3 text-start">
-                            <div class="form-check">
-                              <input class="form-check-input" name="remember" type="checkbox" value="" id="check1">
-                              <label class="form-check-label" for="check1">
-                                Remember me on this device
-                              </label>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary shadow-2 mb-4">Login</button>
-                    </form>
-                    <p class="mb-2 text-muted">Forgot password? <a href="forgot-password.html">Reset</a></p>
-                    <p class="mb-0 text-muted">Don't have account yet? <a href="signup.html">Signup</a></p>
-                </div>
+  <div class="wrapper">
+    <div class="auth-content">
+      <div class="card">
+        <div class="card-body text-center">
+          <div class="mb-4">
+            <img class="brand" src=" {{ 'img/brand-logo.png' }} " alt="bootstraper logo">
+          </div>
+          <h6 class="mb-4 text-muted">Login to your account</h6>
+          <form id="login-form">
+            <div class="mb-3 text-start">
+              <label for="email" class="form-label">Email adress</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter Email" required>
             </div>
+            <div class="mb-3 text-start">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn btn-success shadow-2 mb-4">Login</button>
+          </form>
+          <p class="mb-2 text-muted">Forgot password? <a href="/forgot-password">Reset</a></p>
+          <p class="mb-0 text-muted">Don't have account yet? <a href="/admin-signup">Signup</a></p>
         </div>
+      </div>
     </div>
-    <script src=" {{ 'vendor/jquery/jquery.min.js' }} "></script>
-    <script src=" {{ 'vendor/bootstrap/js/bootstrap.min.js' }} "></script>
+  </div>
+  <script src=" {{ 'vendor/jquery/jquery.min.js' }} "></script>
+  <script src=" {{ 'vendor/bootstrap/js/bootstrap.min.js' }} "></script>
+  <script src=" {{ 'js/axios.min.js' }} "></script>
+  <script src=" {{ 'js/toastify.min.js' }} "></script>
+  <script>
+    document.getElementById('login-form').addEventListener('submit', function (event) {
+      event.preventDefault();
+      let formData = {
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value
+      }
+      let res = axios.post('/admin-login', formData).then(function (response) {
+        if (response.status == 200 && response.data.status == 'success') {
+          location.href = "/admin-dashboard"
+        } else {
+          Toastify({
+            text: "This is a toast",
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: "left", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+              background: "linear-gradient(to right, #00b09b, #96c93d)",
+            },
+            onClick: function () { } // Callback after click
+          }).showToast();
+        }
+      });
+
+    })
+  </script>
 </body>
 
 </html>

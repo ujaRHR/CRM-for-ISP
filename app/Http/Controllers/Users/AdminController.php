@@ -38,6 +38,10 @@ class AdminController extends Controller
         }
     }
 
+
+    public function adminLoginPage(){
+        return view('login');
+    }
     public function adminLogin(Request $request)
     {
         try {
