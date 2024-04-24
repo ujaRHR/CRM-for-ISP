@@ -9,6 +9,7 @@ use App\Http\Controllers\Plans\PlanController;
 use App\Http\Controllers\Subscription\SubscriptionController;
 use App\Http\Controllers\Tickets\TicketController;
 use App\Http\Controllers\Tasks\TaskController;
+use App\Http\Controllers\Dashboard\DashboardController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,6 +20,9 @@ Route::get('/admin-signup', [AdminController::class, 'adminSignupPage']);
 Route::post('/admin-signup', [AdminController::class, 'adminSignup']);
 Route::post('/admin-login', [AdminController::class, 'adminLogin']);
 Route::get('/admin-login', [AdminController::class, 'adminLoginPage']);
+Route::get('/admin-dashboard', [DashboardController::class, 'dashboardPage'])->middleware('token');
+Route::get('/manage-customers', [DashboardController::class, 'customersPage'])->middleware('token');
+Route::get('/customer-list', [DashboardController::class, 'getCustomer'])->middleware('token');
 
 // User Routes
 Route::post('/customer-signup', [CustomerController::class, 'customerSignup']);

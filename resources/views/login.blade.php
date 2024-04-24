@@ -8,7 +8,7 @@
   <title>Login | EarthLink</title>
   <link rel="stylesheet" href=" {{ 'vendor/bootstrap/css/bootstrap.min.css' }} ">
   <link rel="stylesheet" href=" {{ 'css/auth.css' }} ">
-  <link rel="stylesheet" href="{{ 'css/toastify.css' }}">
+  <link rel="stylesheet" href="{{ 'css/toast.css' }}">
 </head>
 
 <body>
@@ -19,7 +19,7 @@
           <div class="mb-4">
             <img class="brand" src=" {{ 'img/brand-logo.png' }} " alt="bootstraper logo">
           </div>
-          <h6 class="mb-4 text-muted">Login to your account</h6>
+          <h6 class="mb-4 text-muted">Login to Admin account</h6>
           <form id="login-form">
             <div class="mb-3 text-start">
               <label for="email" class="form-label">Email adress</label>
@@ -40,7 +40,7 @@
   <script src=" {{ 'vendor/jquery/jquery.min.js' }} "></script>
   <script src=" {{ 'vendor/bootstrap/js/bootstrap.min.js' }} "></script>
   <script src=" {{ 'js/axios.min.js' }} "></script>
-  <script src=" {{ 'js/toastify.min.js' }} "></script>
+  <script src=" {{ 'js/toast.js' }} "></script>
   <script>
     document.getElementById('login-form').addEventListener('submit', function (event) {
       event.preventDefault();
@@ -52,20 +52,7 @@
         if (response.status == 200 && response.data.status == 'success') {
           location.href = "/admin-dashboard"
         } else {
-          Toastify({
-            text: "This is a toast",
-            duration: 3000,
-            destination: "https://github.com/apvarun/toastify-js",
-            newWindow: true,
-            close: true,
-            gravity: "top", // `top` or `bottom`
-            position: "left", // `left`, `center` or `right`
-            stopOnFocus: true, // Prevents dismissing of toast on hover
-            style: {
-              background: "linear-gradient(to right, #00b09b, #96c93d)",
-            },
-            onClick: function () { } // Callback after click
-          }).showToast();
+          toastr.error("Incorrect Email or Password!");
         }
       });
 

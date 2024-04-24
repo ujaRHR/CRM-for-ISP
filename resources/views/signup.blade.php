@@ -16,7 +16,7 @@
       <div class="card">
         <div class="card-body text-center">
           <div class="mb-4">
-            <img class="brand" src=" {{ 'img/brand-logo.png' }} " alt="bootstraper logo">
+            <img class="brand" src=" {{ asset('img/brand-logo.png') }} " alt="bootstraper logo">
           </div>
           <h6 class="mb-4 text-muted">Create new Admin account</h6>
           <form id="signup-form">
@@ -57,9 +57,9 @@
       </div>
     </div>
   </div>
-  <script src=" {{ 'vendor/jquery/jquery.min.js' }} "></script>
-  <script src=" {{ 'vendor/bootstrap/js/bootstrap.min.js' }} "></script>
-  <script src=" {{ 'js/axios.min.js' }} "></script>
+  <script src=" {{ asset('vendor/jquery/jquery.min.js') }} "></script>
+  <script src=" {{ asset('vendor/bootstrap/js/bootstrap.min.js') }} "></script>
+  <script src=" {{ asset('js/axios.min.js') }} "></script>
 
   <script>
 
