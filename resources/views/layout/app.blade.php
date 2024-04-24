@@ -15,11 +15,6 @@
   <link rel="stylesheet" href=" {{ asset('vendor/flagiconcss/css/flag-icon.min.css') }} ">
   <link rel="stylesheet" href="{{ asset('css/toast.css') }}">
   <link rel="stylesheet" href="{{ asset('vendor/datatables/datatables.min.css') }}">
-
-  <!-- Custom JS Library -->
-  <script src=" {{ asset('js/toast.js') }} "></script>
-  <script src=" {{ asset('js/axios.min.js') }} "></script>
-  <script src=" {{ asset('vendor/jquery/jquery.min.js') }} "></script>
 </head>
 
 <body>
@@ -168,12 +163,18 @@
 
     </div>
   </div>
+
+  <script src=" {{ asset('vendor/jquery/jquery.min.js') }} "></script>
+  <script src=" {{ asset('js/axios.min.js') }} "></script>
+  <script src=" {{ asset('js/toast.js') }} "></script>
   <script src=" {{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }} "></script>
   <script src=" {{ asset('vendor/chartsjs/Chart.min.js') }} "></script>
   <script src="{{ asset('vendor/datatables/datatables.min.js') }}"></script>
   <script src="{{ asset('js/initiate-datatables.js') }}"></script>
   <script src=" {{ asset('js/dashboard-charts.js') }} "></script>
   <script src=" {{ asset('js/script.js') }} "></script>
+
+  @yield('scripts')
 </body>
 
 </html>

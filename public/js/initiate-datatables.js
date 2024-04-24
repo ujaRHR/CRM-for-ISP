@@ -1,12 +1,12 @@
 // Initiate datatables in roles, tables, users page
-(function () {
-    "use strict";
-
-    $("#dataTables").DataTable({
+(function() {
+    'use strict';
+    
+    $('#dataTables').DataTable({
         responsive: true,
-        pageLength: 10,
+        pageLength: 20,
         lengthChange: false,
         searching: true,
-        ordering: true,
+        ordering: true
     });
 })();
