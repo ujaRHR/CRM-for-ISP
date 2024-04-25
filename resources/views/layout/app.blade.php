@@ -15,6 +15,13 @@
   <link rel="stylesheet" href=" {{ asset('vendor/flagiconcss/css/flag-icon.min.css') }} ">
   <link rel="stylesheet" href="{{ asset('css/toast.css') }}">
   <link rel="stylesheet" href="{{ asset('vendor/datatables/datatables.min.css') }}">
+  <style>
+    .table td,
+    .table th {
+      text-align: center;
+    }
+  </style>
+  @yield('custom-css')
 </head>
 
 <body>
@@ -149,7 +156,7 @@
                     <li><a href="" class="dropdown-item"><i class="fas fa-cog"></i> Settings</a>
                     </li>
                     <div class="dropdown-divider"></div>
-                    <li><a href="" class="dropdown-item"><i class="fas fa-sign-out-alt"></i>
+                    <li><a href="/logout" class="dropdown-item"><i class="fas fa-sign-out-alt"></i>
                         Logout</a></li>
                   </ul>
                 </div>
@@ -170,11 +177,10 @@
   <script src=" {{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }} "></script>
   <script src=" {{ asset('vendor/chartsjs/Chart.min.js') }} "></script>
   <script src="{{ asset('vendor/datatables/datatables.min.js') }}"></script>
-  <script src="{{ asset('js/initiate-datatables.js') }}"></script>
   <script src=" {{ asset('js/dashboard-charts.js') }} "></script>
   <script src=" {{ asset('js/script.js') }} "></script>
 
-  @yield('scripts')
+  @yield('custom-scripts')
 </body>
 
 </html>

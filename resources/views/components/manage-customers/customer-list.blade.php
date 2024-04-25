@@ -1,8 +1,8 @@
 <div class="content">
   <div class="container">
     <div class="page-title">
-      <h3>Users
-        <a href="create-customer" class="btn btn-sm btn-outline-primary float-end"><i class="fas fa-user-plus"></i>
+      <h3>Customers
+        <a onclick="openModal()" class="btn btn-sm btn-outline-primary float-end"><i class="fas fa-user-plus"></i>
           Create Customer</a>
       </h3>
     </div>
@@ -28,7 +28,51 @@
 </div>
 
 
-@section('scripts')
+<!-- Form Modal -->
+<div class="col-lg-6">
+  <div class="card">
+    <div class="card-body text-center">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Launch
+        Form</button>
+      <div class="modal fade" id="exampleModal" role="dialog" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h6 class="modal-title">Create New Customer</h6>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-start">
+              <form id="create-customer" accept-charset="utf-8">
+                <div class="mb-3">
+                  <label for="fullname" class="form-label">Full Name</label>
+                  <input type="text" id="fullname" class="form-control">
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" id="email" class="form-control">
+                </div>
+                <div class="mb-3">
+                  <label for="phone" class="form-label">Phone</label>
+                  <input type="tel" id="phone" class="form-control">
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <input type="password" id="password" class="form-control">
+                </div>
+                <div class="mb-3">
+                  <button type="submit" class="btn btn-success">Create</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+@section('custom-scripts')
 <script>
   getCustomer();
 
@@ -38,24 +82,36 @@
 
     let mainTable = $('#dataTables');
     let tableBody = $('#tableBody');
+    let btnClass = ''
+
+    mainTable.DataTable().clear().destroy();
 
     data.forEach(function (item, index) {
+      if (item['status'] == 'active') {
+        btnClass = "btn btn-sm btn-success"
+      } else {
+        btnClass = "btn btn-sm btn-danger"
+      }
       let newRow = `<tr>
         <td>${item['personal_id']}</td>
         <td>${item['fullname']}</td>
         <td>${item['email']}</td>
         <td>${item['phone']}</td>
         <td>${item['type']}</td>
-        <td>${item['status']}
-        </td>
+        <td><button class='${btnClass}'>${item['status']}</button></td>
         <td>
-          <a href="" class="btn btn-outline-info btn-rounded"><i class="fas fa-pen"></i></a>
-          <a href="" class="btn btn-outline-danger btn-rounded"><i class="fas fa-trash"></i></a>
+          <a href="" class="btn btn-outline-info btn-rounded" data-id="${item['personal_id']}"><i class="fas fa-pen"></i></a>
+          <a href="" class="btn btn-outline-danger btn-rounded" data-id="${item['personal_id']}"><i class="fas fa-trash"></i></a>
         </td>
       </tr>`
       tableBody.append(newRow);
     });
+
+    mainTable.DataTable();
   }
 
+  function openModal(){
+    $("exampleModal").modal('show');
+  }
 </script>
 @endsection
