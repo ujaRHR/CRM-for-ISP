@@ -3,5 +3,6 @@
 @section('title', 'Manage Customers | EarthLink')
 
 @section('content')
-  @include('components.manage-customers.customer-list')
+  @include('components.customers.customer-list')
+  @include('components.customers.create-customer')
 @endsection
