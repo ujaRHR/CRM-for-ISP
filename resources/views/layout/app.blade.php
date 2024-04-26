@@ -21,7 +21,6 @@
       text-align: center;
     }
   </style>
-  @yield('custom-css')
 </head>
 
 <body>
@@ -170,17 +169,16 @@
 
     </div>
   </div>
-
   <script src=" {{ asset('vendor/jquery/jquery.min.js') }} "></script>
   <script src=" {{ asset('js/axios.min.js') }} "></script>
   <script src=" {{ asset('js/toast.js') }} "></script>
   <script src=" {{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }} "></script>
   <script src=" {{ asset('vendor/chartsjs/Chart.min.js') }} "></script>
-  <script src="{{ asset('vendor/datatables/datatables.min.js') }}"></script>
+  <script src=" {{ asset('vendor/datatables/datatables.min.js') }}"></script>
   <script src=" {{ asset('js/dashboard-charts.js') }} "></script>
   <script src=" {{ asset('js/script.js') }} "></script>
 
-  @yield('custom-scripts')
+  @stack('other-scripts')
 </body>
 
 </html>

@@ -28,8 +28,7 @@
   </div>
 </div>
 
-
-<!-- @section('custom-scripts')
+@push('other-scripts')
 <script>
   getCustomer();
 
@@ -68,4 +67,4 @@
   }
 
 </script>
-@endsection -->
+@endpush

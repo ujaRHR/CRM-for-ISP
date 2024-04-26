@@ -6,52 +6,58 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-start">
-        <!-- <form accept-charset="utf-8"> -->
+        <form id="customer-form">
           <div class="mb-3">
             <label for="fullname" class="form-label">Full Name</label>
-            <input type="text" id="fullname" class="form-control">
+            <input type="text" id="fullname" class="form-control" required>
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" id="email" class="form-control">
+            <input type="email" id="email" class="form-control" required>
           </div>
           <div class="mb-3">
             <label for="phone" class="form-label">Phone</label>
-            <input type="tel" id="phone" class="form-control">
+            <input type="tel" id="phone" class="form-control" required>
           </div>
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input type="password" id="password" class="form-control">
+            <input type="password" id="password" class="form-control" required>
           </div>
           <div class="mb-3">
-            <button onclick="createCustomer()" type="submit" class="btn btn-success">Create</button>
+            <button onclick="createCustomer()" class="btn btn-success">Create</button>
           </div>
-        <!-- </form> -->
+        </form>
       </div>
     </div>
   </div>
 
 </div>
 
-
-@section('custom-scripts')
+@push('other-scripts')
 <script>
   function createCustomer() {
+    let fullname = document.getElementById('fullname').value;
+    let email = document.getElementById('email').value;
+    let phone = document.getElementById('phone').value;
+    let password = document.getElementById('password').value;
+
     formData = {
-      fullname: document.getElementById('fullname'),
-      email: document.getElementById('email'),
-      phone: document.getElementById('phone'),
-      password: document.getElementById('password')
+      fullname: fullname,
+      email: email,
+      phone: phone,
+      password: password
     }
 
-    let res = axios.post('/customer-signup', formData);
-
-    if (res.data.status == 'success' && res.status == 200) {
-      toastr.success("Customer Created Successfully")
-    } else {
-      toastr.failed("Something Went Wrong!")
-    }
+    let res = axios.post('/customer-signup', formData).then(function (response) {
+      if (response.data.status == 'success' && response.status == 200) {
+        toastr.success("Customer Created Successfully")
+        $('#exampleModal').modal('hide');
+        getCustomer();
+      } else {
+        toastr.error("Something Went Wrong!")
+      }
+    });
   }
 
 </script>
-@endsection
+@endpush
