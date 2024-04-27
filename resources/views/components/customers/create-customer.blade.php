@@ -24,7 +24,7 @@
             <input type="password" id="password" class="form-control" required>
           </div>
           <div class="mb-3">
-            <button onclick="createCustomer()" class="btn btn-success">Create</button>
+            <button onclick="createCustomer()" type="button" class="btn btn-success">Create</button>
           </div>
         </form>
       </div>
@@ -35,7 +35,7 @@
 
 @push('other-scripts')
 <script>
-  function createCustomer() {
+  function createCustomer(e) {
     let fullname = document.getElementById('fullname').value;
     let email = document.getElementById('email').value;
     let phone = document.getElementById('phone').value;
