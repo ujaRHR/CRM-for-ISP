@@ -23,6 +23,7 @@ Route::get('/admin-login', [AdminController::class, 'adminLoginPage']);
 Route::get('/admin-dashboard', [DashboardController::class, 'dashboardPage'])->middleware('token');
 Route::get('/manage-customers', [DashboardController::class, 'customersPage'])->middleware('token');
 Route::get('/customer-list', [DashboardController::class, 'getCustomer'])->middleware('token');
+Route::post('/customer-delete', [DashboardController::class, 'deleteCustomer'])->middleware('token');
 
 // User Routes
 Route::post('/customer-signup', [CustomerController::class, 'customerSignup']);

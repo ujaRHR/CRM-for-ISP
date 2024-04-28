@@ -15,6 +15,7 @@
   <link rel="stylesheet" href=" {{ asset('vendor/flagiconcss/css/flag-icon.min.css') }} ">
   <link rel="stylesheet" href="{{ asset('css/toast.css') }}">
   <link rel="stylesheet" href="{{ asset('vendor/datatables/datatables.min.css') }}">
+  
   <style>
     .table td,
     .table th {
@@ -25,6 +26,7 @@
 
 <body>
   <div class="wrapper">
+    <div id="progress"></div>
     <nav id="sidebar" class="">
       <div class="sidebar-header">
         <img src=" {{ asset('img/brand-logo.png') }} " alt="brand logo" class="app-logo">

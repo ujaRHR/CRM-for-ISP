@@ -1,4 +1,4 @@
-<div class="modal fade" id="exampleModal" role="dialog" tabindex="-1">
+<div class="modal fade" id="createModal" role="dialog" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -51,7 +51,7 @@
     let res = axios.post('/customer-signup', formData).then(function (response) {
       if (response.data.status == 'success' && response.status == 200) {
         toastr.success("Customer Created Successfully")
-        $('#exampleModal').modal('hide');
+        $('#createModal').modal('hide');
         getCustomer();
       } else {
         toastr.error("Something Went Wrong!")

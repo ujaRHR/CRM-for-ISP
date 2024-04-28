@@ -2,7 +2,7 @@
   <div class="container">
     <div class="page-title">
       <h3>Customers
-        <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-sm btn-outline-primary float-end"><i
+        <a data-bs-toggle="modal" data-bs-target="#createModal" class="btn btn-sm btn-outline-primary float-end"><i
             class="fas fa-user-plus"></i>
           Create Customer</a>
       </h3>
@@ -56,12 +56,20 @@
         <td>${item['type']}</td>
         <td><button class='${btnClass}'>${item['status']}</button></td>
         <td>
-          <a href="" class="btn btn-outline-info btn-rounded" data-id="${item['personal_id']}"><i class="fas fa-pen"></i></a>
-          <a href="" class="btn btn-outline-danger btn-rounded" data-id="${item['personal_id']}"><i class="fas fa-trash"></i></a>
+          <button type="button" id="editBtn" class="btn btn-outline-info btn-rounded" data-id="${item['personal_id']}"><i class="fas fa-pen"></i></button>
+          <button type="button" id="deleteBtn" class="btn btn-outline-danger btn-rounded" data-id="${item['personal_id']}"><i class="fas fa-trash"></i></button>
         </td>
       </tr>`
       tableBody.append(newRow);
     });
+
+
+    $('#deleteBtn').on('click', function (e) {
+      let pid = $(this).data('id');
+      console.log(pid)
+      $("#deleteModal").modal('show');
+      $('#deletePID').val(pid);
+    })
 
     mainTable.DataTable();
   }
