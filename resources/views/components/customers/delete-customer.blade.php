@@ -5,7 +5,7 @@
             <div class="modal-header">
                 <h5 class="modal-title">Customer Deletion</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
+            </div>
             <div class="modal-body text-start">
                 <div class="alert alert-danger">
                     <h5 class="alert-title"><i class="fas fa-exclamation-triangle"></i> Danger</h5>
@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <input type="number" id="deletePID" class="d-none">
+                <input type="number" id="deletePID" class="d-none" value="">
                 <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
                 <button onclick="deleteCustomer()" type="button" class="btn btn-danger">Delete</button>
             </div>
@@ -25,7 +25,7 @@
 <script>
     function deleteCustomer() {
         formData = {
-            pid: $('#deletePID').val
+            pid: $('#deletePID').val()
         }
 
         let res = axios.post('/customer-delete', formData).then(function (response) {

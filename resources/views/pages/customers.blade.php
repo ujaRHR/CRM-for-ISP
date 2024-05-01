@@ -5,5 +5,6 @@
 @section('content')
   @include('components.customers.customer-list')
   @include('components.customers.create-customer')
+  @include('components.customers.update-customer')
   @include('components.customers.delete-customer')
 @endsection

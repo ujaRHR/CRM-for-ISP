@@ -45,4 +45,25 @@ class DashboardController extends Controller
             ]);
         }
     }
+
+    public function updateCustomer(Request $request)
+    {
+        $pid = $request->input('pid');
+
+        $updated = Customer::where('personal_id', $pid)->update([
+
+        ]);
+
+        if ($updated) {
+            return response()->json([
+                'status'  => 'success',
+                'message' => 'customer updated successfully'
+            ], 200);
+        } else {
+            return response()->json([
+                'status'  => 'failed',
+                'message' => 'failed to update the customer'
+            ]);
+        }
+    }
 }

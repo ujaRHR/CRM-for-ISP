@@ -1,8 +1,8 @@
-<div class="modal fade" id="createModal" role="dialog" tabindex="-1">
+<div class="modal fade" id="editModal" role="dialog" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h6 class="modal-title">Create New Customer</h6>
+        <h6 class="modal-title">Edit Customer</h6>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-start">
@@ -24,7 +24,7 @@
             <input type="password" id="password" class="form-control" required>
           </div>
           <div class="mb-3">
-            <button onclick="createCustomer()" type="button" class="btn btn-success">Create</button>
+            <button onclick="updateCustomer()" type="button" class="btn btn-success">Update</button>
           </div>
         </form>
       </div>
@@ -35,7 +35,7 @@
 
 @push('other-scripts')
 <script>
-  function createCustomer() {
+  function updateCustomer() {
     let fullname = document.getElementById('fullname').value;
     let email = document.getElementById('email').value;
     let phone = document.getElementById('phone').value;
