@@ -1,13 +1,14 @@
-<div class="modal fade" id="editModal" role="dialog" tabindex="-1">
+<div class="modal fade" id="updateModal" role="dialog" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h6 class="modal-title">Edit Customer</h6>
+        <h6 class="modal-title">Update Customer</h6>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-start">
         <form id="customer-form">
           <div class="mb-3">
+            <input type="number" class="d-none" id="updatePID" value="">
             <label for="fullname" class="form-label">Full Name</label>
             <input type="text" id="fullname" class="form-control" required>
           </div>
@@ -35,11 +36,24 @@
 
 @push('other-scripts')
 <script>
+  getCustomerInfo()
+
+  function getCustomerInfo() {
+    let pid = $('#updatePID').val()
+
+    let res = axios.post('/customer-info', { pid: pid }).then(function (response) {
+      console.log(response.data.fullname)
+      $('#fullname').val(response.data.fullname)
+      $('#email').val(response.data.email)
+      $('#phone').val(response.data.phone)
+    })
+  }
+
   function updateCustomer() {
-    let fullname = document.getElementById('fullname').value;
-    let email = document.getElementById('email').value;
-    let phone = document.getElementById('phone').value;
-    let password = document.getElementById('password').value;
+    let fullname = $('#fullname').val();
+    let email = $('#email').val();
+    let phone = $('#phone').val();
+    let password = $('#password').val();
 
     if (fullname.length < 4 || email.length < 6 || phone.length < 10 || password.length < 6) {
       toastr.error("Please fill the required fields!")

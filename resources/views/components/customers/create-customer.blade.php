@@ -36,10 +36,10 @@
 @push('other-scripts')
 <script>
   function createCustomer() {
-    let fullname = document.getElementById('fullname').value;
-    let email = document.getElementById('email').value;
-    let phone = document.getElementById('phone').value;
-    let password = document.getElementById('password').value;
+    let fullname = $('#fullname').val();
+    let email = $('#email').val();
+    let phone = $('#phone').val();
+    let password = $('#password').val();
 
     if (fullname.length < 4 || email.length < 6 || phone.length < 10 || password.length < 6) {
       toastr.error("Please fill the required fields!")

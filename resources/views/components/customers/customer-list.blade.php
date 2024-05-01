@@ -56,7 +56,7 @@
         <td>${item['type']}</td>
         <td><button class='${btnClass}'>${item['status']}</button></td>
         <td>
-          <button type="button" class="editBtn btn btn-outline-info btn-rounded" data-id="${item['personal_id']}"><i class="fas fa-pen"></i></button>
+          <button type="button" class="updateBtn btn btn-outline-info btn-rounded" data-id="${item['personal_id']}"><i class="fas fa-pen"></i></button>
           <button type="button" class="deleteBtn btn btn-outline-danger btn-rounded" data-id="${item['personal_id']}"><i class="fas fa-trash"></i></button>
         </td>
       </tr>`
@@ -64,19 +64,19 @@
     });
 
     mainTable.DataTable();
-
-    $('table tbody').on('click', '.deleteBtn', function () {
-      let pid = $(this).data('id');
-      $("#deleteModal").modal('show');
-      $('#deletePID').val(pid);
-    })
-
-    $('table tbody').on('click', '.editBtn', function () {
-      let pid = $(this).data('id');
-      $("#editModal").modal('show');
-      $('#editPID').val(pid);
-    })
   }
+
+  $('table tbody').on('click', '.deleteBtn', function () {
+    let pid = $(this).data('id');
+    $('#deleteModal').modal('show');
+    $('#deletePID').val(pid);
+  })
+
+  $('table tbody').on('click', '.updateBtn', function () {
+    let pid = $(this).data('id');
+    $('#updateModal').modal('show');
+    $('#updatePID').val(pid);
+  })
 
 </script>
 @endpush

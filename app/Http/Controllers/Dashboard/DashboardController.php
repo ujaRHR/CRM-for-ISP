@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Customer;
 use App\Models\Admin;
 
@@ -25,6 +26,15 @@ class DashboardController extends Controller
     {
         $customers = Customer::get();
         return $customers;
+    }
+
+    public function getCustomerInfo(Request $request)
+    {
+        $pid = $request->input('pid');
+
+        $customer = Customer::where('personal_id', $pid)->first();
+
+        return $customer;
     }
 
     public function deleteCustomer(Request $request)
@@ -51,7 +61,10 @@ class DashboardController extends Controller
         $pid = $request->input('pid');
 
         $updated = Customer::where('personal_id', $pid)->update([
-
+            'fullname' => $request->input('fullname'),
+            'email'    => $request->input('email'),
+            'phone'    => $request->input('phone'),
+            'password' => Hash::make($request->input('password'))
         ]);
 
         if ($updated) {
