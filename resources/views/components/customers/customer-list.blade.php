@@ -56,7 +56,7 @@
         <td>${item['type']}</td>
         <td><button class='${btnClass}'>${item['status']}</button></td>
         <td>
-          <button type="button" class="updateBtn btn btn-outline-info btn-rounded" data-id="${item['personal_id']}"><i class="fas fa-pen"></i></button>
+          <button type="button" onclick="getCustomerInfo()" class="updateBtn btn btn-outline-info btn-rounded" data-id="${item['personal_id']}"><i class="fas fa-pen"></i></button>
           <button type="button" class="deleteBtn btn btn-outline-danger btn-rounded" data-id="${item['personal_id']}"><i class="fas fa-trash"></i></button>
         </td>
       </tr>`

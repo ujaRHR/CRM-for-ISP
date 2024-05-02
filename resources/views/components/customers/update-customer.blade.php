@@ -42,7 +42,6 @@
     let pid = $('#updatePID').val()
 
     let res = axios.post('/customer-info', { pid: pid }).then(function (response) {
-      console.log(response.data.fullname)
       $('#fullname').val(response.data.fullname)
       $('#email').val(response.data.email)
       $('#phone').val(response.data.phone)
