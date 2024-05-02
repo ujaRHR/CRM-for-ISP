@@ -13,7 +13,7 @@ class DashboardController extends Controller
     public function dashboardPage(Request $request)
     {
         $admin = Admin::where('id', $request->header('id'))->first();
-        return view('dashboard')->with('admin', $admin);
+        return view('pages.dashboard')->with('admin', $admin);
     }
 
     public function customersPage(Request $request)

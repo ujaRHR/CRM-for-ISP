@@ -1,10 +1,10 @@
 <div class="content">
   <div class="container">
     <div class="page-title">
-      <h3>Customers
+      <h3>Plans
         <a data-bs-toggle="modal" data-bs-target="#createModal" class="btn btn-sm btn-outline-primary float-end"><i
             class="fas fa-user-plus"></i>
-          Create Customer</a>
+          Create Plan</a>
       </h3>
     </div>
     <div class="card">
@@ -12,12 +12,11 @@
         <table class="table table-hover table-bordered" id="dataTables" width="100%">
           <thead>
             <tr>
-              <th>PID</th>
+              <th>ID</th>
               <th>Name</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Type</th>
-              <th>Status</th>
+              <th>Price</th>
+              <th>Billing Cycle</th>
+              <th>Speed</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -33,7 +32,7 @@
   getCustomer();
 
   async function getCustomer() {
-    let res = await axios.get('/customer-list');
+    let res = await axios.get('/plan-list');
     let data = res.data;
 
     let mainTable = $('#dataTables');
@@ -43,21 +42,15 @@
     mainTable.DataTable().clear().destroy();
 
     data.forEach(function (item, index) {
-      if (item['status'] == 'active') {
-        btnClass = "btn btn-sm btn-success"
-      } else {
-        btnClass = "btn btn-sm btn-danger"
-      }
       let newRow = `<tr>
-        <td>${item['personal_id']}</td>
-        <td>${item['fullname']}</td>
-        <td>${item['email']}</td>
-        <td>${item['phone']}</td>
-        <td>${item['type']}</td>
-        <td><button class='${btnClass}'>${item['status']}</button></td>
+        <td>${item['id']}</td>
+        <td>${item['name']}</td>
+        <td>${item['price']}</td>
+        <td>${item['billing_cycle']}</td>
+        <td>${item['speed']}</td>
         <td>
-          <button type="button" onclick="getCustomerInfo()" class="updateBtn btn btn-outline-info btn-rounded" data-id="${item['personal_id']}"><i class="fas fa-pen"></i></button>
-          <button type="button" class="deleteBtn btn btn-outline-danger btn-rounded" data-id="${item['personal_id']}"><i class="fas fa-trash"></i></button>
+          <button type="button" onclick="getPlanInfo()" class="updateBtn btn btn-outline-info btn-rounded" data-id="${item['id']}"><i class="fas fa-pen"></i></button>
+          <button type="button" class="deleteBtn btn btn-outline-danger btn-rounded" data-id="${item['id']}"><i class="fas fa-trash"></i></button>
         </td>
       </tr>`
       tableBody.append(newRow);

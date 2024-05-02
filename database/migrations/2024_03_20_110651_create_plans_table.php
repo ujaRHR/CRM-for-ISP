@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->decimal('price', 6, 2);
             $table->enum('billing_cycle', ['monthly', 'yearly', 'semi-annual']);
             $table->string('plan_img')->nullable();
-            $table->string('description');
+            $table->string('speed');
             $table->timestamps();
         });
     }

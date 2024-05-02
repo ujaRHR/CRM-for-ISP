@@ -4,11 +4,27 @@ namespace App\Http\Controllers\Plans;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Admin;
 use App\Models\Plan;
 use Exception;
 
 class PlanController extends Controller
 {
+
+    public function planPage(Request $request)
+    {
+        $admin = Admin::where('id', $request->header('id'))->first();
+
+        return view('pages.plans', compact('admin'));
+    }
+
+    public function planList(Request $request)
+    {
+        $plans = Plan::get();
+
+        return $plans;
+    }
+
     public function createPlan(Request $request)
     {
         try {
@@ -30,7 +46,6 @@ class PlanController extends Controller
             ]);
         }
     }
-
     public function deletePlan(Request $request)
     {
         try {

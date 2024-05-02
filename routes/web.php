@@ -26,7 +26,8 @@ Route::get('/customer-list', [DashboardController::class, 'getCustomer'])->middl
 Route::post('/customer-delete', [DashboardController::class, 'deleteCustomer'])->middleware('token');
 Route::post('/customer-update', [DashboardController::class, 'updateCustomer'])->middleware('token');
 Route::post('/customer-info', [DashboardController::class, 'getCustomerInfo'])->middleware('token');
-
+Route::get('/manage-plans', [PlanController::class, 'planPage'])->middleware('token');
+Route::get('/plan-list', [PlanController::class, 'planList'])->middleware('token');
 
 // User Routes
 Route::post('/customer-signup', [CustomerController::class, 'customerSignup']);

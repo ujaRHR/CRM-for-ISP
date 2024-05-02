@@ -36,7 +36,10 @@
           <a href="admin-dashboard"><i class="fas fa-home"></i> Dashboard</a>
         </li>
         <li>
-          <a href="manage-customers"><i class="fas fa-user-friends"></i>Customers</a>
+          <a href="manage-customers"><i class="fas fa-user-friends"></i> Customers</a>
+        </li>
+        <li>
+          <a href="manage-plans"><i class="fas fa-file-alt"></i> Plans</a>
         </li>
         <li>
           <a href="forms.html"><i class="fas fa-file-alt"></i> Forms</a>
