@@ -30,9 +30,9 @@
 
 @push('other-scripts')
 <script>
-  getCustomer();
+  getCustomers();
 
-  async function getCustomer() {
+  async function getCustomers() {
     let res = await axios.get('/customer-list');
     let data = res.data;
 

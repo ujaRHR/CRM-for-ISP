@@ -32,7 +32,7 @@
             if (response.data.status == 'success' && response.status == 200) {
                 toastr.success("Customer Deleted Successfully")
                 $('#deleteModal').modal('hide');
-                getCustomer();
+                getCustomers();
             } else {
                 toastr.error("Something Went Wrong!")
             }

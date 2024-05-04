@@ -55,7 +55,7 @@
         if (response.data.status == 'success' && response.status == 200) {
           toastr.success("Customer Created Successfully")
           $('#createModal').modal('hide');
-          getCustomer();
+          getCustomers();
         } else {
           toastr.error("Something Went Wrong!")
         }
