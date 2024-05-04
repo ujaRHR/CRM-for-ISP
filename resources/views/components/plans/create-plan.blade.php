@@ -1,23 +1,15 @@
 <div class="modal fade" id="createModal" role="dialog" tabindex="-1">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h6 class="modal-title">Create New Plan</h6>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-start">
-        <form id="customer-form">
+        <form id="plan-form">
           <div class="mb-3">
             <label for="name" class="form-label">Plan Name</label>
             <input type="text" id="name" class="form-control" required>
-          </div>
-          <div class="mb-3">
-            <label for="price" class="form-label">Price</label>
-            <input type="number" id="price" class="form-control" required>
-          </div>
-          <div class="mb-3">
-            <label for="phone" class="form-label">Phone</label>
-            <input type="tel" id="phone" class="form-control" required>
           </div>
           <div class="mb-3">
             <label for="billing_cycle" class="form-label">Billing Cycle</label>
@@ -28,9 +20,15 @@
               <option value="semi-annual">Semi Annual (6 Months)</option>
             </select>
           </div>
-          <div class="mb-3">
-            <label for="speed" class="form-label">Speed</label>
-            <input type="text" id="speed" class="form-control" required>
+          <div class="row">
+            <div class="mb-3 col-sm-6">
+              <label for="price" class="form-label">Price</label>
+              <input type="number" id="price" class="form-control" required>
+            </div>
+            <div class="mb-3 col-sm-6">
+              <label for="speed" class="form-label">Speed</label>
+              <input type="text" id="speed" class="form-control" required>
+            </div>
           </div>
           <div class="mb-3">
             <button onclick="createPlan()" type="button" class="btn btn-success">Create Plan</button>
@@ -48,24 +46,25 @@
     let name = $('#name').val();
     let price = $('#price').val();
     let billingCycle = $('#billingCycle').val();
-    let password = $('#password').val();
+    let speed = $('#speed').val();
 
-    if (fullname.length < 4 || email.length < 6 || phone.length < 10 || password.length < 6) {
-      toastr.error("Please fill the required fields!")
+    if (name.length < 4 || price.length < 2 || billingCycle.length < 5 || speed.length < 1) {
+      toastr.error("Please fill the required fields properly!")
     } else {
       formData = {
-        fullname: fullname,
-        email: email,
-        phone: phone,
-        password: password
+        name: name,
+        price: price,
+        billing_cycle: billingCycle,
+        speed: speed
       }
 
-      let res = axios.post('/customer-signup', formData).then(function (response) {
+      let res = axios.post('/create-plan', formData).then(function (response) {
         if (response.data.status == 'success' && response.status == 200) {
-          toastr.success("Customer Created Successfully")
+          toastr.success("Plan Created Successfully")
           $('#createModal').modal('hide');
-          getCustomer();
+          getPlans();
         } else {
+          console.log(response)
           toastr.error("Something Went Wrong!")
         }
       });

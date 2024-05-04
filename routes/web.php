@@ -23,11 +23,10 @@ Route::get('/admin-login', [AdminController::class, 'adminLoginPage']);
 Route::get('/admin-dashboard', [DashboardController::class, 'dashboardPage'])->middleware('token');
 Route::get('/manage-customers', [DashboardController::class, 'customersPage'])->middleware('token');
 Route::get('/customer-list', [DashboardController::class, 'getCustomer'])->middleware('token');
-Route::post('/customer-delete', [DashboardController::class, 'deleteCustomer'])->middleware('token');
-Route::post('/customer-update', [DashboardController::class, 'updateCustomer'])->middleware('token');
+Route::post('/delete-customer', [DashboardController::class, 'deleteCustomer'])->middleware('token');
+Route::post('/update-customer', [DashboardController::class, 'updateCustomer'])->middleware('token');
 Route::post('/customer-info', [DashboardController::class, 'getCustomerInfo'])->middleware('token');
-Route::get('/manage-plans', [PlanController::class, 'planPage'])->middleware('token');
-Route::get('/plan-list', [PlanController::class, 'planList'])->middleware('token');
+
 
 // User Routes
 Route::post('/customer-signup', [CustomerController::class, 'customerSignup']);
@@ -36,15 +35,26 @@ Route::post('/customer-login', [CustomerController::class, 'customerLogin']);
 Route::get('/logout', [AdminController::class, 'logout']);
 
 // Staff Routes
-Route::post('/staff-signup', [StaffController::class, 'staffSignup']);
+Route::get('/manage-staffs', [StaffController::class, 'staffsPage'])->middleware('token');
+Route::get('/staff-list', [StaffController::class, 'getStaff'])->middleware('token');
+Route::post('/staff-info', [StaffController::class, 'getStaffInfo'])->middleware('token');
+Route::post('/staff-signup', [StaffController::class, 'staffSignup'])->middleware('token');
+Route::post('/delete-staff', [StaffController::class, 'deleteStaff'])->middleware('token');
+Route::post('/update-staff', [StaffController::class, 'updateStaff'])->middleware('token');
+
 
 // Notices Routes
 Route::post('/create-notice', [NoticeController::class, 'createNotice'])->middleware('token');
 Route::post('/delete-notice', [NoticeController::class, 'deleteNotice'])->middleware('token');
 
 // Plans Routes
+Route::get('/manage-plans', [PlanController::class, 'planPage'])->middleware('token');
 Route::post('/create-plan', [PlanController::class, 'createPlan'])->middleware('token');
+Route::get('/plan-list', [PlanController::class, 'planList'])->middleware('token');
+Route::post('/plan-info', [PlanController::class, 'getPlanInfo'])->middleware('token');
 Route::post('/delete-plan', [PlanController::class, 'deletePlan'])->middleware('token');
+Route::post('/update-plan', [PlanController::class, 'updatePlan'])->middleware('token');
+
 
 // Subscriptions Routes
 Route::post('/create-subscription', [SubscriptionController::class, 'createSubscription'])->middleware('token');

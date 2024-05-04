@@ -8,6 +8,7 @@
   <title>Sign up | EarthLink</title>
   <link href=" {{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('css/auth.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/toast.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -60,6 +61,7 @@
   <script src=" {{ asset('vendor/jquery/jquery.min.js') }} "></script>
   <script src=" {{ asset('vendor/bootstrap/js/bootstrap.min.js') }} "></script>
   <script src=" {{ asset('js/axios.min.js') }} "></script>
+  <script src=" {{ asset('js/toast.js') }} "></script>
 
   <script>
 
@@ -74,6 +76,8 @@
       axios.post('/admin-signup', formData).then(function (response) {
         if (response.status == 200 && response.data.status == 'success') {
           location.href = "/admin-login"
+        } else {
+          toastr.error("Incorrect Email or Password!")
         }
       });
     });

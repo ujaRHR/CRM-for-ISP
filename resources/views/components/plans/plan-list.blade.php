@@ -3,7 +3,7 @@
     <div class="page-title">
       <h3>Plans
         <a data-bs-toggle="modal" data-bs-target="#createModal" class="btn btn-sm btn-outline-primary float-end"><i
-            class="fas fa-user-plus"></i>
+            class="fas fa-plus-square"></i>
           Create Plan</a>
       </h3>
     </div>
@@ -29,9 +29,9 @@
 
 @push('other-scripts')
 <script>
-  getCustomer();
+  getPlans();
 
-  async function getCustomer() {
+  async function getPlans() {
     let res = await axios.get('/plan-list');
     let data = res.data;
 
@@ -43,7 +43,7 @@
 
     data.forEach(function (item, index) {
       let newRow = `<tr>
-        <td>${item['id']}</td>
+        <td>${index+1}</td>
         <td>${item['name']}</td>
         <td>${item['price']}</td>
         <td>${item['billing_cycle']}</td>
@@ -60,16 +60,16 @@
   }
 
   $('table tbody').on('click', '.deleteBtn', function () {
-    let pid = $(this).data('id');
+    let id = $(this).data('id');
     $('#deleteModal').modal('show');
-    $('#deletePID').val(pid);
+    $('#deleteID').val(id);
   })
 
   $('table tbody').on('click', '.updateBtn', function () {
-    let pid = $(this).data('id');
+    let id = $(this).data('id');
     $('#updateModal').modal('show');
-    $('#updatePID').val(pid);
-    getCustomerInfo()
+    $('#updateID').val(id);
+    getPlanInfo();
   })
 
 </script>

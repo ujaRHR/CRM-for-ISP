@@ -39,6 +39,9 @@
           <a href="manage-customers"><i class="fas fa-user-friends"></i> Customers</a>
         </li>
         <li>
+          <a href="manage-staffs"><i class="fas fa-user-cog"></i> Staffs</a>
+        </li>
+        <li>
           <a href="manage-plans"><i class="fas fa-file-alt"></i> Plans</a>
         </li>
         <li>

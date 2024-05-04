@@ -25,6 +25,14 @@ class PlanController extends Controller
         return $plans;
     }
 
+    public function getPlanInfo(Request $request)
+    {
+        $id   = $request->input('id');
+        $plan = Plan::where('id', $id)->first();
+
+        return $plan;
+    }
+
     public function createPlan(Request $request)
     {
         try {
@@ -32,7 +40,7 @@ class PlanController extends Controller
                 'name'          => $request->input('name'),
                 'price'         => $request->input('price'),
                 'billing_cycle' => $request->input('billing_cycle'),
-                'description'   => $request->input('description')
+                'speed'         => $request->input('speed')
             ]);
 
             return response()->json([
@@ -42,7 +50,8 @@ class PlanController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 'status'  => 'failed',
-                'message' => 'failed to create plan!'
+                'message' => 'failed to create plan!',
+                'error'   => $e
             ]);
         }
     }
@@ -67,6 +76,30 @@ class PlanController extends Controller
             return response()->json([
                 'status'  => 'failed',
                 'message' => 'failed to delete the plan!'
+            ]);
+        }
+    }
+
+    public function updatePlan(Request $request)
+    {
+        $id = $request->input('id');
+
+        $updated = Plan::where('id', $id)->update([
+            'name'          => $request->input('name'),
+            'price'         => $request->input('price'),
+            'billing_cycle' => $request->input('billing_cycle'),
+            'speed'         => $request->input('speed')
+        ]);
+
+        if ($updated) {
+            return response()->json([
+                'status'  => 'success',
+                'message' => 'plan updated successfully'
+            ], 200);
+        } else {
+            return response()->json([
+                'status'  => 'failed',
+                'message' => 'failed to update the plan'
             ]);
         }
     }
