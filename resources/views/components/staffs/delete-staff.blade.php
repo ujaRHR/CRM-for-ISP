@@ -3,19 +3,19 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title">Customer Deletion</h5>
+                <h5 class="modal-title">Staff Deletion</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-start">
                 <div class="alert alert-danger">
                     <h5 class="alert-title"><i class="fas fa-exclamation-triangle"></i> Danger</h5>
-                    Are you sure you want to delete this customer?
+                    Are you sure you want to delete this Staff?
                 </div>
             </div>
             <div class="modal-footer">
-                <input type="number" id="deletePID" class="d-none" value="">
+                <input type="number" id="deleteID" class="d-none" value="">
                 <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
-                <button onclick="deleteCustomer()" type="button" class="btn btn-danger">Delete</button>
+                <button onclick="deleteStaff()" type="button" class="btn btn-danger">Delete</button>
             </div>
         </div>
     </div>
@@ -23,16 +23,16 @@
 
 @push('other-scripts')
 <script>
-    function deleteCustomer() {
+    function deleteStaff() {
         formData = {
-            pid: $('#deletePID').val()
+            id: $('#deleteID').val()
         }
 
-        let res = axios.post('/delete-customer', formData).then(function (response) {
+        let res = axios.post('/delete-staff', formData).then(function (response) {
             if (response.data.status == 'success' && response.status == 200) {
-                toastr.success("Customer Deleted Successfully")
+                toastr.success("Staff Deleted Successfully")
                 $('#deleteModal').modal('hide');
-                getCustomer();
+                getStaffs();
             } else {
                 toastr.error("Something Went Wrong!")
             }

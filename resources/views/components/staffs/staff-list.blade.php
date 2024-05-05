@@ -12,12 +12,12 @@
         <table class="table table-hover table-bordered" id="dataTables" width="100%">
           <thead>
             <tr>
-              <th>PID</th>
+              <th>ID</th>
               <th>Name</th>
               <th>Email</th>
               <th>Phone</th>
-              <th>Type</th>
-              <th>Status</th>
+              <th>Position</th>
+              <th>Salary</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -30,34 +30,28 @@
 
 @push('other-scripts')
 <script>
-  getStaff();
+  getStaffs();
 
-  async function getStaff() {
+  async function getStaffs() {
     let res = await axios.get('/staff-list');
     let data = res.data;
 
     let mainTable = $('#dataTables');
     let tableBody = $('#tableBody');
-    let btnClass = ''
 
     mainTable.DataTable().clear().destroy();
 
     data.forEach(function (item, index) {
-      if (item['status'] == 'active') {
-        btnClass = "btn btn-sm btn-success"
-      } else {
-        btnClass = "btn btn-sm btn-danger"
-      }
       let newRow = `<tr>
-        <td>${item['personal_id']}</td>
+        <td>${index + 1}</td>
         <td>${item['fullname']}</td>
         <td>${item['email']}</td>
         <td>${item['phone']}</td>
-        <td>${item['type']}</td>
-        <td><button class='${btnClass}'>${item['status']}</button></td>
+        <td>${item['position']}</td>
+        <td>${item['salary']}</td>
         <td>
-          <button type="button" onclick="getStaffInfo()" class="updateBtn btn btn-outline-info btn-rounded" data-id="${item['personal_id']}"><i class="fas fa-pen"></i></button>
-          <button type="button" class="deleteBtn btn btn-outline-danger btn-rounded" data-id="${item['personal_id']}"><i class="fas fa-trash"></i></button>
+          <button type="button" onclick="getStaffInfo()" class="updateBtn btn btn-outline-info btn-rounded" data-id="${item['id']}"><i class="fas fa-pen"></i></button>
+          <button type="button" class="deleteBtn btn btn-outline-danger btn-rounded" data-id="${item['id']}"><i class="fas fa-trash"></i></button>
         </td>
       </tr>`
       tableBody.append(newRow);
@@ -67,15 +61,15 @@
   }
 
   $('table tbody').on('click', '.deleteBtn', function () {
-    let pid = $(this).data('id');
+    let id = $(this).data('id');
     $('#deleteModal').modal('show');
-    $('#deletePID').val(pid);
+    $('#deleteID').val(id);
   })
 
   $('table tbody').on('click', '.updateBtn', function () {
-    let pid = $(this).data('id');
+    let id = $(this).data('id');
     $('#updateModal').modal('show');
-    $('#updatePID').val(pid);
+    $('#updateID').val(id);
     getStaffInfo()
   })
 

@@ -49,18 +49,18 @@ class StaffController extends Controller
 
     public function getStaffInfo(Request $request)
     {
-        $pid = $request->input('pid');
+        $id = $request->input('id');
 
-        $staff = Staff::where('personal_id', $pid)->first();
+        $staff = Staff::where('id', $id)->first();
 
         return $staff;
     }
 
     public function deleteStaff(Request $request)
     {
-        $pid = $request->input('pid');
+        $id = $request->input('id');
 
-        $deleted = Staff::where('personal_id', $pid)->delete();
+        $deleted = Staff::where('id', $id)->delete();
 
         if ($deleted) {
             return response()->json([
@@ -77,13 +77,14 @@ class StaffController extends Controller
 
     public function updateStaff(Request $request)
     {
-        $pid = $request->input('pid');
+        $id = $request->input('id');
 
-        $updated = Staff::where('personal_id', $pid)->update([
+        $updated = Staff::where('id', $id)->update([
             'fullname' => $request->input('fullname'),
             'email'    => $request->input('email'),
             'phone'    => $request->input('phone'),
-            'password' => Hash::make($request->input('password'))
+            'position' => $request->input('position'),
+            'salary'   => $request->input('salary')
         ]);
 
         if ($updated) {
