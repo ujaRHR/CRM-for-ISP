@@ -15,7 +15,7 @@
   <link rel="stylesheet" href=" {{ asset('vendor/flagiconcss/css/flag-icon.min.css') }} ">
   <link rel="stylesheet" href="{{ asset('css/toast.css') }}">
   <link rel="stylesheet" href="{{ asset('vendor/datatables/datatables.min.css') }}">
-  
+
   <style>
     .table td,
     .table th {
@@ -43,6 +43,9 @@
         </li>
         <li>
           <a href="manage-plans"><i class="fas fa-file-alt"></i> Plans</a>
+        </li>
+        <li>
+          <a href="manage-notices"><i class="fas fa-bell"></i> Notices</a>
         </li>
         <li>
           <a href="forms.html"><i class="fas fa-file-alt"></i> Forms</a>
