@@ -44,8 +44,13 @@ Route::post('/update-staff', [StaffController::class, 'updateStaff'])->middlewar
 
 
 // Notices Routes
+Route::get('/manage-notices', [NoticeController::class, 'noticePage'])->middleware('token');
 Route::post('/create-notice', [NoticeController::class, 'createNotice'])->middleware('token');
+Route::get('/notice-list', [NoticeController::class, 'noticeList'])->middleware('token');
+Route::post('/notice-info', [NoticeController::class, 'getNoticeInfo'])->middleware('token');
 Route::post('/delete-notice', [NoticeController::class, 'deleteNotice'])->middleware('token');
+Route::post('/update-notice', [NoticeController::class, 'updateNotice'])->middleware('token');
+
 
 // Plans Routes
 Route::get('/manage-plans', [PlanController::class, 'planPage'])->middleware('token');
