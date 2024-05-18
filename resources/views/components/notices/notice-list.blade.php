@@ -2,8 +2,7 @@
   <div class="container">
     <div class="page-title">
       <h3>Notices
-        <a data-bs-toggle="modal" data-bs-target="#createModal" class="btn btn-sm btn-outline-primary float-end"><i
-            class="fas fa-user-plus"></i>
+        <a data-bs-toggle="modal" data-bs-target="#createModal" class="btn btn-sm btn-outline-primary float-end"><i class="fas fa-user-plus"></i>
           Create Notice</a>
       </h3>
     </div>
@@ -39,7 +38,7 @@
 
     mainTable.DataTable().clear().destroy();
 
-    data.forEach(function (item, index) {
+    data.forEach(function(item, index) {
       let newRow = `<tr>
         <td>${index + 1}</td>
         <td>${item['title']}</td>
@@ -56,18 +55,17 @@
     mainTable.DataTable();
   }
 
-  $('table tbody').on('click', '.deleteBtn', function () {
+  $('table tbody').on('click', '.deleteBtn', function() {
     let id = $(this).data('id');
     $('#deleteModal').modal('show');
     $('#deleteID').val(id);
   })
 
-  $('table tbody').on('click', '.updateBtn', function () {
+  $('table tbody').on('click', '.updateBtn', function() {
     let id = $(this).data('id');
     $('#updateModal').modal('show');
     $('#updateID').val(id);
     getNoticeInfo()
   })
-
 </script>
 @endpush
