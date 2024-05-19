@@ -12,6 +12,22 @@ use App\Helper\JWTToken;
 
 class CustomerController extends Controller
 {
+    public function customerLoginPage()
+    {
+        return view('pages.customer.login');
+    }
+
+    public function customerSignupPage()
+    {
+        return view('pages.customer.signup');
+    }
+
+    public function customerDashboardPage(Request $request)
+    {
+        $customer = Customer::where('id', $request->header('id'))->first();
+        return view('pages.dashboard')->with('customer', $customer);
+    }
+
     public function customerSignup(Request $request)
     {
         try {
@@ -130,5 +146,4 @@ class CustomerController extends Controller
             ]);
         }
     }
-
 }

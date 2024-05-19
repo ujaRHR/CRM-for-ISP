@@ -5,11 +5,36 @@ namespace App\Http\Controllers\Subscription;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Subscription;
+use App\Models\Customer;
+use App\Models\Admin;
 use App\Models\Plan;
 use Exception;
 
 class SubscriptionController extends Controller
 {
+
+    public function subscriptionPage(Request $request)
+    {
+        $admin = Admin::where('id', $request->header('id'))->first();
+
+        return view('pages.subscriptions', compact('admin'));
+    }
+
+    public function subscriptionList(Request $request)
+    {
+        $subscriptions = Subscription::get();
+
+        return $subscriptions;
+    }
+
+    public function getSubscriptionInfo(Request $request)
+    {
+        $id   = $request->input('id');
+        $subscription = Subscription::where('id', $id)->first();
+
+        return $subscription;
+    }
+
     public function createSubscription(Request $request)
     {
         try {
@@ -46,6 +71,50 @@ class SubscriptionController extends Controller
 
     public function deleteSubscription(Request $request)
     {
+        try {
+            $subscription_id = $request->input('id');
+            $deleted = Subscription::where('id', $subscription_id)->delete();
 
+            if ($deleted) {
+                return response()->json([
+                    'status'  => 'success',
+                    'message' => 'subscription deleted successfully'
+                ], 200);
+            } else {
+                return response()->json([
+                    'status'  => 'failed',
+                    'message' => 'failed to delete the subscription!'
+                ]);
+            }
+        } catch (Exception $e) {
+            return response()->json([
+                'status'  => 'failed',
+                'message' => 'failed to delete the subscription!'
+            ]);
+        }
+    }
+
+    public function updateSubscription(Request $request)
+    {
+        $id = $request->input('id');
+
+        $updated = Plan::where('id', $id)->update([
+            'name'          => $request->input('name'),
+            'price'         => $request->input('price'),
+            'billing_cycle' => $request->input('billing_cycle'),
+            'speed'         => $request->input('speed')
+        ]);
+
+        if ($updated) {
+            return response()->json([
+                'status'  => 'success',
+                'message' => 'plan updated successfully'
+            ], 200);
+        } else {
+            return response()->json([
+                'status'  => 'failed',
+                'message' => 'failed to update the plan'
+            ]);
+        }
     }
 }

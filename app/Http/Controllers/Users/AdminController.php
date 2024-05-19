@@ -13,7 +13,7 @@ class AdminController extends Controller
 {
     public function adminSignupPage()
     {
-        return view('signup');
+        return view('pages.admin.signup');
     }
 
     public function adminSignup(Request $request)
@@ -39,7 +39,7 @@ class AdminController extends Controller
     }
 
     public function adminLoginPage(){
-        return view('login');
+        return view('pages.admin.login');
     }
 
 

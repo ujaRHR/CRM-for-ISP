@@ -22,15 +22,18 @@ Route::post('/admin-login', [AdminController::class, 'adminLogin']);
 Route::get('/admin-login', [AdminController::class, 'adminLoginPage']);
 Route::get('/admin-dashboard', [DashboardController::class, 'dashboardPage'])->middleware('token');
 Route::get('/manage-customers', [CustomerController::class, 'customersPage'])->middleware('token');
-Route::get('/customer-list', [CustomerController::class, 'getCustomer'])->middleware('token');
 Route::post('/delete-customer', [CustomerController::class, 'deleteCustomer'])->middleware('token');
 Route::post('/update-customer', [CustomerController::class, 'updateCustomer'])->middleware('token');
-Route::post('/customer-info', [CustomerController::class, 'getCustomerInfo'])->middleware('token');
 
 
-// User Routes
+// Customer Routes
+Route::get('/customer-dashboard', [CustomerController::class, 'customerDashboardPage'])->middleware('token');
 Route::post('/customer-signup', [CustomerController::class, 'customerSignup']);
+Route::get('/customer-signup', [CustomerController::class, 'customerSignupPage']);
 Route::post('/customer-login', [CustomerController::class, 'customerLogin']);
+Route::get('/customer-login', [CustomerController::class, 'customerLoginPage']);
+Route::get('/customer-list', [CustomerController::class, 'getCustomer'])->middleware('token');
+Route::post('/customer-info', [CustomerController::class, 'getCustomerInfo'])->middleware('token');
 
 Route::get('/logout', [AdminController::class, 'logout']);
 
@@ -62,7 +65,13 @@ Route::post('/update-plan', [PlanController::class, 'updatePlan'])->middleware('
 
 
 // Subscriptions Routes
+Route::get('/manage-subscriptions', [SubscriptionController::class, 'subscriptionPage'])->middleware('token');
 Route::post('/create-subscription', [SubscriptionController::class, 'createSubscription'])->middleware('token');
+Route::get('/subscription-list', [SubscriptionController::class, 'subscriptionList'])->middleware('token');
+Route::post('/subscription-info', [SubscriptionController::class, 'getSubscriptionInfo'])->middleware('token');
+Route::post('/delete-subscription', [SubscriptionController::class, 'deleteSubscription'])->middleware('token');
+Route::post('/update-subscription', [SubscriptionController::class, 'updateSubscription'])->middleware('token');
+
 
 // Tickets Routes
 Route::post('/create-ticket', [TicketController::class, 'createTicket'])->middleware('token');
