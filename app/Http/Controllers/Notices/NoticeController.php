@@ -95,7 +95,7 @@ class NoticeController extends Controller
 
         $updated = Notice::where('id', $id)->update([
             'title'          => $request->input('title'),
-            'admin_id'       => $request->input('admin_id'),
+            'admin_id'       => $request->header('id'),
             'description'    => $request->input('description')
         ]);
 
