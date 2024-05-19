@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('admin_id');
             $table->string('title');
-            $table->string('description');
+            $table->string('description', 3000);
             $table->string('notice_img')->nullable();
             $table->timestamps();
 
