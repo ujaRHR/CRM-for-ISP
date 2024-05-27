@@ -33,7 +33,7 @@
       </div>
       <ul class="list-unstyled components text-secondary">
         <li>
-          <a href="admin-dashboard"><i class="fas fa-home"></i> Dashboard</a>
+          <a href="customer-dashboard"><i class="fas fa-home"></i> Dashboard</a>
         </li>
         <li>
           <a href="manage-customers"><i class="fas fa-user-friends"></i> Customers</a>
@@ -157,7 +157,7 @@
               <div class="nav-dropdown">
                 <a href="#" id="nav2" class="nav-item nav-link dropdown-toggle text-secondary" data-bs-toggle="dropdown"
                   aria-expanded="false">
-                  <i class="fas fa-user"></i> <span>{{ $admin->fullname }}</span> <i style="font-size: .8em;"
+                  <i class="fas fa-user"></i> <span>{{ $customer->fullname }}</span> <i style="font-size: .8em;"
                     class="fas fa-caret-down"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end nav-link-menu">

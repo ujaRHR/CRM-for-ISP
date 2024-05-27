@@ -11,8 +11,8 @@ use Nette\Schema\Expect;
 
 class TokenVerificationMiddleware
 {
-    
-    public function handle(Request $request, Closure $next) : Response
+
+    public function handle(Request $request, Closure $next): Response
     {
         try {
             $encoded_token = $request->cookie('token');
