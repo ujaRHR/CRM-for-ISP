@@ -89,7 +89,8 @@ class CustomerController extends Controller
         return view('pages.admin.customers', compact('admin'));
     }
 
-    public function customerProfilePage(Request $request){
+    public function customerProfilePage(Request $request)
+    {
         $customer = Customer::where('id', $request->header('id'))->first();
 
         return view('pages.customer.customer-profile', compact('customer'));
@@ -106,6 +107,15 @@ class CustomerController extends Controller
         $pid = $request->input('pid');
 
         $customer = Customer::where('personal_id', $pid)->first();
+
+        return $customer;
+    }
+
+    public function customerProfileInfo(Request $request)
+    {
+        $id = $request->header('id');
+
+        $customer = Customer::where('id', $id)->first();
 
         return $customer;
     }

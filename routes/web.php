@@ -34,6 +34,7 @@ Route::post('/customer-login', [CustomerController::class, 'customerLogin']);
 Route::get('/customer-login', [CustomerController::class, 'customerLoginPage']);
 Route::get('/customer-list', [CustomerController::class, 'getCustomer'])->middleware('token');
 Route::post('/customer-info', [CustomerController::class, 'getCustomerInfo'])->middleware('token');
+Route::post('/customer-profile', [CustomerController::class, 'customerProfileInfo'])->middleware('token');
 Route::get('/customer-profile', [CustomerController::class, 'customerProfilePage'])->middleware('token');
 
 Route::get('/logout', [AdminController::class, 'logout']);
