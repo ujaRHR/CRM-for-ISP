@@ -16,7 +16,7 @@ class NoticeController extends Controller
         $admin_id = $request->header('id');
         $admin = Admin::find($admin_id);
 
-        return view('pages.notices', compact('admin'));
+        return view('pages.admin.notices', compact('admin'));
     }
 
     public function noticeList(Request $request)

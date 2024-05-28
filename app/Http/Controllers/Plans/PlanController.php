@@ -15,7 +15,7 @@ class PlanController extends Controller
     {
         $admin = Admin::where('id', $request->header('id'))->first();
 
-        return view('pages.plans', compact('admin'));
+        return view('pages.admin.plans', compact('admin'));
     }
 
     public function planList(Request $request)

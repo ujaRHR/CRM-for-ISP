@@ -38,7 +38,7 @@ class StaffController extends Controller
     public function staffsPage(Request $request)
     {
         $admin = Admin::where('id', $request->header('id'))->first();
-        return view('pages.staffs', compact('admin'));
+        return view('pages.admin.staffs', compact('admin'));
     }
 
     public function getStaff()

@@ -25,7 +25,7 @@ class CustomerController extends Controller
     public function customerDashboardPage(Request $request)
     {
         $customer = Customer::where('id', $request->header('id'))->first();
-        return view('pages.customer-dashboard')->with('customer', $customer);
+        return view('pages.customer.dashboard')->with('customer', $customer);
     }
 
     public function customerSignup(Request $request)
@@ -86,7 +86,13 @@ class CustomerController extends Controller
     public function customersPage(Request $request)
     {
         $admin = Admin::where('id', $request->header('id'))->first();
-        return view('pages.customers', compact('admin'));
+        return view('pages.admin.customers', compact('admin'));
+    }
+
+    public function customerProfilePage(Request $request){
+        $customer = Customer::where('id', $request->header('id'))->first();
+
+        return view('pages.customer.customer-profile', compact('customer'));
     }
 
     public function getCustomer()

@@ -21,19 +21,20 @@ Route::post('/admin-signup', [AdminController::class, 'adminSignup']);
 Route::post('/admin-login', [AdminController::class, 'adminLogin']);
 Route::get('/admin-login', [AdminController::class, 'adminLoginPage']);
 Route::get('/admin-dashboard', [DashboardController::class, 'dashboardPage'])->middleware('token');
-Route::get('/manage-customers', [CustomerController::class, 'customersPage'])->middleware('token');
-Route::post('/delete-customer', [CustomerController::class, 'deleteCustomer'])->middleware('token');
-Route::post('/update-customer', [CustomerController::class, 'updateCustomer'])->middleware('token');
 
 
 // Customer Routes
 Route::get('/customer-dashboard', [CustomerController::class, 'customerDashboardPage'])->middleware('token');
+Route::get('/manage-customers', [CustomerController::class, 'customersPage'])->middleware('token');
+Route::post('/delete-customer', [CustomerController::class, 'deleteCustomer'])->middleware('token');
+Route::post('/update-customer', [CustomerController::class, 'updateCustomer'])->middleware('token');
 Route::post('/customer-signup', [CustomerController::class, 'customerSignup']);
 Route::get('/customer-signup', [CustomerController::class, 'customerSignupPage']);
 Route::post('/customer-login', [CustomerController::class, 'customerLogin']);
 Route::get('/customer-login', [CustomerController::class, 'customerLoginPage']);
 Route::get('/customer-list', [CustomerController::class, 'getCustomer'])->middleware('token');
 Route::post('/customer-info', [CustomerController::class, 'getCustomerInfo'])->middleware('token');
+Route::get('/customer-profile', [CustomerController::class, 'customerProfilePage'])->middleware('token');
 
 Route::get('/logout', [AdminController::class, 'logout']);
 

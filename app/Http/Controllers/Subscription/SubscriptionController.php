@@ -17,7 +17,7 @@ class SubscriptionController extends Controller
     {
         $admin = Admin::where('id', $request->header('id'))->first();
 
-        return view('pages.subscriptions', compact('admin'));
+        return view('pages.admin.subscriptions', compact('admin'));
     }
 
     public function subscriptionList(Request $request)
