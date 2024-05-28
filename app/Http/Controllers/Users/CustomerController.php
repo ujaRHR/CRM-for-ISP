@@ -25,7 +25,7 @@ class CustomerController extends Controller
     public function customerDashboardPage(Request $request)
     {
         $customer = Customer::where('id', $request->header('id'))->first();
-        return view('pages.dashboard')->with('customer', $customer);
+        return view('pages.customer-dashboard')->with('customer', $customer);
     }
 
     public function customerSignup(Request $request)
