@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-header">
                 <h4>Profile Information
-                    <a data-bs-toggle="modal" data-bs-target="#editModal" class="btn btn-sm btn-success float-end fw-bold" id="edit-profile-btn"> <i class="fas fa-user-edit"> </i> Edit Profile</a>
+                    <a data-bs-toggle="modal" data-bs-target="#editModal" class="editBtn btn btn-sm btn-success float-end fw-bold" id="edit-profile-btn"> <i class="fas fa-user-edit"> </i> Edit Profile</a>
                 </h4>
             </div>
             <div class="card-body">
@@ -19,7 +19,7 @@
             <div class="card-body">
                 <ul class="list-group">
                     <li class="list-group-item fw-bold">Account Type: <span class="fw-normal" id="type"></span></li>
-                    <li class="list-group-item fw-bold">Status: <span class="fw-normal" id="type"></span></li>
+                    <li class="list-group-item fw-bold">Status: <span class="fw-normal" id="status"></span></li>
                     <li class="list-group-item fw-bold">Address: <span class="fw-normal" id="address"></span></li>
                 </ul>
             </div>
@@ -44,9 +44,15 @@
             $('#phone').text(response.data.phone);
             $('#type').text(response.data.type);
             $('#status').text(response.data.status);
-            $('#address').text(response.data.address);
+            $('#editAddress').text(response.data.address);
         });
     }
+
+    $('h4').on('click', '#edit-profile-btn', function() {
+        let pid = $('#pid').text();
+        $('#editPID').val(pid);
+        getCustomerInfo();
+    })
 
     customerProfileInfo();
 </script>

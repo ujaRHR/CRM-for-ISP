@@ -36,88 +36,16 @@
           <a href="customer-dashboard"><i class="fas fa-home"></i> Dashboard</a>
         </li>
         <li>
-          <a href="manage-customers"><i class="fas fa-user-friends"></i> Customers</a>
+          <a href="customer-profile"><i class="fas fa-user-check"></i> Profile</a>
         </li>
         <li>
-          <a href="manage-staffs"><i class="fas fa-user-cog"></i> Staffs</a>
+          <a href="customer-subscriptions"><i class="fas fa-paper-plane"></i> Subscriptions</a>
         </li>
         <li>
-          <a href="manage-plans"><i class="fas fa-file-alt"></i> Plans</a>
+          <a href="customer-notices"><i class="fas fa-bell"></i> Notices</a>
         </li>
         <li>
-          <a href="manage-notices"><i class="fas fa-bell"></i> Notices</a>
-        </li>
-        <li>
-          <a href="manage-notices"><i class="fas fa-money-bill"></i> Subscriptions</a>
-        </li>
-        <li>
-          <a href="forms.html"><i class="fas fa-file-alt"></i> Forms</a>
-        </li>
-        <li>
-          <a href="tables.html"><i class="fas fa-table"></i> Tables</a>
-        </li>
-        <li>
-          <a href="charts.html"><i class="fas fa-chart-bar"></i> Charts</a>
-        </li>
-        <li>
-          <a href="icons.html"><i class="fas fa-icons"></i> Icons</a>
-        </li>
-        <li>
-          <a href="#uielementsmenu" data-bs-toggle="collapse" aria-expanded="false"
-            class="dropdown-toggle no-caret-down"><i class="fas fa-layer-group"></i> UI Elements</a>
-          <ul class="collapse list-unstyled" id="uielementsmenu">
-            <li>
-              <a href="ui-buttons.html"><i class="fas fa-angle-right"></i> Buttons</a>
-            </li>
-            <li>
-              <a href="ui-badges.html"><i class="fas fa-angle-right"></i> Badges</a>
-            </li>
-            <li>
-              <a href="ui-cards.html"><i class="fas fa-angle-right"></i> Cards</a>
-            </li>
-            <li>
-              <a href="ui-alerts.html"><i class="fas fa-angle-right"></i> Alerts</a>
-            </li>
-            <li>
-              <a href="ui-tabs.html"><i class="fas fa-angle-right"></i> Tabs</a>
-            </li>
-            <li>
-              <a href="ui-date-time-picker.html"><i class="fas fa-angle-right"></i> Date & Time Picker</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#authmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle no-caret-down"><i
-              class="fas fa-user-shield"></i> Authentication</a>
-          <ul class="collapse list-unstyled" id="authmenu">
-            <li>
-              <a href="login.html"><i class="fas fa-lock"></i> Login</a>
-            </li>
-            <li>
-              <a href="signup.html"><i class="fas fa-user-plus"></i> Signup</a>
-            </li>
-            <li>
-              <a href="forgot-password.html"><i class="fas fa-user-lock"></i> Forgot password</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#pagesmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle no-caret-down"><i
-              class="fas fa-copy"></i> Pages</a>
-          <ul class="collapse list-unstyled" id="pagesmenu">
-            <li>
-              <a href="blank.html"><i class="fas fa-file"></i> Blank page</a>
-            </li>
-            <li>
-              <a href="404.html"><i class="fas fa-info-circle"></i> 404 Error page</a>
-            </li>
-            <li>
-              <a href="500.html"><i class="fas fa-info-circle"></i> 500 Error page</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="settings.html"><i class="fas fa-cog"></i>Settings</a>
+          <a href="customer-tickets"><i class="fas fa-bug"></i> Tickets</a>
         </li>
       </ul>
     </nav>
@@ -131,10 +59,8 @@
           <ul class="nav navbar-nav ms-auto">
             <li class="nav-item dropdown">
               <div class="nav-dropdown">
-                <a href="#" id="nav1" class="nav-item nav-link dropdown-toggle text-secondary" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  <i class="fas fa-link"></i> <span>Quick Links</span> <i style="font-size: .8em;"
-                    class="fas fa-caret-down"></i>
+                <a href="#" id="nav1" class="nav-item nav-link dropdown-toggle text-secondary" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fas fa-link"></i> <span>Quick Links</span> <i style="font-size: .8em;" class="fas fa-caret-down"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end nav-link-menu" aria-labelledby="nav1">
                   <ul class="nav-list">
@@ -155,10 +81,8 @@
             </li>
             <li class="nav-item dropdown">
               <div class="nav-dropdown">
-                <a href="#" id="nav2" class="nav-item nav-link dropdown-toggle text-secondary" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  <i class="fas fa-user"></i> <span>{{ $customer->fullname }}</span> <i style="font-size: .8em;"
-                    class="fas fa-caret-down"></i>
+                <a href="#" id="nav2" class="nav-item nav-link dropdown-toggle text-secondary" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fas fa-user"></i> <span>{{ $customer->fullname }}</span> <i style="font-size: .8em;" class="fas fa-caret-down"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end nav-link-menu">
                   <ul class="nav-list">
