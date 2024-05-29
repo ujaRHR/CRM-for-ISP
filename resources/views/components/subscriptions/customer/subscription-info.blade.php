@@ -1,78 +1,64 @@
-<div class="container py-3">
-  <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-    <h2 class="display-5 fw-normal">Pricing</h2>
-    <p class="fs-5 text-muted">Explore our variety of pricing plans designed to fit different needs and budgets. Whether you need internet for personal use or for your business, we have a plan that's right for you.</p>
-  </div>
-
-  <div class="row text-center">
-    <div class="col-md-3">
-      <div class="card mb-4 rounded-3 shadow-sm">
-        <div class="card-header py-3">
-          <h4 class="my-0 fw-bold">Silver</h4>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title pricing-card-title">৳650<small class="text-muted fw-light">/month</small></h3>
-          <ul class="list-unstyled mt-3 mb-4">
-            <li>Speed: 15 MBPS</li>
-            <li>Uptime: 99.9%</li>
-            <li>Limit: 150 GB per month</li>
-            <li class="text-decoration-line-through">Ideal For: Gaming, Streaming</li>
-          </ul>
-          <button type="button" class="btn btn-success">Buy Now</button>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card mb-4 rounded-3 shadow-sm">
-        <div class="card-header py-3">
-          <h4 class="my-0 fw-bold">Gold</h4>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title pricing-card-title">৳850<small class="text-muted fw-light">/month</small></h3>
-          <ul class="list-unstyled mt-3 mb-4">
-            <li>Speed: 25 MBPS</li>
-            <li>Uptime: 99.9%</li>
-            <li>Limit: 230 GB per month</li>
-            <li class="text-decoration-line-through">Ideal For: Gaming, Streaming</li>
-          </ul>
-          <button type="button" class="btn btn-success">Buy Now</button>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card mb-4 rounded-3 shadow-sm">
-        <div class="card-header py-3">
-          <h4 class="my-0 fw-bold">Platinum</h4>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title pricing-card-title">৳1050<small class="text-muted fw-light">/month</small></h3>
-          <ul class="list-unstyled mt-3 mb-4">
-            <li>Speed: 40 MBPS</li>
-            <li>Uptime: 99.9%</li>
-            <li>Limit: 300 GB per month</li>
-            <li>Ideal For: Gaming, Streaming</li>
-          </ul>
-          <button type="button" class="btn btn-success">Buy Now</button>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card mb-4 rounded-3 shadow-sm">
-        <div class="card-header py-3">
-          <h4 class="my-0 fw-bold">Corporate</h4>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title pricing-card-title">৳1150<small class="text-muted fw-light">/month</small></h3>
-          <ul class="list-unstyled mt-3 mb-4">
-            <li>Speed: 45 MBPS</li>
-            <li>Uptime: 99.9%</li>
-            <li>Limit: 500 GB per month</li>
-            <li>Ideal For: Conference, Streaming</li>
-          </ul>
-          <button type="button" class="btn btn-success">Buy Now</button>
+  <div class="container py-3">
+    <h3>My Subscription</h3>
+    <hr>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card mb-3">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Active Plan</h5>
+            <span class="badge bg-success rounded-pill">Active</span>
+          </div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="fw-bold">Plan Name:</span>
+                <span id="name">Silver</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="fw-bold">Download Speed:</span>
+                <span id="dspeed">200 Mbps <i class="fas fa-download text-success"></i></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="fw-bold">Upload Speed:</span>
+                <span id="uspeed">50 Mbps <i class="fas fa-upload text-success"></i></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="fw-bold">Data Limit:</span>
+                <span id="limit">1000 GB</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="fw-bold">Billing Cycle:</span>
+                <span id="billing_cycle" >Monthly</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="fw-bold">Purchase Date:</span>
+                <span id="start_date">May 10, 2024</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="fw-bold">Next Billing Date:</span>
+                <span id="next_billing_date">June 10, 2024</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="fw-bold">Price:</span>
+                <span id="total_cost" >$49.99</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="fw-bold">Personal ID:</span>
+                <span>638263474</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="fw-bold">Manage Plan:</span>
+                <a href="#" class="btn btn-sm btn-danger">Cancel Plan</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-</div>
+
+  <div id="no-plan" class="alert alert-secondary d-flex align-items-center" role="alert">
+    <h4 class="m-0">No Active Plan</h4>
+    <a href="#" class="btn btn-primary ms-auto">Buy Now</a>
+  </div>
