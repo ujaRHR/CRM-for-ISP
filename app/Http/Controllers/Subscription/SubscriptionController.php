@@ -20,6 +20,12 @@ class SubscriptionController extends Controller
         return view('pages.admin.subscriptions', compact('admin'));
     }
 
+    public function customerSubscriptionPage(Request $request){
+        $customer = Customer::where('id', $request->header('id'))->first();
+
+        return view('pages.customer.subscriptions', compact('customer'));
+    }
+
     public function subscriptionList(Request $request)
     {
         $subscriptions = Subscription::get();
