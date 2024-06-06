@@ -28,7 +28,7 @@
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 <span class="fw-bold">Billing Cycle:</span>
-                <span id="billing_cycle" >Monthly</span>
+                <span id="billing_cycle">Monthly</span>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 <span class="fw-bold">Purchase Date:</span>
@@ -40,7 +40,7 @@
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 <span class="fw-bold">Price:</span>
-                <span id="total_cost" >$49.99</span>
+                <span id="total_cost">$49.99</span>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 <span class="fw-bold">Personal ID:</span>
@@ -55,10 +55,10 @@
         </div>
       </div>
     </div>
-  </div>
 
 
-  <div id="no-plan" class="alert alert-secondary d-flex align-items-center" role="alert">
-    <h4 class="m-0">No Active Plan</h4>
-    <a href="#" class="btn btn-primary ms-auto">Buy Now</a>
+    <div id="no-plan" class="alert alert-secondary d-flex align-items-center" role="alert">
+      <h4 class="m-0">No Active Plan</h4>
+      <a href="#" class="btn btn-primary ms-auto">Buy Now</a>
+    </div>
   </div>
