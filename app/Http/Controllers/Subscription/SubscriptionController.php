@@ -20,10 +20,40 @@ class SubscriptionController extends Controller
         return view('pages.admin.subscriptions', compact('admin'));
     }
 
-    public function customerSubscriptionPage(Request $request){
+    public function customerSubscriptionPage(Request $request)
+    {
         $customer = Customer::where('id', $request->header('id'))->first();
 
         return view('pages.customer.subscriptions', compact('customer'));
+    }
+
+    public function customerSubscription(Request $request)
+    {
+        $subscription = Subscription::where('customer_id', $request->header('id'))
+            ->with('plan', 'customer')
+            ->first();
+
+        return $subscription;
+    }
+
+    public function cancelSubscription(Request $request)
+    {
+        $cancelled = Subscription::where('id', $request->input('id'))
+            ->update([
+                'status' => 'inactive',
+            ]);
+
+        if ($cancelled) {
+            return response()->json([
+                'status'  => 'success',
+                'message' => 'subscription cancelled successfully'
+            ], 200);
+        } else {
+            return response()->json([
+                'status'  => 'failed',
+                'message' => 'failed to cancel the subscription'
+            ]);
+        }
     }
 
     public function subscriptionList(Request $request)
@@ -47,7 +77,7 @@ class SubscriptionController extends Controller
             // Subscription will be created by the customer only
             $plan_id = $request->input('plan_id');
             $plan    = Plan::where('id', $plan_id)->first();
-            
+
             $new_subs = Subscription::create([
                 'customer_id'       => $request->header('id'),
                 'plan_id'           => $plan_id,

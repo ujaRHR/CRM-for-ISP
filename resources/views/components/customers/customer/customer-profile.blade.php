@@ -44,7 +44,7 @@
             $('#phone').text(response.data.phone);
             $('#type').text(response.data.type);
             $('#status').text(response.data.status);
-            $('#editAddress').text(response.data.address);
+            $('#address').text(response.data.address);
         });
     }
 

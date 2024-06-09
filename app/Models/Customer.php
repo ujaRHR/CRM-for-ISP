@@ -10,4 +10,9 @@ class Customer extends Model
     use HasFactory;
 
     protected $fillable = ['fullname', 'email', 'phone', 'personal_id', 'type', 'status', 'avatar', 'address', 'password', 'remember_token'];
+
+    public function subscription()
+    {
+        return $this->hasOne(Subscription::class);
+    }
 }

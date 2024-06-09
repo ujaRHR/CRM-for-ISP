@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\Users\AdminController;
 use App\Http\Controllers\Users\CustomerController;
 use App\Http\Controllers\Users\StaffController;
@@ -14,6 +15,10 @@ use App\Http\Controllers\Dashboard\DashboardController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+// Test Routes 
+Route::get('/test', [TestController::class, 'testFunc']);
 
 // Admin Routes
 Route::get('/admin-signup', [AdminController::class, 'adminSignupPage']);
@@ -68,8 +73,10 @@ Route::post('/update-plan', [PlanController::class, 'updatePlan'])->middleware('
 
 // Subscriptions Routes
 Route::get('/customer-subscriptions', [SubscriptionController::class, 'customerSubscriptionPage'])->middleware('token');
+Route::post('/customer-subscription', [SubscriptionController::class, 'customerSubscription'])->middleware('token');
 Route::get('/manage-subscriptions', [SubscriptionController::class, 'subscriptionPage'])->middleware('token');
 Route::post('/create-subscription', [SubscriptionController::class, 'createSubscription'])->middleware('token');
+Route::post('/cancel-subscription', [SubscriptionController::class, 'cancelSubscription'])->middleware('token');
 Route::get('/subscription-list', [SubscriptionController::class, 'subscriptionList'])->middleware('token');
 Route::post('/subscription-info', [SubscriptionController::class, 'getSubscriptionInfo'])->middleware('token');
 Route::post('/delete-subscription', [SubscriptionController::class, 'deleteSubscription'])->middleware('token');

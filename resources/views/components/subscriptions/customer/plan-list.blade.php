@@ -1,4 +1,4 @@
-<div class="container py-3">
+<div class="container py-3 d-none" id="buyPlan">
     <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
         <h2 class="display-5 fw-normal">Pricing</h2>
         <p class="fs-5 text-muted">Explore our variety of pricing plans designed to fit different needs and budgets. Whether you need internet for personal use or for your business, we have a plan that's right for you.</p>
