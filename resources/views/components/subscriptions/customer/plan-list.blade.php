@@ -18,7 +18,7 @@
                         <li>Limit: 150 GB per month</li>
                         <li class="text-decoration-line-through">Ideal For: Gaming, Streaming</li>
                     </ul>
-                    <button type="button" class="btn btn-success">Buy Now</button>
+                    <button type="button" data-pack="silver" class="btn btn-success">Buy Now</button>
                 </div>
             </div>
         </div>
@@ -35,7 +35,7 @@
                         <li>Limit: 230 GB per month</li>
                         <li class="text-decoration-line-through">Ideal For: Gaming, Streaming</li>
                     </ul>
-                    <button type="button" class="btn btn-success">Buy Now</button>
+                    <button type="button" data-pack="gold" class="btn btn-success">Buy Now</button>
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@
                         <li>Limit: 300 GB per month</li>
                         <li>Ideal For: Gaming, Streaming</li>
                     </ul>
-                    <button type="button" class="btn btn-success">Buy Now</button>
+                    <button type="button" data-pack="platinum" class="btn btn-success">Buy Now</button>
                 </div>
             </div>
         </div>
@@ -69,7 +69,7 @@
                         <li>Limit: 500 GB per month</li>
                         <li>Ideal For: Conference, Streaming</li>
                     </ul>
-                    <button type="button" class="btn btn-success">Buy Now</button>
+                    <button type="button" data-pack="corporate" class="btn btn-success">Buy Now</button>
                 </div>
             </div>
         </div>

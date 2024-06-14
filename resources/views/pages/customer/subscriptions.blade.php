@@ -6,4 +6,5 @@
 @include('components.subscriptions.customer.subscription-info')
 @include('components.subscriptions.customer.subscription-cancel')
 @include('components.subscriptions.customer.plan-list')
+@include('components.subscriptions.customer.checkout')
 @endsection
