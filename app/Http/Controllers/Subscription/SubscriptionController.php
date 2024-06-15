@@ -56,6 +56,12 @@ class SubscriptionController extends Controller
         }
     }
 
+    public function checkoutPage(Request $request){
+        $customer = Customer::where('id', $request->header('id'))->first();
+
+        return view('pages.customer.checkout', compact('customer'));
+    }
+
     public function subscriptionList(Request $request)
     {
         $subscriptions = Subscription::get();

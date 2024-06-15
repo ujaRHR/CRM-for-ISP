@@ -5,6 +5,7 @@
     </div>
 
     <div class="row text-center">
+
         <div class="col-md-3">
             <div class="card mb-4 rounded-3 shadow-sm">
                 <div class="card-header py-3">
@@ -22,6 +23,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-md-3">
             <div class="card mb-4 rounded-3 shadow-sm">
                 <div class="card-header py-3">
@@ -39,6 +41,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-md-3">
             <div class="card mb-4 rounded-3 shadow-sm">
                 <div class="card-header py-3">
@@ -56,6 +59,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-md-3">
             <div class="card mb-4 rounded-3 shadow-sm">
                 <div class="card-header py-3">
@@ -73,6 +77,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
 </div>

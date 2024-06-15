@@ -91,7 +91,7 @@
           $('#noPlan').removeClass('d-none')
         } else {
           $('#activePlan').removeClass('d-none')
-          if(response.data.status == 'active'){
+          if (response.data.status == 'active') {
             $('#status').removeClass('bg-danger')
           }
           $('#id').val(response.data.id)
@@ -109,18 +109,16 @@
       })
     }
 
-    function pricingPage(){
+    function pricingPage() {
       $('#noPlan').addClass('d-none')
       $('#buyPlan').removeClass('d-none')
     }
-    
+
     customerSubs()
 
-    $('.cancelBtn').on('click', function(){
+    $('.cancelBtn').on('click', function() {
       let id = $('#id').val()
       $('#cancelID').val(id)
     })
-
-
   </script>
   @endpush

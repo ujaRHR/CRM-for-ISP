@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('dspeed');
             $table->string('uspeed');
             $table->string('limit');
+            $table->string('description');
             $table->timestamps();
         });
     }

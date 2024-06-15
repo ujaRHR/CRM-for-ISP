@@ -153,7 +153,14 @@
 
                     <hr class="my-4">
 
-                    <button onclick="confirmOrder()" class="w-100 btn btn-success" type="submit">Confirm Payment</button>
+                    <div class="row">
+                        <div class="col-6">
+                            <button onclick="confirmOrder()" class="w-50 btn btn-success" type="submit">Confirm Payment</button>
+                        </div>
+                        <div class="col-6">
+                            <button onclick="cancelOrder()" class="w-50 btn btn-danger" type="submit">Cancel</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
