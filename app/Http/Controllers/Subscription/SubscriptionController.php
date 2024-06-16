@@ -8,7 +8,9 @@ use App\Models\Subscription;
 use App\Models\Customer;
 use App\Models\Admin;
 use App\Models\Plan;
+use App\Models\Order;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 class SubscriptionController extends Controller
 {
@@ -56,10 +58,52 @@ class SubscriptionController extends Controller
         }
     }
 
-    public function checkoutPage(Request $request){
+    public function checkoutPage(Request $request)
+    {
         $customer = Customer::where('id', $request->header('id'))->first();
 
         return view('pages.customer.checkout', compact('customer'));
+    }
+
+    public function createOrder(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $customer_id = $request->header('id');
+            $plan_id = $request->input('plan_id');
+            $address = $request->input('full_address');
+            $total_price = $request->input('total_price');
+            $payment_method = $request->input('payment_method');
+
+            Order::create([
+                'customer_id' => $customer_id,
+                'address' => $address,
+                'plan_id' => $plan_id,
+                'total_price' => $total_price,
+                'payment_method' => $payment_method
+            ]);
+
+            Subscription::create([
+                'customer_id' => $customer_id,
+                'plan_id' => $plan_id,
+                'start_date'        => date('Y-m-d'),
+                'next_billing_date' => date('Y-m-d', strtotime('+30 day')),
+                'status' => 'inactive',
+                'total_cost' => $total_price
+            ]);
+
+            DB::commit();
+            return response()->json([
+                'status'  => 'success',
+                'message' => 'order created successfully'
+            ]);
+        } catch (Exception $e) {
+            DB::rollback();
+            return response()->json([
+                'status'  => 'failed',
+                'message' => 'failed to create a new order'
+            ]);
+        }
     }
 
     public function subscriptionList(Request $request)

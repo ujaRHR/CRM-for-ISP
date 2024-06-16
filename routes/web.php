@@ -83,6 +83,7 @@ Route::post('/delete-subscription', [SubscriptionController::class, 'deleteSubsc
 Route::post('/update-subscription', [SubscriptionController::class, 'updateSubscription'])->middleware('token');
 Route::get('/customer-checkout', [SubscriptionController::class, 'checkoutPage'])->middleware('token');
 Route::post('/customer-checkout', [SubscriptionController::class, 'checkoutProcess'])->middleware('token');
+Route::post('/create-order', [SubscriptionController::class, 'createOrder'])->middleware('token');
 
 // Tickets Routes
 Route::post('/create-ticket', [TicketController::class, 'createTicket'])->middleware('token');

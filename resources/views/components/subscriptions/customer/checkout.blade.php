@@ -15,6 +15,7 @@
                 <ul class="list-group mb-3">
                     <li class="list-group-item d-flex justify-content-between lh-sm">
                         <div>
+                            <input type="number" id="planID" class="d-none" value="">
                             <h6 id="packName" class="my-0"></h6>
                             <small id="dspeed" class="text-body-secondary"></small>
                         </div>
@@ -136,18 +137,18 @@
 
                     <div class="my-3">
                         <div class="form-check">
-                            <input id="cash" name="paymentMethod" type="radio" class="form-check-input" checked="" required="">
+                            <input id="cash" name="paymentMethod" type="radio" class="form-check-input" checked="" required="" value="Cash">
                             <label class="form-check-label" for="credit">Cash</label>
                         </div>
 
                         <div class="form-check">
-                            <input id="mfs" name="paymentMethod" type="radio" class="form-check-input" required="" disabled>
+                            <input id="mfs" name="paymentMethod" type="radio" class="form-check-input" required="" value="bKash/Nagad" disabled>
                             <label class="form-check-label" for="mfs">bKash/Nagad</label>
                         </div>
 
                         <div class="form-check">
-                            <input id="creditCard" name="paymentMethod" type="radio" class="form-check-input" required="" disabled>
-                            <label class="form-check-label" for="credit">Credit card</label>
+                            <input id="creditCard" name="paymentMethod" type="radio" class="form-check-input" required="" value="Credit Card" disabled>
+                            <label class="form-check-label" for="credit">Credit Card</label>
                         </div>
                     </div>
 
@@ -165,6 +166,17 @@
             </div>
         </div>
     </main>
+
+    <div class="modal" id="confirmModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <i class="fas fa-check-circle" style="color:#4ba042; font-size:30px; margin-bottom: 5px;"></i>
+                    <h4>Order Placed Successfully!</h4>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer id="footer">
         <div class="container d-md-flex py-4">
@@ -192,11 +204,11 @@
 <script>
     $(document).ready(function() {
         let selectedPack = localStorage.getItem('selectedPack');
+        $('#planID').val(selectedPack);
 
         if (selectedPack === null || isNaN(selectedPack) || !Number.isInteger(Number(selectedPack))) {
             window.location.href = '/customer-subscriptions';
         }
-
     });
 
     function customerInfo() {
@@ -226,6 +238,31 @@
     }
 
     function confirmOrder() {
+        let planID = $('#planID').val();
+        let address = $('#address').val();
+        let city = $('#city').val();
+        let country = $('#country').val();
+        let zip = $('#zip').val();
+        let fullAddress = `${address}, ${city}, ${country}-${zip}`;
+        let totalPrice = parseInt($('#totalPrice').text())
+        let paymentMethod = $('input[name="paymentMethod"]:checked').val();
+
+        if (address.length > 1 && zip.length > 2) {
+            formData = {
+                'plan_id': planID,
+                'full_address': fullAddress,
+                'total_price': totalPrice,
+                'payment_method': paymentMethod
+            }
+
+            axios.post('/create-order', formData).then(function(response) {
+                $('#confirmModal').modal('show');
+                localStorage.removeItem('selectedPack')
+                // window.location.href = '/customer-subscriptions';
+            })
+        } else {
+            toastr.error("Something Went Wrong!")
+        }
 
     }
 

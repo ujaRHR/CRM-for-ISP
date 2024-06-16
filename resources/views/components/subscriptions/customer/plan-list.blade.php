@@ -28,7 +28,7 @@
                                     <li>Limit: ${plan.limit}</li>
                                     <li>${plan.description}</li>
                                 </ul>
-                                <button onclick="proceedCheckout(this)" id="buyBtn" type="button" data-pack="${plan.id}" class="btn btn-success">Buy Now</button>
+                                <button onclick="proceedCheckout(this)" type="button" data-pack="${plan.id}" class="btn btn-success">Buy Now</button>
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
   function proceedCheckout(button) {
     let selectedPack = $(button).data('pack');
     localStorage.setItem('selectedPack', selectedPack)
-    
+
     window.location.href = '/customer-checkout';
   }
 </script>

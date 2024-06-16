@@ -15,7 +15,7 @@
             <div class="modal-footer">
                 <input type="number" id="cancelID" class="d-none" value="">
                 <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
-                <button onclick="cancelSubscription()" type="button" class="btn btn-danger">Cancel</button>
+                <button onclick="cancelSubscription()" type="button" class="btn btn-danger">Proceed</button>
             </div>
         </div>
     </div>
