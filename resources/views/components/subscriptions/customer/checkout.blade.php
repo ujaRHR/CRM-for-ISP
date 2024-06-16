@@ -15,10 +15,10 @@
                 <ul class="list-group mb-3">
                     <li class="list-group-item d-flex justify-content-between lh-sm">
                         <div>
-                            <h6 class="my-0">Product Name</h6>
-                            <small class="text-body-secondary">Brief description</small>
+                            <h6 id="packName" class="my-0"></h6>
+                            <small id="dspeed" class="text-body-secondary"></small>
                         </div>
-                        <span class="text-body-secondary"><span id="total_price">1050</span> BDT</span>
+                        <span class="text-body-secondary"><span id="packPrice"></span> BDT</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
                         <span class="my-0">VAT (0%)</span>
@@ -30,7 +30,7 @@
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
                         <span class="my-0">Total (BDT)</span>
-                        <strong id="total_price">20</strong>
+                        <strong id="totalPrice"></strong>
                     </li>
                 </ul>
 
@@ -84,7 +84,7 @@
 
                         <div class="col-12">
                             <label for="address" class="form-label">Address</label>
-                            <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
+                            <input type="text" class="form-control" id="address" placeholder="1234 Residential Area" required="">
                             <div class="invalid-feedback">
                                 Please enter your shipping address.
                             </div>
@@ -155,10 +155,10 @@
 
                     <div class="row">
                         <div class="col-6">
-                            <button onclick="confirmOrder()" class="w-50 btn btn-success" type="submit">Confirm Payment</button>
+                            <button onclick="cancelOrder()" class="w-100 btn btn-danger" type="button">Cancel</button>
                         </div>
                         <div class="col-6">
-                            <button onclick="cancelOrder()" class="w-50 btn btn-danger" type="submit">Cancel</button>
+                            <button onclick="confirmOrder()" class="w-100 btn btn-success" type="button">Confirm Payment</button>
                         </div>
                     </div>
                 </form>
@@ -190,6 +190,15 @@
 
 @push('other-scripts')
 <script>
+    $(document).ready(function() {
+        let selectedPack = localStorage.getItem('selectedPack');
+
+        if (selectedPack === null || isNaN(selectedPack) || !Number.isInteger(Number(selectedPack))) {
+            window.location.href = '/customer-subscriptions';
+        }
+
+    });
+
     function customerInfo() {
         let res = axios.post('/customer-profile').then(function(response) {
             $('#fullname').val(response.data.fullname);
@@ -199,6 +208,28 @@
         })
     }
 
-    customerInfo()
+    function planInfo() {
+        let id = localStorage.getItem('selectedPack');
+        let res = axios.post('/plan-info', {
+            id: id
+        }).then(function(response) {
+            $('#packName').text(response.data.name);
+            $('#dspeed').text(response.data.dspeed);
+            $('#packPrice').text(parseInt(response.data.price));
+            $('#totalPrice').text(parseInt(response.data.price));
+        })
+    }
+
+    function cancelOrder() {
+        localStorage.removeItem('selectedPack');
+        window.location.href = '/customer-subscriptions';
+    }
+
+    function confirmOrder() {
+
+    }
+
+    customerInfo();
+    planInfo();
 </script>
 @endpush

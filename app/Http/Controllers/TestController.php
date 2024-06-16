@@ -16,7 +16,7 @@ use NunoMaduro\Collision\Adapters\Phpunit\Subscribers\Subscriber;
 class TestController extends Controller
 {
     public function testFunc(Request $request){
-        $test = Customer::where('id', $request->header('id'))->first();
+        $test = Plan::get();
 
         return $test;
     }
