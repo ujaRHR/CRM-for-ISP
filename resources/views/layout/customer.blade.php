@@ -42,6 +42,9 @@
           <a href="customer-subscriptions"><i class="fas fa-paper-plane"></i> Subscriptions</a>
         </li>
         <li>
+          <a href="customer-orders"><i class="fas fa-history"></i> Order History</a>
+        </li>
+        <li>
           <a href="customer-notices"><i class="fas fa-bell"></i> Notices</a>
         </li>
         <li>
