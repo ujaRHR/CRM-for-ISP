@@ -11,12 +11,13 @@ use App\Models\Notice;
 use App\Models\Staff;
 use App\Models\Task;
 use App\Models\Ticket;
+use App\Models\Order;
 use NunoMaduro\Collision\Adapters\Phpunit\Subscribers\Subscriber;
 
 class TestController extends Controller
 {
     public function testFunc(Request $request){
-        $test = Plan::get();
+        $test = Order::where('customer_id', 9)->with('plan')->get();
 
         return $test;
     }
