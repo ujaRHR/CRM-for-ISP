@@ -38,7 +38,8 @@ class AdminController extends Controller
         }
     }
 
-    public function adminLoginPage(){
+    public function adminLoginPage()
+    {
         return view('pages.admin.login');
     }
 
@@ -50,17 +51,18 @@ class AdminController extends Controller
             $password = $request->input('password');
 
             $admin           = Admin::where('email', $email)->first();
-            $user_id         = $admin->id;
+            $admin_id        = $admin->id;
+            $user_type       = 'admin';
             $hashed_password = $admin->password;
 
             if (Hash::check($password, $hashed_password)) {
-                $user_email = $email;
-                $token      = JWTToken::createToken($user_id, $user_email);
+                $admin_email = $email;
+                $token       = JWTToken::createToken($admin_id, $admin_email, $user_type);
 
                 return response()->json([
                     'status'  => 'success',
                     'message' => 'admin logged in successfully'
-                ], 200)->cookie('token', $token, (24 * 60));
+                ], 200)->cookie('token', $token, (24 * 60 * 60));
             } else {
                 return response()->json([
                     'status'  => 'failed',
@@ -80,5 +82,4 @@ class AdminController extends Controller
         cookie()->forget('token');
         return redirect('/admin-login');
     }
-
 }

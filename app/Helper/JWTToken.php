@@ -7,15 +7,16 @@ use Firebase\JWT\Key;
 
 class JWTToken
 {
-    public static function createToken($user_id, $user_email) : string
+    public static function createToken($user_id, $user_email, $user_type): string
     {
         $key     = env('JWT_SECRET');
         $payload = [
             'iss'   => 'Laravel / CRM For ISP',
             'iat'   => time(),
-            'exp'   => time() + (60 * 60 * 30),
+            'exp'   => time() + (10), // must change
             'id'    => $user_id,
-            'email' => $user_email
+            'email' => $user_email,
+            'type' => $user_type
         ];
 
         $token = JWT::encode($payload, $key, 'HS256');
@@ -23,14 +24,13 @@ class JWTToken
         return $token;
     }
 
-    public static function verifyToken($encoded_token) : string|object
+    public static function verifyToken($encoded_token): string|object
     {
         if ($encoded_token != null) {
             $key     = env('JWT_SECRET');
-            $decoded = JWT::decode($encoded_token, new Key($key, 'HS256'));
+            $result  = JWT::decode($encoded_token, new Key($key, 'HS256'));
 
-            return $decoded;
-
+            return $result;
         } else {
             return response()->json([
                 'status'  => 'unauthorized',

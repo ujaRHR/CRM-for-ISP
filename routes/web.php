@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 
 // Test Routes 
-Route::get('/test', [TestController::class, 'testFunc']);
+Route::get('/test', [TestController::class, 'testFunc'])->middleware('token');
 
 // Admin Routes
 Route::get('/admin-signup', [AdminController::class, 'adminSignupPage']);

@@ -18,7 +18,7 @@ class TestController extends Controller
 {
     public function testFunc(Request $request)
     {
-        $test = Notice::with('admin')->get();
+        $test = $request->header('type');
 
         return $test;
     }

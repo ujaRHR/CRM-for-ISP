@@ -59,16 +59,17 @@ class CustomerController extends Controller
 
             $customer        = Customer::where('email', $email)->first();
             $customer_id     = $customer->id;
+            $user_type       = 'customer';
             $hashed_password = $customer->password;
 
             if (Hash::check($password, $hashed_password)) {
                 $customer_email = $email;
-                $token          = JWTToken::createToken($customer_id, $customer_email);
+                $token          = JWTToken::createToken($customer_id, $customer_email, $user_type);
 
                 return response()->json([
                     'status'  => 'success',
                     'message' => 'customer logged in successfully'
-                ], 200)->cookie('token', $token, (24 * 60));
+                ], 200)->cookie('token', $token, (24 * 60 * 60));
             } else {
                 return response()->json([
                     'status'  => 'failed',
