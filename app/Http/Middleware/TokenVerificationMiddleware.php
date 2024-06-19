@@ -29,7 +29,6 @@ class TokenVerificationMiddleware
                 return $next($request);
             }
         } catch (Exception $e) {
-            $decode = JWTToken::verifyToken($encoded_token);
             if ($decode->type == 'admin') {
                 return redirect('/admin-login');
             } else {
