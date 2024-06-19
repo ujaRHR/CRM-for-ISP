@@ -2,28 +2,26 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h6 class="modal-title">Create New Notice</h6>
+        <h6 class="modal-title fw-bold">Create New Notice</h6>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-start">
         <form id="staff-form">
           <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
+            <label for="title" class="form-label fw-bold">Title</label>
             <input type="text" id="title" class="form-control" required>
           </div>
           <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
+            <label for="description" class="form-label fw-bold">Description</label>
             <textarea id="description" class="form-control" required></textarea>
           </div>
+          <div class="mb-3">
+            <button onclick="createNotice()" type="button" class="btn btn-success">Create</button>
+          </div>
+        </form>
       </div>
-      <div class="mb-3">
-        <button onclick="createNotice()" type="button" class="btn btn-success">Create</button>
-      </div>
-      </form>
     </div>
   </div>
-</div>
-
 </div>
 
 @push('other-scripts')

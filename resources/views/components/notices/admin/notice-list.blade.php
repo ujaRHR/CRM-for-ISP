@@ -11,9 +11,8 @@
         <table class="table table-hover table-bordered" id="dataTables" width="100%">
           <thead>
             <tr>
-              <th>ID</th>
+              <th>Date</th>
               <th>Title</th>
-              <th>Publisher</th>
               <th>Description</th>
               <th>Action</th>
             </tr>
@@ -27,7 +26,14 @@
 
 @push('other-scripts')
 <script>
-  getNotices();
+  getNotices()
+
+  function formatDate(newDate) {
+    const date = new Date(newDate);
+    let text = date.toUTCString();
+    let formattedDate = text.split(' ').slice(0, 4).join(' ');
+    return formattedDate
+  }
 
   async function getNotices() {
     let res = await axios.get('/notice-list');
@@ -39,10 +45,11 @@
     mainTable.DataTable().clear().destroy();
 
     data.forEach(function(item, index) {
+      const sortDate = new Date(item['created_at']).toISOString().split('T')[0];
+
       let newRow = `<tr>
-        <td>${index + 1}</td>
+        <td data-sort="${sortDate}">${formatDate(item['created_at'])}</td>
         <td>${item['title']}</td>
-        <td>${item['admin_id']}</td>
         <td>${item['description']}</td>
         <td>
           <button type="button" onclick="getNoticeInfo()" class="updateBtn btn btn-outline-info btn-rounded" data-id="${item['id']}"><i class="fas fa-pen"></i></button>
@@ -52,7 +59,7 @@
       tableBody.append(newRow);
     });
 
-    mainTable.DataTable();
+    mainTable.DataTable({"order": [[0, "desc"]]});
   }
 
   $('table tbody').on('click', '.deleteBtn', function() {

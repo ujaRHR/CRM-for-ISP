@@ -22,7 +22,7 @@ class NoticeController extends Controller
 
     public function noticeList()
     {
-        $notices = Notice::orderBy('id', 'desc')->take(7)->get();
+        $notices = Notice::orderBy('id', 'desc')->get();
 
         return $notices;
     }
