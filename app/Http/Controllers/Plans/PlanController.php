@@ -40,7 +40,10 @@ class PlanController extends Controller
                 'name'          => $request->input('name'),
                 'price'         => $request->input('price'),
                 'billing_cycle' => $request->input('billing_cycle'),
-                'speed'         => $request->input('speed')
+                'dspeed'        => $request->input('dspeed'),
+                'uspeed'        => $request->input('uspeed'),
+                'limit'         => $request->input('limit'),
+                'description'   => $request->input('description')
             ]);
 
             return response()->json([
@@ -88,7 +91,10 @@ class PlanController extends Controller
             'name'          => $request->input('name'),
             'price'         => $request->input('price'),
             'billing_cycle' => $request->input('billing_cycle'),
-            'speed'         => $request->input('speed')
+            'dspeed'        => $request->input('dspeed'),
+            'uspeed'        => $request->input('uspeed'),
+            'limit'         => $request->input('limit'),
+            'description'   => $request->input('description')
         ]);
 
         if ($updated) {

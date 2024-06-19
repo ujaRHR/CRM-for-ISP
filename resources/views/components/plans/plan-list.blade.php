@@ -16,7 +16,9 @@
               <th>Name</th>
               <th>Price</th>
               <th>Billing Cycle</th>
-              <th>Speed</th>
+              <th>D.Speed</th>
+              <th>U.Speed</th>
+              <th>Limit</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -47,7 +49,9 @@
         <td>${item['name']}</td>
         <td>${item['price']}</td>
         <td>${item['billing_cycle']}</td>
-        <td>${item['speed']}</td>
+        <td>${item['dspeed']}</td>
+        <td>${item['uspeed']}</td>
+        <td>${item['limit']}</td>
         <td>
           <button type="button" onclick="getPlanInfo()" class="updateBtn btn btn-outline-info btn-rounded" data-id="${item['id']}"><i class="fas fa-pen"></i></button>
           <button type="button" class="deleteBtn btn btn-outline-danger btn-rounded" data-id="${item['id']}"><i class="fas fa-trash"></i></button>

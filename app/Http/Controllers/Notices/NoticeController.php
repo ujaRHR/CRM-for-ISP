@@ -20,9 +20,9 @@ class NoticeController extends Controller
         return view('pages.admin.notices', compact('admin'));
     }
 
-    public function noticeList(Request $request)
+    public function noticeList()
     {
-        $notices = Notice::get();
+        $notices = Notice::orderBy('id', 'desc')->take(7)->get();
 
         return $notices;
     }
