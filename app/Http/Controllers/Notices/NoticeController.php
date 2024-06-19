@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Notice;
 use App\Models\Admin;
+use App\Models\Customer;
 use Exception;
 
 class NoticeController extends Controller
@@ -110,5 +111,11 @@ class NoticeController extends Controller
                 'message' => 'failed to update the plan'
             ]);
         }
+    }
+
+    public function customerNoticesPage(Request $request){
+        $customer = Customer::where('id', $request->header('id'))->first();
+
+        return view('pages.customer.notices', compact('customer'));
     }
 }

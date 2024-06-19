@@ -113,10 +113,15 @@ class SubscriptionController extends Controller
         return view('pages.customer.orders-history', compact('customer'));
     }
 
-    public function customerOrders(Request $request){
+    public function customerOrders(Request $request)
+    {
         $customer_id = $request->header('id');
 
-        $orders = Order::where('customer_id', $customer_id)->with('plan')->get();
+        $orders = Order::where('customer_id', $customer_id)
+            ->with('plan')
+            ->orderBy('id', 'desc')
+            ->take(7)
+            ->get();
 
         return $orders;
     }

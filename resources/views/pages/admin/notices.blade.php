@@ -3,8 +3,8 @@
 @section('title', 'Manage Notices | EarthLink')
 
 @section('content')
-@include('components.notices.notice-list')
-@include('components.notices.create-notice')
-@include('components.notices.update-notice')
-@include('components.notices.delete-notice')
+@include('components.notices.admin.notice-list')
+@include('components.notices.admin.create-notice')
+@include('components.notices.admin.update-notice')
+@include('components.notices.admin.delete-notice')
 @endsection

@@ -60,6 +60,8 @@ Route::get('/notice-list', [NoticeController::class, 'noticeList'])->middleware(
 Route::post('/notice-info', [NoticeController::class, 'getNoticeInfo'])->middleware('token');
 Route::post('/delete-notice', [NoticeController::class, 'deleteNotice'])->middleware('token');
 Route::post('/update-notice', [NoticeController::class, 'updateNotice'])->middleware('token');
+Route::get('/customer-notices', [NoticeController::class, 'customerNoticesPage'])->middleware('token');
+Route::post('/customer-notices', [NoticeController::class, 'customerNotices'])->middleware('token');
 
 
 // Plans Routes

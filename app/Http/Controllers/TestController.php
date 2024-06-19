@@ -17,7 +17,11 @@ use NunoMaduro\Collision\Adapters\Phpunit\Subscribers\Subscriber;
 class TestController extends Controller
 {
     public function testFunc(Request $request){
-        $test = Order::where('customer_id', 9)->with('plan')->get();
+        $test = Order::where('customer_id', 9)
+            ->with('plan')
+            ->orderBy('id', 'desc')
+            ->take(2)
+            ->get();
 
         return $test;
     }
