@@ -1,6 +1,6 @@
 <div class="container">
     <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <h6 class="border-bottom pb-2 mb-0">Recent Notices</h6>
+        <h6 class="border-bottom pb-2 mb-0 fw-bold">Recent Notices</h6>
         <div id="noticesList"></div>
     </div>
 </div>
