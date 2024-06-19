@@ -3,5 +3,5 @@
 @section('title', 'Notices | EarthLink')
 
 @section('content')
-@include('components.subscriptions.customer.orders-history')
+@include('components.notices.customer.notice-list')
 @endsection
