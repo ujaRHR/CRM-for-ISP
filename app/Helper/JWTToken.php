@@ -4,6 +4,7 @@ namespace App\Helper;
 
 use \Firebase\JWT\JWT;
 use Firebase\JWT\Key;
+use Firebase\JWT\ExpiredException;
 
 class JWTToken
 {
@@ -24,18 +25,20 @@ class JWTToken
         return $token;
     }
 
-    public static function verifyToken($encoded_token): string|object
+    public static function verifyToken($encoded_token)
     {
         if ($encoded_token != null) {
-            $key     = env('JWT_SECRET');
-            $result  = JWT::decode($encoded_token, new Key($key, 'HS256'));
-
-            return $result;
+            try {
+                $key = env('JWT_SECRET');
+                $result = JWT::decode($encoded_token, new Key($key, 'HS256'));
+                return $result;
+            } catch (ExpiredException $e) {
+                return 'expired';
+            } catch (\Exception $e) {
+                return 'unauthorized';
+            }
         } else {
-            return response()->json([
-                'status'  => 'unauthorized',
-                'message' => 'authentication failed!'
-            ]);
+            return 'unauthorized';
         }
     }
 }
