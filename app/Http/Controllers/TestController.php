@@ -18,7 +18,7 @@ class TestController extends Controller
 {
     public function testFunc(Request $request)
     {
-        $test = $request->header('type');
+        $test = Customer::where('id', $request->header('id'))->get();
 
         return $test;
     }
