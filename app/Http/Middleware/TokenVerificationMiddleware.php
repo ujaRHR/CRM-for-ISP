@@ -20,7 +20,7 @@ class TokenVerificationMiddleware
         try {
             $decoded_token = JWTToken::verifyToken($request->cookie('token'));
 
-            if ($decoded_token == ('unauthorized' || 'expired')) {
+            if ($decoded_token == 'unauthorized') {
                 return redirect('/customer-login');
             } else {
                 $request->headers->set('id', $decoded_token->id);
