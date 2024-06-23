@@ -11,6 +11,7 @@ use App\Http\Controllers\Subscription\SubscriptionController;
 use App\Http\Controllers\Tickets\TicketController;
 use App\Http\Controllers\Tasks\TaskController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Models\Subscription;
 
 Route::get('/', function () {
     return view('welcome');
@@ -77,6 +78,7 @@ Route::post('/update-plan', [PlanController::class, 'updatePlan'])->middleware('
 Route::get('/customer-subscriptions', [SubscriptionController::class, 'customerSubscriptionPage'])->middleware('token');
 Route::post('/customer-subscription', [SubscriptionController::class, 'customerSubscription'])->middleware('token');
 Route::get('/manage-subscriptions', [SubscriptionController::class, 'subscriptionPage'])->middleware('token');
+Route::post('/updated-status', [SubscriptionController::class, 'updateStatus'])->middleware('token');
 Route::get('/all-subscriptions', [SubscriptionController::class, 'allSubscription'])->middleware('token');
 Route::post('/create-subscription', [SubscriptionController::class, 'createSubscription'])->middleware('token');
 Route::post('/cancel-subscription', [SubscriptionController::class, 'cancelSubscription'])->middleware('token');

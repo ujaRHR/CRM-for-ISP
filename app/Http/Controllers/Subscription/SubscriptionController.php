@@ -29,6 +29,36 @@ class SubscriptionController extends Controller
         return $subscription;
     }
 
+    public function updateStatus(Request $request)
+    {
+        $id = $request->input('id');
+        $customer_id = $request->input('customer_id');
+        $status = $request->input('status');
+
+        DB::beginTransaction();
+        try {
+            Subscription::where('id', $id)->update([
+                'status' => $status
+            ]);
+
+            Customer::where('id', $customer_id)->update([
+                'status' => $status
+            ]);
+
+            DB::commit();
+            return response()->json([
+                'status'  => 'success',
+                'message' => 'status updated successfully'
+            ]);
+        } catch (Exception $e) {
+            DB::rollback();
+            return response()->json([
+                'status'  => 'failed',
+                'message' => 'failed to update the status'
+            ]);
+        }
+    }
+
     public function customerSubscriptionPage(Request $request)
     {
         $customer = Customer::where('id', $request->header('id'))->first();

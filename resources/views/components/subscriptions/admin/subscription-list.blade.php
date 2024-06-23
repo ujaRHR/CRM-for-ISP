@@ -8,8 +8,9 @@
         <table class="table table-hover table-bordered" id="dataTables" width="100%">
           <thead>
             <tr>
-              <th>Created</th>
+              <th>Started</th>
               <th>Customer</th>
+              <th>PID</th>
               <th>Plan</th>
               <th>Next Billing</th>
               <th>Total Cost</th>
@@ -45,15 +46,17 @@
       mainTable.DataTable().clear().destroy();
 
       response.data.forEach(function(item, index) {
+        const sortDate = new Date(item['start_date']).toISOString().split('T')[0];
         let newRow = `<tr>
-          <td>${formatDate(response.data[index].start_date)}</td>
+          <td data-sort="${sortDate}">${formatDate(response.data[index].start_date)}</td>
           <td>${response.data[index].customer.fullname}</td>
+          <td><span class="badge badge-pill badge-secondary bg-secondary">${response.data[index].customer.personal_id}</span></td>
           <td>${(response.data[index].plan.name).split(' ')[0]}</td>
           <td>${formatDate(response.data[index].next_billing_date)}</td>
           <td>${parseInt(response.data[index].total_cost)}</td>
           <td>
-              <select class="statusBtn">
-                <option value="active" selected>Active</option>
+              <select class="statusBtn" data-id="${response.data[index].id}" onchange="updateStatus(this)">
+                <option value="active">Active</option>
                 <option value="inactive">In-Active</option>
                 <option value="restricted">Restricted</option>
               </select>
@@ -72,7 +75,11 @@
         }
       });
 
-      mainTable.DataTable();
+      mainTable.DataTable({
+        "order": [
+          [0, "desc"]
+        ]
+      });
     })
   }
 
@@ -89,8 +96,10 @@
     getPlanInfo();
   })
 
-  $('select .statusBtn').on('change', function() {
-    console.log(this.value);
-  });
+  function updateStatus(element) {
+    // $(element).val()
+    // $(element).data('id')
+    
+  }
 </script>
 @endpush
