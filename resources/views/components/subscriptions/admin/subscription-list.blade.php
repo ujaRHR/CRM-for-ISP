@@ -8,10 +8,9 @@
         <table class="table table-hover table-bordered" id="dataTables" width="100%">
           <thead>
             <tr>
-              <th>ID</th>
+              <th>Created</th>
               <th>Customer</th>
               <th>Plan</th>
-              <th>Created</th>
               <th>Next Billing</th>
               <th>Total Cost</th>
               <th>Status</th>
@@ -42,26 +41,35 @@
       let mainTable = $('#dataTables');
       let tableBody = $('#tableBody');
       let btnClass = ''
-      console.log(response.data[1].customer.fullname)
 
       mainTable.DataTable().clear().destroy();
 
       response.data.forEach(function(item, index) {
         let newRow = `<tr>
-        <td>${index+1}</td>
-        <td>${response.data[index].customer.fullname}</td>
-        <td>${(response.data[index].plan.name).split(' ')[0]}</td>
-        <td>${formatDate(response.data[index].start_date)}</td>
-        <td>${formatDate(response.data[index].next_billing_date)}</td>
-        <td>${parseInt(response.data[index].total_cost)}</td>
-        <td>
-          <select>
-            <option value="${response.data[index].status}" selected>${response.data[index].status}</option>
-            <option value=""></option>
-          </select>
-        </td>
-      </tr>`
+          <td>${formatDate(response.data[index].start_date)}</td>
+          <td>${response.data[index].customer.fullname}</td>
+          <td>${(response.data[index].plan.name).split(' ')[0]}</td>
+          <td>${formatDate(response.data[index].next_billing_date)}</td>
+          <td>${parseInt(response.data[index].total_cost)}</td>
+          <td>
+              <select class="statusBtn">
+                <option value="active" selected>Active</option>
+                <option value="inactive">In-Active</option>
+                <option value="restricted">Restricted</option>
+              </select>
+          </td>
+          </tr>`;
         tableBody.append(newRow);
+        let status = response.data[index].status;
+        let statusBtn = tableBody.find('tr:last-child .statusBtn');
+        statusBtn.val(status);
+        if (status == 'active') {
+          statusBtn.addClass('btn btn-sm btn-success fw-bold');
+        } else if (status == 'inactive') {
+          statusBtn.addClass('btn btn-sm btn-danger fw-bold');
+        } else {
+          statusBtn.addClass('btn btn-sm btn-warning fw-bold');
+        }
       });
 
       mainTable.DataTable();
@@ -80,5 +88,9 @@
     $('#updateID').val(id);
     getPlanInfo();
   })
+
+  $('select .statusBtn').on('change', function() {
+    console.log(this.value);
+  });
 </script>
 @endpush
