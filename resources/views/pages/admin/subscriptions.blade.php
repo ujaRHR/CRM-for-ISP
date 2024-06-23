@@ -3,8 +3,6 @@
 @section('title', 'Manage Subscriptions | EarthLink')
 
 @section('content')
-@include('components.subscriptions.plan-list')
-@include('components.subscriptions.create-plan')
-@include('components.subscriptions.update-plan')
-@include('components.subscriptions.delete-plan')
+@include('components.subscriptions.admin.subscription-list')
+@include('components.subscriptions.admin.update-subscription')
 @endsection

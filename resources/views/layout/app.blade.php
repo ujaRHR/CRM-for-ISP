@@ -48,7 +48,7 @@
           <a href="manage-notices"><i class="fas fa-bell"></i> Notices</a>
         </li>
         <li>
-          <a href="manage-notices"><i class="fas fa-money-bill"></i> Subscriptions</a>
+          <a href="manage-subscriptions"><i class="fas fa-money-bill"></i> Subscriptions</a>
         </li>
       </ul>
     </nav>
