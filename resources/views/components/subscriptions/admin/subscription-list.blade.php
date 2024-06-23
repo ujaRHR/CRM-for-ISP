@@ -1,10 +1,7 @@
 <div class="content">
   <div class="container">
     <div class="page-title">
-      <h3>Subscriptions
-        <a data-bs-toggle="modal" data-bs-target="#createModal" class="btn btn-sm btn-outline-primary float-end"><i class="fas fa-plus-square"></i>
-          Create Subscription</a>
-      </h3>
+      <h3>Subscriptions</h3>
     </div>
     <div class="card">
       <div class="card-body">

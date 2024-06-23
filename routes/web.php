@@ -77,6 +77,7 @@ Route::post('/update-plan', [PlanController::class, 'updatePlan'])->middleware('
 Route::get('/customer-subscriptions', [SubscriptionController::class, 'customerSubscriptionPage'])->middleware('token');
 Route::post('/customer-subscription', [SubscriptionController::class, 'customerSubscription'])->middleware('token');
 Route::get('/manage-subscriptions', [SubscriptionController::class, 'subscriptionPage'])->middleware('token');
+Route::post('/all-subscriptions', [SubscriptionController::class, 'allSubscription'])->middleware('token');
 Route::post('/create-subscription', [SubscriptionController::class, 'createSubscription'])->middleware('token');
 Route::post('/cancel-subscription', [SubscriptionController::class, 'cancelSubscription'])->middleware('token');
 Route::get('/subscription-list', [SubscriptionController::class, 'subscriptionList'])->middleware('token');

@@ -18,8 +18,10 @@ class TestController extends Controller
 {
     public function testFunc(Request $request)
     {
-        $test = Customer::where('id', $request->header('id'))->get();
+        $subscription = Subscription::where('customer_id', $request->header('id'))
+            ->with('plan', 'customer')
+            ->get();
 
-        return $test;
+        return $subscription;
     }
 }
