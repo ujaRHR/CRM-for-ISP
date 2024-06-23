@@ -15,7 +15,6 @@
               <th>Next Billing</th>
               <th>Total Cost</th>
               <th>Status</th>
-              <th>Action</th>
             </tr>
           </thead>
           <tbody id="tableBody"></tbody>
@@ -27,34 +26,46 @@
 
 @push('other-scripts')
 <script>
-  getSubscriptions();
+  function formatDate(newDate) {
+    const date = new Date(newDate);
+    let text = date.toUTCString();
+    let parts = text.split(' ');
+    let formattedDate = `${parts[1]} ${parts[2]} ${parts[3]}`;
+    return formattedDate;
+  }
 
-  async function getSubscriptions() {
-    let res = await axios.get('/subscription-list');
-    let data = res.data;
 
-    let mainTable = $('#dataTables');
-    let tableBody = $('#tableBody');
-    let btnClass = ''
+  allSubscriptions();
 
-    mainTable.DataTable().clear().destroy();
+  async function allSubscriptions() {
+    await axios.get('/all-subscriptions').then(function(response) {
+      let mainTable = $('#dataTables');
+      let tableBody = $('#tableBody');
+      let btnClass = ''
+      console.log(response.data[1].customer.fullname)
 
-    data.forEach(function(item, index) {
-      let newRow = `<tr>
+      mainTable.DataTable().clear().destroy();
+
+      response.data.forEach(function(item, index) {
+        let newRow = `<tr>
         <td>${index+1}</td>
-        <td>${item['name']}</td>
-        <td>${item['price']}</td>
-        <td>${item['billing_cycle']}</td>
-        <td>${item['speed']}</td>
+        <td>${response.data[index].customer.fullname}</td>
+        <td>${(response.data[index].plan.name).split(' ')[0]}</td>
+        <td>${formatDate(response.data[index].start_date)}</td>
+        <td>${formatDate(response.data[index].next_billing_date)}</td>
+        <td>${parseInt(response.data[index].total_cost)}</td>
         <td>
-          <button type="button" onclick="getPlanInfo()" class="updateBtn btn btn-outline-info btn-rounded" data-id="${item['id']}"><i class="fas fa-pen"></i></button>
-          <button type="button" class="deleteBtn btn btn-outline-danger btn-rounded" data-id="${item['id']}"><i class="fas fa-trash"></i></button>
+          <select>
+            <option value="${response.data[index].status}" selected>${response.data[index].status}</option>
+            <option value=""></option>
+          </select>
         </td>
       </tr>`
-      tableBody.append(newRow);
-    });
+        tableBody.append(newRow);
+      });
 
-    mainTable.DataTable();
+      mainTable.DataTable();
+    })
   }
 
   $('table tbody').on('click', '.deleteBtn', function() {
