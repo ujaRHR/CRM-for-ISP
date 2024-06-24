@@ -212,11 +212,19 @@
     });
 
     function customerInfo() {
-        let res = axios.post('/customer-profile').then(function(response) {
+        axios.post('/customer-profile').then(function(response) {
             $('#fullname').val(response.data.fullname);
             $('#personal_id').val(response.data.personal_id);
             $('#email').val(response.data.email);
             $('#phone').val(response.data.phone);
+            let status = response.data.status;
+            if (status == 'active') {
+                window.location.href = '/customer-subscriptions';
+            } else if (status == 'inactive') {
+                // pass
+            } else {
+                window.location.href = '/customer-subscriptions';
+            }
         })
     }
 
@@ -258,7 +266,7 @@
             axios.post('/create-order', formData).then(function(response) {
                 $('#confirmModal').modal('show');
                 localStorage.removeItem('selectedPack')
-                // window.location.href = '/customer-subscriptions';
+                window.location.href = '/customer-subscriptions';
             })
         } else {
             toastr.error("Something Went Wrong!")

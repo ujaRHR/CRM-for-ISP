@@ -75,26 +75,6 @@ class SubscriptionController extends Controller
         return $subscription;
     }
 
-    public function cancelSubscription(Request $request)
-    {
-        $cancelled = Subscription::where('id', $request->input('id'))
-            ->update([
-                'status' => 'inactive',
-            ]);
-
-        if ($cancelled) {
-            return response()->json([
-                'status'  => 'success',
-                'message' => 'subscription cancelled successfully'
-            ], 200);
-        } else {
-            return response()->json([
-                'status'  => 'failed',
-                'message' => 'failed to cancel the subscription'
-            ]);
-        }
-    }
-
     public function checkoutPage(Request $request)
     {
         $customer = Customer::where('id', $request->header('id'))->first();

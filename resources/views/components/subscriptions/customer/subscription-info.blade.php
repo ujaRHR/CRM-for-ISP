@@ -56,10 +56,6 @@
                 <span class="fw-bold">Personal ID:</span>
                 <span id="pid"></span>
               </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                <span class="fw-bold">Manage Plan:</span>
-                <a data-bs-toggle="modal" data-bs-target="#cancelModal" class="cancelBtn btn btn-sm btn-danger">Cancel Plan</a>
-              </li>
             </ul>
           </div>
         </div>
@@ -115,10 +111,5 @@
     }
 
     customerSubs()
-
-    $('.cancelBtn').on('click', function() {
-      let id = $('#id').val()
-      $('#cancelID').val(id)
-    })
   </script>
   @endpush

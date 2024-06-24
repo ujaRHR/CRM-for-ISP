@@ -83,7 +83,6 @@ Route::get('/manage-subscriptions', [SubscriptionController::class, 'subscriptio
 Route::post('/updated-status', [SubscriptionController::class, 'updateStatus'])->middleware('token');
 Route::get('/all-subscriptions', [SubscriptionController::class, 'allSubscription'])->middleware('token');
 Route::post('/create-subscription', [SubscriptionController::class, 'createSubscription'])->middleware('token');
-Route::post('/cancel-subscription', [SubscriptionController::class, 'cancelSubscription'])->middleware('token');
 Route::get('/subscription-list', [SubscriptionController::class, 'subscriptionList'])->middleware('token');
 Route::post('/subscription-info', [SubscriptionController::class, 'getSubscriptionInfo'])->middleware('token');
 Route::post('/delete-subscription', [SubscriptionController::class, 'deleteSubscription'])->middleware('token');
