@@ -98,6 +98,12 @@
     <script src=" {{ 'js/axios.min.js' }} "></script>
     <script src=" {{ 'js/toast.js' }} "></script>
     <script>
+      $(document).ready(function() {
+        $('.nav-item.m-1').click(function() {
+          $('#userType').text($(this).text());
+        });
+      });
+
       function customerLogin() {
         let formData = {
           email: $('#customerEmail').val(),
@@ -117,11 +123,11 @@
           email: $('#adminEmail').val(),
           password: $('#adminPassword').val()
         }
-        let res = axios.post('/admin-login', formData).then(function(response) {
+        axios.post('/admin-login', formData).then(function(response) {
           if (response.status == 200 && response.data.status == 'success') {
             location.href = "/admin-dashboard"
           } else {
-            console.log(response.data)
+            console.log(formData)
             toastr.error("Incorrect Email or Password!");
           }
         });
