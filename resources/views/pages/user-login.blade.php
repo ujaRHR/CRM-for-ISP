@@ -127,7 +127,6 @@
           if (response.status == 200 && response.data.status == 'success') {
             location.href = "/admin-dashboard"
           } else {
-            console.log(formData)
             toastr.error("Incorrect Email or Password!");
           }
         });

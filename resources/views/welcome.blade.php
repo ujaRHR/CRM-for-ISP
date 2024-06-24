@@ -21,15 +21,9 @@
 </head>
 
 <body>
-
-    <!-- ======= Header ======= -->
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center justify-content-between">
-
-            <!-- <h1 class="logo"><a href="#">EarthLink</a></h1> -->
-            <!-- Uncomment below if you prefer to use an image logo -->
             <a href="/" class="logo"><img src=" {{ asset('img/brand-logo.png') }}" alt="" class="img-fluid"></a>
-
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a class="nav-link scrollto active fw-bold" href="#hero">Home</a></li>
@@ -42,11 +36,9 @@
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
-            <!-- .navbar -->
 
         </div>
     </header>
-    <!-- End Header -->
 
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center">
@@ -58,7 +50,7 @@
                 </div>
             </div>
             <div class="text-center">
-                <a href="#about" class="btn-get-started scrollto">Get Started</a>
+                <a href="#pricing" class="btn-get-started scrollto">Get Started</a>
             </div>
 
             <div class="row icon-boxes">
@@ -121,7 +113,7 @@
                         <p>Get connected quickly with our hassle-free installation process, managed by our expert technicians who ensure everything is set up perfectly. Join us and experience the difference that a dedicated internet service provider can
                             make.
                         </p>
-                        <a href="#" class="btn-learn-more">Get Started</a>
+                        <a href="#pricing" class="btn-learn-more">Get Started</a>
                     </div>
                 </div>
 

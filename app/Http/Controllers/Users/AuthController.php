@@ -109,7 +109,7 @@ class AuthController extends Controller
                     'message' => 'authentication failed, unauthorized!'
                 ]);
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return response()->json([
                 'status'  => 'failed',
                 'message' => 'authentication failed, unauthorized!'
