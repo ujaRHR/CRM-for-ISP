@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Exception;
 
-class TokenCheck
+class TokenCheckMiddleware
 {
     public function handle(Request $request, Closure $next): Response
     {

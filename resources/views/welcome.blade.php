@@ -552,7 +552,7 @@
                                 <li class="na">Ideal For: Gaming, Streaming</li>
                             </ul>
                             <div class="btn-wrap">
-                                <a href="#" class="btn-buy">Buy Now</a>
+                                <a href="{{ url('customer-subscriptions') }}" class="btn-buy">Buy Now</a>
                             </div>
                         </div>
                     </div>
@@ -568,7 +568,7 @@
                                 <li class="na">Ideal For: Gaming, Streaming</li>
                             </ul>
                             <div class="btn-wrap">
-                                <a href="#" class="btn-buy">Buy Now</a>
+                                <a href="{{ url('customer-subscriptions') }}" class="btn-buy">Buy Now</a>
                             </div>
                         </div>
                     </div>
@@ -584,7 +584,7 @@
                                 <li>Ideal For: Gaming, Streaming</li>
                             </ul>
                             <div class="btn-wrap">
-                                <a href="#" class="btn-buy">Buy Now</a>
+                                <a href="{{ url('customer-subscriptions') }}" class="btn-buy">Buy Now</a>
                             </div>
                         </div>
                     </div>
@@ -599,7 +599,7 @@
                                 <li>Ideal For: Conference, Streaming</li>
                             </ul>
                             <div class="btn-wrap">
-                                <a href="#" class="btn-buy">Buy Now</a>
+                                <a href="{{ url('customer-subscriptions') }}" class="btn-buy">Buy Now</a>
                             </div>
                         </div>
                     </div>

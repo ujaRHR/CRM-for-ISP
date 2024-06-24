@@ -39,7 +39,7 @@ Route::get('/customer-profile', [CustomerController::class, 'customerProfilePage
 
 
 // User Authentication
-Route::get('/user-login', [AuthController::class, 'userLoginPage']);
+Route::get('/user-login', [AuthController::class, 'userLoginPage'])->middleware('check');
 Route::post('/customer-login', [AuthController::class, 'customerLogin']);
 Route::get('/user-signup', [AuthController::class, 'userSignupPage']);
 Route::post('/customer-signup', [AuthController::class, 'customerSignup']);
