@@ -14,7 +14,7 @@ class JWTToken
         $payload = [
             'iss'   => 'Laravel / CRM For ISP',
             'iat'   => time(),
-            'exp'   => time() + (24*60*60),
+            'exp'   => time() + (10),
             'id'    => $user_id,
             'email' => $user_email,
             'type'  => $user_type
