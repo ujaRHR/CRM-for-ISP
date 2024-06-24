@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('phone');
             $table->bigInteger('personal_id')->unique();
             $table->enum('type', ['personal', 'corporate'])->default('personal');
-            $table->enum('status', ['active', 'inactive'])->default('inactive');
+            $table->enum('status', ['active', 'inactive', 'restricted'])->default('inactive');
             $table->string('avatar')->nullable();
             $table->string('address')->nullable();
             $table->string('password');
