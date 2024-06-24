@@ -22,7 +22,7 @@
           <h6 class="mb-4 text-muted">Login to Admin account</h6>
           <form id="login-form">
             <div class="mb-3 text-start">
-              <label for="email" class="form-label">Email adress</label>
+              <label for="email" class="form-label">Email Address</label>
               <input type="email" class="form-control" id="email" placeholder="Enter Email" required>
             </div>
             <div class="mb-3 text-start">
