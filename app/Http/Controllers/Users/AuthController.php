@@ -24,6 +24,10 @@ class AuthController extends Controller
         return view('pages.user-signup');
     }
 
+    public function unauthorizedPage(){
+        return view('pages.unauthorized');
+    }
+
     public function customerSignup(Request $request)
     {
         try {

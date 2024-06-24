@@ -32,13 +32,13 @@
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                    <li><a class="nav-link scrollto" href="#about">About</a></li>
-                    <li><a class="nav-link scrollto" href="#services">Services</a></li>
-                    <li><a class="nav-link scrollto" href="#team">Team</a></li>
-                    <li><a class="nav-link scrollto" href="#pricing">Pricing</a></li>
-                    <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-                    <li><a class="getstarted scrollto" href="#pricing">Get Started</a></li>
+                    <li><a class="nav-link scrollto active fw-bold" href="#hero">Home</a></li>
+                    <li><a class="nav-link scrollto fw-bold" href="#about">About</a></li>
+                    <li><a class="nav-link scrollto fw-bold" href="#services">Services</a></li>
+                    <li><a class="nav-link scrollto fw-bold" href="#team">Team</a></li>
+                    <li><a class="nav-link scrollto fw-bold" href="#pricing">Pricing</a></li>
+                    <li><a class="nav-link scrollto fw-bold" href="#contact">Contact</a></li>
+                    <li><a class="getstarted scrollto fw-bold" href="#pricing">Get Started</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>

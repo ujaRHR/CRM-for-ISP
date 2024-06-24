@@ -108,7 +108,7 @@
 
     }
 
-    axios.post('/updated-status', formData).then(function(response) {
+    axios.post('/update-status', formData).then(function(response) {
       if (response.data.status == 'success' && response.status == 200) {
         toastr.success("Status Updated Successfully")
         allSubscriptions();

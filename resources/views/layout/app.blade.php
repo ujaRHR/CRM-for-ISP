@@ -29,7 +29,9 @@
     <div id="progress"></div>
     <nav id="sidebar" class="">
       <div class="sidebar-header">
-        <img src=" {{ asset('img/brand-logo.png') }} " alt="brand logo" class="app-logo">
+        <a href="/" target="_blank">
+          <img src=" {{ asset('img/brand-logo.png') }} " alt="brand logo" class="app-logo">
+        </a>
       </div>
       <ul class="list-unstyled components text-secondary">
         <li>
@@ -49,6 +51,9 @@
         </li>
         <li>
           <a href="manage-subscriptions"><i class="fas fa-money-bill"></i> Subscriptions</a>
+        </li>
+        <li>
+          <a href="manage-tickets"><i class="fas fa-bell"></i> Support Tickets</a>
         </li>
       </ul>
     </nav>

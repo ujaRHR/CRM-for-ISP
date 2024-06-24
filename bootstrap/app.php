@@ -5,6 +5,8 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\TokenVerificationMiddleware;
 use App\Http\Middleware\TokenCheckMiddleware;
+use App\Http\Middleware\CustomerIdentificationMiddleware;
+use App\Http\Middleware\AdminIdentificationMiddleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -20,6 +22,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'token' => TokenVerificationMiddleware::class,
             'check' => TokenCheckMiddleware::class,
+            'customer' => CustomerIdentificationMiddleware::class,
+            'admin' => AdminIdentificationMiddleware::class
         ]);
     })
     ->create();
