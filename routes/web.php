@@ -11,7 +11,7 @@ use App\Http\Controllers\Subscription\SubscriptionController;
 use App\Http\Controllers\Tickets\TicketController;
 use App\Http\Controllers\Tasks\TaskController;
 use App\Http\Controllers\Dashboard\DashboardController;
-use App\Models\Subscription;
+use App\Http\Controllers\Users\AuthController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,8 +24,6 @@ Route::get('/test', [TestController::class, 'testFunc'])->middleware('token');
 // Admin Routes
 Route::get('/admin-signup', [AdminController::class, 'adminSignupPage']);
 Route::post('/admin-signup', [AdminController::class, 'adminSignup']);
-Route::post('/admin-login', [AdminController::class, 'adminLogin']);
-Route::get('/admin-login', [AdminController::class, 'adminLoginPage']);
 Route::get('/admin-dashboard', [DashboardController::class, 'dashboardPage'])->middleware('token');
 
 
@@ -34,16 +32,20 @@ Route::get('/customer-dashboard', [CustomerController::class, 'customerDashboard
 Route::get('/manage-customers', [CustomerController::class, 'customersPage'])->middleware('token');
 Route::post('/delete-customer', [CustomerController::class, 'deleteCustomer'])->middleware('token');
 Route::post('/update-customer', [CustomerController::class, 'updateCustomer'])->middleware('token');
-Route::post('/customer-signup', [CustomerController::class, 'customerSignup']);
-Route::get('/customer-signup', [CustomerController::class, 'customerSignupPage']);
-Route::post('/customer-login', [CustomerController::class, 'customerLogin']);
-Route::get('/customer-login', [CustomerController::class, 'customerLoginPage']);
 Route::get('/customer-list', [CustomerController::class, 'getCustomer'])->middleware('token');
 Route::post('/customer-info', [CustomerController::class, 'getCustomerInfo'])->middleware('token');
 Route::post('/customer-profile', [CustomerController::class, 'customerProfileInfo'])->middleware('token');
 Route::get('/customer-profile', [CustomerController::class, 'customerProfilePage'])->middleware('token');
 
-Route::get('/logout', [AdminController::class, 'logout']);
+
+// User Authentication
+Route::get('/user-login', [AuthController::class, 'userLoginPage']);
+Route::post('/customer-login', [AuthController::class, 'customerLogin']);
+Route::get('/user-signup', [AuthController::class, 'userSignupPage']);
+Route::post('/customer-signup', [AuthController::class, 'customerSignup']);
+Route::post('/admin-login', [AuthController::class, 'adminLogin']);
+Route::get('/logout', [AuthController::class, 'logout']);
+
 
 // Staff Routes
 Route::get('/manage-staffs', [StaffController::class, 'staffsPage'])->middleware('token');

@@ -12,76 +12,10 @@ use App\Helper\JWTToken;
 
 class CustomerController extends Controller
 {
-    public function customerLoginPage()
-    {
-        return view('pages.customer.login');
-    }
-
-    public function customerSignupPage()
-    {
-        return view('pages.customer.signup');
-    }
-
     public function customerDashboardPage(Request $request)
     {
         $customer = Customer::where('id', $request->header('id'))->first();
         return view('pages.customer.dashboard')->with('customer', $customer);
-    }
-
-    public function customerSignup(Request $request)
-    {
-        try {
-            Customer::create([
-                'fullname'    => $request->input('fullname'),
-                'email'       => $request->input('email'),
-                'phone'       => $request->input('phone'),
-                'personal_id' => rand(1000001, 9999999),
-                'password'    => Hash::make($request->input('password'))
-            ]);
-
-            return response()->json([
-                'status'  => 'success',
-                'message' => 'customer created successfully'
-            ], 200);
-        } catch (\Exception $e) {
-            return response()->json([
-                'status'  => 'failed',
-                'message' => 'something was wrong! try again...'
-            ]);
-        }
-    }
-
-    public function customerLogin(Request $request)
-    {
-        try {
-            $email    = $request->input('email');
-            $password = $request->input('password');
-
-            $customer        = Customer::where('email', $email)->first();
-            $customer_id     = $customer->id;
-            $user_type       = 'customer';
-            $hashed_password = $customer->password;
-
-            if (Hash::check($password, $hashed_password)) {
-                $customer_email = $email;
-                $token          = JWTToken::createToken($customer_id, $customer_email, $user_type);
-
-                return response()->json([
-                    'status'  => 'success',
-                    'message' => 'customer logged in successfully'
-                ], 200)->cookie('token', $token, (24 * 60 * 60));
-            } else {
-                return response()->json([
-                    'status'  => 'failed',
-                    'message' => 'authentication failed, unauthorized!'
-                ]);
-            }
-        } catch (\Exception $e) {
-            return response()->json([
-                'status'  => 'failed',
-                'message' => 'authentication failed, unauthorized!'
-            ]);
-        }
     }
 
     public function customersPage(Request $request)

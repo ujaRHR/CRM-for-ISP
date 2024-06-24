@@ -53,7 +53,7 @@
             </div>
             <button class="btn btn-success shadow-2 mb-4">Register</button>
           </form>
-          <p class="mb-0 text-muted">Allready have an account? <a href="/admin-login">Log in</a></p>
+          <p class="mb-0 text-muted">Allready have an account? <a href="/user-login">Log in</a></p>
         </div>
       </div>
     </div>
@@ -75,7 +75,7 @@
       }
       axios.post('/admin-signup', formData).then(function (response) {
         if (response.status == 200 && response.data.status == 'success') {
-          location.href = "/admin-login"
+          location.href = "/user-login"
         } else {
           toastr.error("Incorrect Email or Password!")
         }

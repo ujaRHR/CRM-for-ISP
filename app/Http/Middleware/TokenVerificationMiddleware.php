@@ -21,7 +21,7 @@ class TokenVerificationMiddleware
             $decoded_token = JWTToken::verifyToken($request->cookie('token'));
 
             if ($decoded_token == 'unauthorized') {
-                return redirect('/customer-login');
+                return redirect('/user-login');
             } else {
                 $request->headers->set('id', $decoded_token->id);
                 $request->headers->set('email', $decoded_token->email);
@@ -30,7 +30,7 @@ class TokenVerificationMiddleware
                 return $next($request);
             }
         } catch (Exception $e) {
-            return redirect('/customer-login');
+            return redirect('/user-login');
         }
     }
 }
