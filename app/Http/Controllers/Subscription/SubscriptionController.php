@@ -49,7 +49,7 @@ class SubscriptionController extends Controller
             return response()->json([
                 'status'  => 'success',
                 'message' => 'status updated successfully'
-            ]);
+            ], 200);
         } catch (Exception $e) {
             DB::rollback();
             return response()->json([

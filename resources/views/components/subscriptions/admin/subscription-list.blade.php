@@ -55,7 +55,7 @@
           <td>${formatDate(response.data[index].next_billing_date)}</td>
           <td>${parseInt(response.data[index].total_cost)}</td>
           <td>
-              <select class="statusBtn" data-id="${response.data[index].id}" onchange="updateStatus(this)">
+              <select class="statusBtn" data-cust="${response.data[index].customer_id}" data-id="${response.data[index].id}" onchange="updateStatus(this)">
                 <option value="active">Active</option>
                 <option value="inactive">In-Active</option>
                 <option value="restricted">Restricted</option>
@@ -97,9 +97,26 @@
   })
 
   function updateStatus(element) {
-    // $(element).val()
-    // $(element).data('id')
-    
+    let id = $(element).data('id');
+    let status = $(element).val();
+    let customerID = $(element).data('cust');
+
+    let formData = {
+      id: id,
+      status: status,
+      customer_id: customerID
+
+    }
+
+    axios.post('/updated-status', formData).then(function(response) {
+      if (response.data.status == 'success' && response.status == 200) {
+        toastr.success("Status Updated Successfully")
+        allSubscriptions();
+      } else {
+        toastr.error("Failed to Update Status")
+      }
+    });
+
   }
 </script>
 @endpush
