@@ -13,6 +13,7 @@ use App\Http\Controllers\Tasks\TaskController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Users\AuthController;
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -94,7 +95,11 @@ Route::post('/customer-orders', [SubscriptionController::class, 'customerOrders'
 
 // Tickets Routes
 Route::get('/customer-tickets', [TicketController::class, 'customerTicketPage'])->middleware('token', 'customer');
+Route::post('/customer-ticket-list', [TicketController::class, 'getCustomerTickets'])->middleware(['token', 'customer']);
 Route::post('/create-ticket', [TicketController::class, 'createTicket'])->middleware(['token', 'customer']);
+Route::get('/manage-tickets', [TicketController::class, 'ticketPage'])->middleware(['token', 'admin']);
+Route::get('/ticket-list', [TicketController::class, 'getTickets'])->middleware(['token', 'admin']);
+Route::post('/update-ticket', [TicketController::class, 'updateTicket'])->middleware(['token', 'admin']);
 
 // Tasks Routes
 Route::post('/create-task', [TaskController::class, 'createTask'])->middleware('token');

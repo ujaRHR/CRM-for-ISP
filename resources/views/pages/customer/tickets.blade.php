@@ -4,4 +4,5 @@
 
 @section('content')
 @include('components.tickets.customer.ticket-info')
+@include('components.tickets.customer.create-ticket')
 @endsection

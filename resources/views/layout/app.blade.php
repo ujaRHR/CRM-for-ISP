@@ -38,7 +38,7 @@
           <a href="admin-dashboard"><i class="fas fa-home"></i> Dashboard</a>
         </li>
         <li>
-          <a href="manage-customers"><i class="fas fa-user-friends"></i> Customers</a>
+          <a href="manage-customers"><i class="fas fa-user-alt"></i> Customers</a>
         </li>
         <li>
           <a href="manage-staffs"><i class="fas fa-user-cog"></i> Staffs</a>
@@ -50,10 +50,10 @@
           <a href="manage-notices"><i class="fas fa-bell"></i> Notices</a>
         </li>
         <li>
-          <a href="manage-subscriptions"><i class="fas fa-money-bill"></i> Subscriptions</a>
+          <a href="manage-subscriptions"><i class="fas fa-paper-plane"></i> Subscriptions</a>
         </li>
         <li>
-          <a href="manage-tickets"><i class="fas fa-bell"></i> Support Tickets</a>
+          <a href="manage-tickets"><i class="fas fa-bug"></i> Support Tickets</a>
         </li>
       </ul>
     </nav>
