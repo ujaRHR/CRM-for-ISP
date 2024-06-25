@@ -93,7 +93,8 @@ Route::get('/customer-orders', [SubscriptionController::class, 'customerOrdersPa
 Route::post('/customer-orders', [SubscriptionController::class, 'customerOrders'])->middleware('token');
 
 // Tickets Routes
-Route::post('/create-ticket', [TicketController::class, 'createTicket'])->middleware('token');
+Route::get('/customer-tickets', [TicketController::class, 'customerTicketPage'])->middleware('token', 'customer');
+Route::post('/create-ticket', [TicketController::class, 'createTicket'])->middleware(['token', 'customer']);
 
 // Tasks Routes
 Route::post('/create-task', [TaskController::class, 'createTask'])->middleware('token');

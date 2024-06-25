@@ -113,7 +113,8 @@ class NoticeController extends Controller
         }
     }
 
-    public function customerNoticesPage(Request $request){
+    public function customerNoticesPage(Request $request)
+    {
         $customer = Customer::where('id', $request->header('id'))->first();
 
         return view('pages.customer.notices', compact('customer'));

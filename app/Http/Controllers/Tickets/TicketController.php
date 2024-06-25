@@ -9,6 +9,12 @@ use Exception;
 
 class TicketController extends Controller
 {
+
+    public function customerTicketPage(){
+
+        return "gdahdgs";
+    }
+
     public function createTicket(Request $request)
     {
         try {
