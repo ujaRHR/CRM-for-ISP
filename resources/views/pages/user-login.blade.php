@@ -87,8 +87,8 @@
               </div>
             </div>
 
-            <p class="mb-2 text-muted">Forgot password? <a href="/forgot-password">Reset</a></p>
-            <p class="mb-0 text-muted">Don't have account yet? <a href="/customer-signup">Signup</a></p>
+            <p class="mb-2 text-muted">Forgot password? <a href="#forgot-password">Reset</a></p>
+            <p class="mb-0 text-muted">Don't have account yet? <a href="#customer-signup">Signup</a></p>
           </div>
         </div>
       </div>
