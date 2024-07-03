@@ -64,7 +64,8 @@ class AuthController extends Controller
 
             if (Hash::check($password, $hashed_password)) {
                 $customer_email = $email;
-                $token          = JWTToken::createToken($customer_id, $customer_email, $user_type);
+                $fullname = $customer->fullname;
+                $token          = JWTToken::createToken($customer_id, $customer_email, $user_type, $fullname);
 
                 return response()->json([
                     'status'  => 'success',
@@ -76,7 +77,7 @@ class AuthController extends Controller
                     'message' => 'authentication failed, unauthorized!'
                 ]);
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return response()->json([
                 'status'  => 'failed',
                 'message' => 'authentication failed, unauthorized!'
@@ -97,7 +98,8 @@ class AuthController extends Controller
 
             if (Hash::check($password, $hashed_password)) {
                 $admin_email = $email;
-                $token       = JWTToken::createToken($admin_id, $admin_email, $user_type);
+                $fullname = $admin->fullname;
+                $token       = JWTToken::createToken($admin_id, $admin_email, $user_type, $fullname);
 
                 return response()->json([
                     'status'  => 'success',

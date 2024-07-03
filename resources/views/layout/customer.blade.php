@@ -29,7 +29,7 @@
     <div id="progress"></div>
     <nav id="sidebar" class="">
       <div class="sidebar-header">
-        <img src=" {{ asset('img/brand-logo.png') }} " alt="brand logo" class="app-logo">
+        <a href="/"><img src=" {{ asset('img/brand-logo.png') }} " alt="brand logo" class="app-logo"></a>
       </div>
       <ul class="list-unstyled components text-secondary">
         <li>
