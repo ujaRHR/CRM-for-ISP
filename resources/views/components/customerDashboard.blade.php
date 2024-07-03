@@ -6,7 +6,7 @@
                 <h2 class="page-title">Dashboard</h2>
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
                 <div class="card">
                     <div class="content">
@@ -162,6 +162,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
+        -->
     </div>
 </div>
