@@ -18,7 +18,7 @@ class TokenCheckMiddleware
             if ($decode == 'unauthorized') {
                 return $next($request);
             } else {
-                $user_type = $request->header('type');
+                $user_type = $decode->type;
                 if ($user_type == 'admin') {
                     return redirect('/admin-dashboard');
                 } else if ($user_type == 'customer') {

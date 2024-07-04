@@ -59,12 +59,12 @@ class AuthController extends Controller
 
             $customer        = Customer::where('email', $email)->first();
             $customer_id     = $customer->id;
+            $fullname = $customer->fullname;
             $user_type       = 'customer';
             $hashed_password = $customer->password;
 
             if (Hash::check($password, $hashed_password)) {
                 $customer_email = $email;
-                $fullname = $customer->fullname;
                 $token          = JWTToken::createToken($customer_id, $customer_email, $user_type, $fullname);
 
                 return response()->json([
@@ -100,7 +100,7 @@ class AuthController extends Controller
                 $admin_email = $email;
                 $fullname = $admin->fullname;
                 $token       = JWTToken::createToken($admin_id, $admin_email, $user_type, $fullname);
-
+                
                 return response()->json([
                     'status'  => 'success',
                     'message' => 'admin logged in successfully'

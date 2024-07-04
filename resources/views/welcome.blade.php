@@ -32,14 +32,18 @@
                     <li><a class="nav-link scrollto fw-bold" href="#team">Team</a></li>
                     <li><a class="nav-link scrollto fw-bold" href="#pricing">Pricing</a></li>
                     <li><a class="nav-link scrollto fw-bold" href="#contact">Contact</a></li>
+                    @php
+                        $fullname = request()->header('fullname');
+                    @endphp
+
                     @if (request()->cookie('token'))
-                        <li>
-                            <a class="getstarted scrollto fw-bold" href=" {{ url('/customer-dashboard') }} "> {{ request()->header('fullname') }} </a>
-                        </li>
+                    <li>
+                        <a class="getstarted scrollto fw-bold" href=" {{ url('/customer-dashboard') }} "> Dashboard </a>
+                    </li>
                     @else
-                        <li>
-                            <a class="getstarted scrollto fw-bold" href=" {{ url('/user-login') }} ">Login</a>
-                        </li>
+                    <li>
+                        <a class="getstarted scrollto fw-bold" href=" {{ url('/user-login') }} ">Login</a>
+                    </li>
                     @endif
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
