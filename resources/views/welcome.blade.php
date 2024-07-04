@@ -34,14 +34,13 @@
                     <li><a class="nav-link scrollto fw-bold" href="#contact">Contact</a></li>
                     @if (request()->cookie('token'))
                         <li>
-                            <a class="getstarted scrollto fw-bold" href=" {{ url('/customer-dashboard') }} ">{{ request()->header('fullname') }}</a>
+                            <a class="getstarted scrollto fw-bold" href=" {{ url('/customer-dashboard') }} "> {{ request()->header('fullname') }} </a>
                         </li>
                     @else
                         <li>
                             <a class="getstarted scrollto fw-bold" href=" {{ url('/user-login') }} ">Login</a>
                         </li>
                     @endif
-
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
