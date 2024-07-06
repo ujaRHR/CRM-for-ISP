@@ -11,6 +11,7 @@ use App\Models\Plan;
 use App\Models\Order;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class SubscriptionController extends Controller
 {
@@ -238,6 +239,16 @@ class SubscriptionController extends Controller
                 'status'  => 'failed',
                 'message' => 'failed to update the plan'
             ]);
+        }
+    }
+
+    public function checkSubscriptions()
+    {
+        $subscriptions = Subscription::where('next_billing_date', '<', Carbon::now()->format('Y-m-d'))->get();
+
+        foreach ($subscriptions as $subscription) {
+            $subscription->status = 'inactive';
+            $subscription->save();
         }
     }
 }
