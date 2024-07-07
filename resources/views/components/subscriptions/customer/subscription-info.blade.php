@@ -69,24 +69,28 @@
           <a onclick="pricingPage()" id="buyNowBtn" class="btn btn-success ms-5">Renew Now</a>
         </div>
       </div>
-
-      <div class="col-md-8 mx-auto">
-        <div class="card mb-3 w-50">
+      <br>
+      <div class="col col-sm-4">
+        <div class="card mb-3">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h6 class="mb-0">Previous Plan</h6>
+            <span class="badge bg-danger bg-success rounded-pill" id="status"></span>
+          </div>
           <div class="card-body">
             <ul class="list-group  list-group-flush">
-              <li class="list-group-item">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
                 <input type="number" class="d-none" id="id" value="">
                 <span class="fw-bold">Plan Name:</span>
                 <span id="expired_name"></span>
               </li>
-              <li class="list-group-item">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
                 <span class="fw-bold">Download Speed:</span>
                 <span>
                   <span id="expired_dspeed"></span>
                   <i class="fas fa-download text-success"></i>
                 </span>
               </li>
-              <li class="list-group-item">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
                 <span class="fw-bold">Price:</span>
                 <span id="expired_total_cost"></span>
               </li>
