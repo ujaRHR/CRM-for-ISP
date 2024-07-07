@@ -18,7 +18,10 @@ class TestController extends Controller
 {
     public function testFunc(Request $request)
     {
-        $subscription = Ticket::with('customer')->get();
+        $subscription = Subscription::where('customer_id', $request->header('id'))
+            ->with('plan', 'customer')
+            ->orderBy('id', 'desc')
+            ->first();
 
         return $subscription;
     }

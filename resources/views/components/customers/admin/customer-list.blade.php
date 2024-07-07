@@ -2,8 +2,7 @@
   <div class="container">
     <div class="page-title">
       <h3>Customers
-        <a data-bs-toggle="modal" data-bs-target="#createModal" class="btn btn-sm btn-outline-primary float-end"><i
-            class="fas fa-user-plus"></i>
+        <a data-bs-toggle="modal" data-bs-target="#createModal" class="btn btn-sm btn-outline-primary float-end"><i class="fas fa-user-plus"></i>
           Create Customer</a>
       </h3>
     </div>
@@ -42,9 +41,11 @@
 
     mainTable.DataTable().clear().destroy();
 
-    data.forEach(function (item, index) {
+    data.forEach(function(item, index) {
       if (item['status'] == 'active') {
         btnClass = "btn btn-sm btn-success"
+      } else if (item['status'] == 'restricted') {
+        btnClass = "btn btn-sm btn-warning"
       } else {
         btnClass = "btn btn-sm btn-danger"
       }
@@ -66,18 +67,17 @@
     mainTable.DataTable();
   }
 
-  $('table tbody').on('click', '.deleteBtn', function () {
+  $('table tbody').on('click', '.deleteBtn', function() {
     let pid = $(this).data('id');
     $('#deleteModal').modal('show');
     $('#deletePID').val(pid);
   })
 
-  $('table tbody').on('click', '.updateBtn', function () {
+  $('table tbody').on('click', '.updateBtn', function() {
     let pid = $(this).data('id');
     $('#updateModal').modal('show');
     $('#updatePID').val(pid);
     getCustomerInfo()
   })
-
 </script>
 @endpush

@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('plan_id');
             $table->date('start_date');
             $table->date('next_billing_date');
-            $table->enum('status', ['active', 'inactive', 'restricted'])->default('inactive');
+            $table->enum('status', ['active', 'inactive', 'expired', 'restricted'])->default('inactive');
             $table->decimal('total_cost', 6, 2);
             $table->timestamps();
 

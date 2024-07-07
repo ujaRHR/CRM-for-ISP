@@ -42,6 +42,10 @@ class SubscriptionController extends Controller
                 'status' => $status
             ]);
 
+            if ($status == 'expired') {
+                $status = 'inactive';
+            }
+
             Customer::where('id', $customer_id)->update([
                 'status' => $status
             ]);
@@ -71,6 +75,7 @@ class SubscriptionController extends Controller
     {
         $subscription = Subscription::where('customer_id', $request->header('id'))
             ->with('plan', 'customer')
+            ->orderBy('id', 'desc')
             ->first();
 
         return $subscription;
@@ -247,7 +252,10 @@ class SubscriptionController extends Controller
         $subscriptions = Subscription::where('next_billing_date', '<', Carbon::now()->format('Y-m-d'))->get();
 
         foreach ($subscriptions as $subscription) {
-            $subscription->status = 'inactive';
+            $subscription->status = 'expired';
+            Customer::where('id', $subscription->customer_id)->update([
+                'status' => 'inactive'
+            ]);
             $subscription->save();
         }
     }

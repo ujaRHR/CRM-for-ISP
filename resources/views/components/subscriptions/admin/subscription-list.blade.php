@@ -58,6 +58,7 @@
               <select class="statusBtn" data-cust="${response.data[index].customer_id}" data-id="${response.data[index].id}" onchange="updateStatus(this)">
                 <option value="active">Active</option>
                 <option value="inactive">In-Active</option>
+                <option value="expired">Expired</option>
                 <option value="restricted">Restricted</option>
               </select>
           </td>
@@ -70,6 +71,8 @@
           statusBtn.addClass('btn btn-sm btn-success fw-bold');
         } else if (status == 'inactive') {
           statusBtn.addClass('btn btn-sm btn-danger fw-bold');
+        } else if (status == 'expired') {
+          statusBtn.addClass('btn btn-sm btn-secondary fw-bold');
         } else {
           statusBtn.addClass('btn btn-sm btn-warning fw-bold');
         }

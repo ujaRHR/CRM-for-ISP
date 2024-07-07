@@ -38,7 +38,7 @@
 
                     @if (request()->cookie('token'))
                     <li>
-                        <a class="getstarted scrollto fw-bold" href=" {{ url('/customer-dashboard') }} "> Dashboard </a>
+                        <a class="getstarted scrollto fw-bold" href=" {{ url('/user-login') }} "> Dashboard </a>
                     </li>
                     @else
                     <li>

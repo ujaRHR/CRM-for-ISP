@@ -69,6 +69,12 @@
         <a onclick="pricingPage()" id="buyNowBtn" class="btn btn-success ms-5">Buy Now</a>
       </div>
     </div>
+
+    <div class="row d-none" id="waitingBlock">
+      <div id="waiting" class="d-flex align-items-center" role="alert">
+        <p class="m-0 fw-bold alert alert-danger"><i class="fas fa-asterisk"></i> Your subscription is currently <u>IN-ACTIVE</u> and requires verification from administration. Please be patient while we process it.</p>
+      </div>
+    </div>
   </div>
 
 
@@ -82,9 +88,11 @@
     }
 
     function customerSubs() {
-      let res = axios.post('/customer-subscription').then(function(response) {
+      axios.post('/customer-subscription').then(function(response) {
         if (!response.data) {
           $('#noPlan').removeClass('d-none')
+        } else if (response.data.status == 'inactive') {
+          $('#waitingBlock').removeClass('d-none')
         } else {
           $('#activePlan').removeClass('d-none')
           if (response.data.status == 'active') {
