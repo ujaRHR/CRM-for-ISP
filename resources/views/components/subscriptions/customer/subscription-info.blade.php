@@ -62,6 +62,40 @@
       </div>
     </div>
 
+    <div class="d-none" id="expiredPlan">
+      <div class="row">
+        <div id="expired-plan" class="d-flex align-items-center">
+          <h6 class="m-0 fw-bold alert alert-danger">Your plan has expired at <span id="expired_at"></span>. Please renew your subscription.</h6>
+          <a onclick="pricingPage()" id="buyNowBtn" class="btn btn-success ms-5">Renew Now</a>
+        </div>
+      </div>
+
+      <div class="col-md-8 mx-auto">
+        <div class="card mb-3 w-50">
+          <div class="card-body">
+            <ul class="list-group  list-group-flush">
+              <li class="list-group-item">
+                <input type="number" class="d-none" id="id" value="">
+                <span class="fw-bold">Plan Name:</span>
+                <span id="expired_name"></span>
+              </li>
+              <li class="list-group-item">
+                <span class="fw-bold">Download Speed:</span>
+                <span>
+                  <span id="expired_dspeed"></span>
+                  <i class="fas fa-download text-success"></i>
+                </span>
+              </li>
+              <li class="list-group-item">
+                <span class="fw-bold">Price:</span>
+                <span id="expired_total_cost"></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
 
     <div class="row d-none" id="noPlan">
       <div id="no-plan" class="alert alert-secondary d-flex align-items-center" role="alert">
@@ -93,6 +127,13 @@
           $('#noPlan').removeClass('d-none')
         } else if (response.data.status == 'inactive') {
           $('#waitingBlock').removeClass('d-none')
+        } else if (response.data.status == 'expired') {
+          $('#expiredPlan').removeClass('d-none')
+          $('#expired_at').text(formatDate(response.data.next_billing_date))
+          $('#expired_name').text(response.data.plan.name)
+          $('#expired_dspeed').text(response.data.plan.dspeed)
+          $('#expired_price').text(response.data.plan.price)
+          $('#expired_total_cost').text(Math.round(response.data.total_cost) + ' BDT')
         } else {
           $('#activePlan').removeClass('d-none')
           if (response.data.status == 'active') {
