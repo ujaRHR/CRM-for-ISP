@@ -33,10 +33,10 @@
                     <li><a class="nav-link scrollto fw-bold" href="#pricing">Pricing</a></li>
                     <li><a class="nav-link scrollto fw-bold" href="#contact">Contact</a></li>
                     @php
-                        $fullname = request()->header('fullname');
+                    $fullname = request()->header('fullname');
                     @endphp
 
-                    @if (request()->cookie('token'))
+                    @if (request()->cookie('token') && request()->header('id'))
                     <li>
                         <a class="getstarted scrollto fw-bold" href=" {{ url('/user-login') }} "> Dashboard </a>
                     </li>
