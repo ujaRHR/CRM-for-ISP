@@ -7,6 +7,7 @@ use App\Http\Middleware\TokenVerificationMiddleware;
 use App\Http\Middleware\TokenCheckMiddleware;
 use App\Http\Middleware\CustomerIdentificationMiddleware;
 use App\Http\Middleware\AdminIdentificationMiddleware;
+use App\Http\Middleware\ResetPasswordMiddleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -23,7 +24,8 @@ return Application::configure(basePath: dirname(__DIR__))
             'token' => TokenVerificationMiddleware::class,
             'check' => TokenCheckMiddleware::class,
             'customer' => CustomerIdentificationMiddleware::class,
-            'admin' => AdminIdentificationMiddleware::class
+            'admin' => AdminIdentificationMiddleware::class,
+            'reset-pass' => ResetPasswordMiddleware::class
         ]);
     })
     ->create();

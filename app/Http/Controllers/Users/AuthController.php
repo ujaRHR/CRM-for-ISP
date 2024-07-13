@@ -24,11 +24,12 @@ class AuthController extends Controller
         return view('pages.user-signup');
     }
 
-    public function unauthorizedPage(){
+    public function unauthorizedPage()
+    {
         return view('pages.unauthorized');
     }
 
-    public function customerSignup(Request $request)
+    public function userSignup(Request $request)
     {
         try {
             Customer::create([
@@ -100,7 +101,7 @@ class AuthController extends Controller
                 $admin_email = $email;
                 $fullname = $admin->fullname;
                 $token       = JWTToken::createToken($admin_id, $admin_email, $user_type, $fullname);
-                
+
                 return response()->json([
                     'status'  => 'success',
                     'message' => 'admin logged in successfully'
@@ -116,6 +117,56 @@ class AuthController extends Controller
                 'status'  => 'failed',
                 'message' => 'authentication failed, unauthorized!'
             ]);
+        }
+    }
+
+    public function passwordResetPage()
+    {
+        return view('pages.reset-password');
+    }
+
+    public function sendOTP(Request $request)
+    {
+        $email = $request->input('email');
+        $check = Customer::where('email', $email)->first();
+
+        if ($check) {
+            try {
+                Customer::where('email', $email)->update([
+                    'reset_token' => rand(100000, 999999)
+                ]);
+                $reset = JWTToken::createResetToken($email);
+
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'OTP has been sent to email'
+                ])->cookie('reset', $reset, 24 * 60 * 5);
+            } catch (Exception $e) {
+                return response()->json([
+                    'status' => 'failed',
+                    'message' => 'something went wrong'
+                ]);
+            }
+        } else {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'something went wrong'
+            ]);
+        }
+    }
+
+    public function verifyOTPPage(Request $request)
+    {
+        return view('pages.verify-otp');
+    }
+
+    public function verifyOTP(Request $request){
+        $reset_token = $request->input('reset_token');
+        $user_email = $request->header('email');
+        $user = Customer::where('email', $user_email)->first();
+
+        if($user->reset_token == $reset_token){
+            return "000000";
         }
     }
 

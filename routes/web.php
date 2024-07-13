@@ -47,6 +47,12 @@ Route::post('/customer-signup', [AuthController::class, 'customerSignup']);
 Route::post('/admin-login', [AuthController::class, 'adminLogin']);
 Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/unauthorized', [AuthController::class, 'unauthorizedPage'])->middleware('token');
+Route::get('/user-signup', [AuthController::class, 'userSignupPage'])->middleware('check');
+Route::post('/user-signup', [AuthController::class, 'userSignup'])->middleware('check');
+Route::get('/reset-password', [AuthController::class, 'passwordResetPage'])->middleware('check');
+Route::post('/send-otp', [AuthController::class, 'sendOTP'])->middleware('check');
+Route::get('/verify-otp', [AuthController::class, 'verifyOTPPage'])->middleware(['check', 'reset-pass']);
+Route::post('/verify-otp', [AuthController::class, 'verifyOTP'])->middleware(['check', 'reset-pass']);
 
 
 // Staff Routes

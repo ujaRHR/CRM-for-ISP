@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <title>Sign up | EarthLink</title>
   <link href=" {{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('css/auth.css') }}" rel="stylesheet">
@@ -17,25 +18,25 @@
       <div class="card">
         <div class="card-body text-center">
           <div class="mb-4">
-            <img class="brand" src=" {{ asset('img/brand-logo.png') }} " alt="bootstraper logo">
+            <img class="brand" src=" {{ asset('img/brand-logo.png') }} " alt="Brand Logo">
           </div>
-          <h6 class="mb-4 text-muted">Create new Customer account</h6>
+          <h6 class="mb-4 text-muted fw-bold">Create new Customer account</h6>
           <form id="signup-form">
             @csrf
             <div class="mb-3 text-start">
-              <label for="name" class="form-label">Full Name</label>
+              <label for="name" class="form-label fw-bold">Full Name</label>
               <input type="text" class="form-control" id="fullname" required>
             </div>
             <div class="mb-3 text-start">
-              <label for="email" class="form-label">Email Address</label>
+              <label for="email" class="form-label fw-bold">Email Address</label>
               <input type="email" class="form-control" id="email" required>
             </div>
             <div class="mb-3 text-start">
-              <label for="phone" class="form-label">Phone</label>
+              <label for="phone" class="form-label fw-bold">Phone</label>
               <input type="tel" class="form-control" id="phone" required>
             </div>
             <div class="mb-3 text-start">
-              <label for="password" class="form-label">Password</label>
+              <label for="password" class="form-label fw-bold">Password</label>
               <input type="password" class="form-control" id="password" required>
             </div>
             <!--
@@ -46,14 +47,14 @@
             <div class="mb-3 text-start">
               <div class="form-check">
                 <input class="form-check-input" name="confirm" type="checkbox" value="" id="check1">
-                <label class="form-check-label" for="check1">
-                  I agree to the <a href="#" tabindex="-1">terms and policy</a>.
+                <label class="form-check-label text-danger fw-bold" for="check1">
+                  I agree to the <a href="#" class="text-danger" tabindex="-1">terms and policy</a>.
                 </label>
               </div>
             </div>
-            <button class="btn btn-success shadow-2 mb-4">Register</button>
+            <button class="btn btn-success shadow-2 mb-4 fw-bold">Register</button>
           </form>
-          <p class="mb-0 text-muted">Allready have an account? <a href="/user-login">Log in</a></p>
+          <p class="mb-0 text-muted fw-bold">Allready have an account? <a href="/user-login">Log in</a></p>
         </div>
       </div>
     </div>
@@ -64,8 +65,7 @@
   <script src=" {{ asset('js/toast.js') }} "></script>
 
   <script>
-
-    document.getElementById('signup-form').addEventListener('submit', function (event) {
+    document.getElementById('signup-form').addEventListener('submit', function(event) {
       event.preventDefault()
       let formData = {
         fullname: document.getElementById('fullname').value,
@@ -73,18 +73,15 @@
         phone: document.getElementById('phone').value,
         password: document.getElementById('password').value
       }
-      axios.post('/customer-signup', formData).then(function (response) {
+      axios.post('/user-signup', formData).then(function(response) {
         if (response.status == 200 && response.data.status == 'success') {
-          location.href = "/customer-login"
+          location.href = "/user-login"
         } else {
           toastr.error("Incorrect Email or Password!")
         }
       });
     });
-
   </script>
-
-
 </body>
 
 </html>

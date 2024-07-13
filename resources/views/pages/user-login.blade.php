@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <title>Login | EarthLink</title>
   <link rel="stylesheet" href=" {{ 'vendor/bootstrap/css/bootstrap.min.css' }} ">
   <link rel="stylesheet" href=" {{ 'css/auth.css' }} ">
@@ -29,7 +30,7 @@
         <div class="card">
           <div class="card-body text-center">
             <div class="mb-4">
-              <img class="brand" src=" {{ 'img/brand-logo.png' }} " alt="bootstraper logo">
+              <img class="brand" src=" {{ 'img/brand-logo.png' }} " alt="Brand Logo">
             </div>
             <h6 class="mb-3 text-muted fw-bold">Login to <span id="userType">Customer</span> Account</h6>
 
@@ -87,8 +88,8 @@
               </div>
             </div>
 
-            <p class="mb-2 text-muted">Forgot password? <a href="#forgot-password">Reset</a></p>
-            <p class="mb-0 text-muted">Don't have account yet? <a href="#customer-signup">Signup</a></p>
+            <p class="mb-2 text-muted">Forget password? <a href="/reset-password">Reset</a></p>
+            <p class="mb-0 text-muted">Don't have account yet? <a href="/user-signup">Signup</a></p>
           </div>
         </div>
       </div>
