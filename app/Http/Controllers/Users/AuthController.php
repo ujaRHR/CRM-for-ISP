@@ -135,12 +135,13 @@ class AuthController extends Controller
                 Customer::where('email', $email)->update([
                     'reset_token' => rand(100000, 999999)
                 ]);
+
                 $reset = JWTToken::createResetToken($email);
 
                 return response()->json([
                     'status' => 'success',
                     'message' => 'OTP has been sent to email'
-                ])->cookie('reset', $reset, 24 * 60 * 5);
+                ])->cookie('reset', $reset, 60 * 5);
             } catch (Exception $e) {
                 return response()->json([
                     'status' => 'failed',
@@ -160,13 +161,22 @@ class AuthController extends Controller
         return view('pages.verify-otp');
     }
 
-    public function verifyOTP(Request $request){
+    public function verifyOTP(Request $request)
+    {
         $reset_token = $request->input('reset_token');
         $user_email = $request->header('email');
         $user = Customer::where('email', $user_email)->first();
 
-        if($user->reset_token == $reset_token){
-            return "000000";
+        if ($user->reset_token == $reset_token) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'OTP matched!'
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 'failed',
+                'message' => "OTP didn't match"
+            ]);
         }
     }
 

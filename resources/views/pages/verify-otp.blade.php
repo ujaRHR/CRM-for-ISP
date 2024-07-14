@@ -78,14 +78,21 @@
 
     document.getElementById('reset-form').addEventListener('submit', function(event) {
       event.preventDefault()
+      let reset_token = $('#first').val() + $('#second').val() + $('#third').val() + $('#fourth').val() + $('#fifth').val() + $('#sixth').val()
+
       let formData = {
-        email: $('#email').val(),
+        reset_token: reset_token
       }
-      axios.post('/send-otp', formData).then(function(response) {
+
+      axios.post('/verify-otp', formData).then(function(response) {
         if (response.status == 200 && response.data.status == 'success') {
-          location.href = "/otp-verify"
+          location.href = "/change-password"
         } else {
-          toastr.error("Something Went Wrong!")
+          if (reset_token.length < 6) {
+            toastr.error("Please ensure you enter the full 6-digit code.")
+          } else {
+            toastr.error("The OTP didn't match. Please try again!")
+          }
         }
       });
     });

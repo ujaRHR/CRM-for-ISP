@@ -42,7 +42,7 @@ class JWTToken
         $payload = [
             'iss'   => 'CRM For ISP',
             'iat'   => time(),
-            'exp'   => time() + 24 * 60 * 5,
+            'exp'   => time() + 60 * 10,
             'email' => $user_email
         ];
 
