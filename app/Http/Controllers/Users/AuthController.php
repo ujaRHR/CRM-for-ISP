@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Helper\JWTToken;
 use Exception;
 use Illuminate\Support\Facades\Cookie;
+use App\Mail\OTPMail;
+use Illuminate\Support\Facades\Mail;
 
 
 class AuthController extends Controller
@@ -129,6 +131,7 @@ class AuthController extends Controller
     {
         $email = $request->input('email');
         $check = Customer::where('email', $email)->first();
+        $reset_token = rand(100000, 999999);
 
         if ($check) {
             try {
@@ -137,6 +140,8 @@ class AuthController extends Controller
                 ]);
 
                 $reset = JWTToken::createResetToken($email);
+
+                Mail::to($email)->send(new OTPMail($reset_token));
 
                 return response()->json([
                     'status' => 'success',

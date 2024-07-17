@@ -13,16 +13,13 @@ use App\Models\Task;
 use App\Models\Ticket;
 use App\Models\Order;
 use NunoMaduro\Collision\Adapters\Phpunit\Subscribers\Subscriber;
+use App\Mail\OTPMail;
+use Illuminate\Support\Facades\Mail;
 
 class TestController extends Controller
 {
     public function testFunc(Request $request)
     {
-        $subscription = Subscription::where('customer_id', $request->header('id'))
-            ->with('plan', 'customer')
-            ->orderBy('id', 'desc')
-            ->first();
-
-        return $subscription;
+        Mail::to("reajulhasanraju10@gmail.com")->send(new OTPMail(635482));
     }
 }
