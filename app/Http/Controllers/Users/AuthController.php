@@ -46,7 +46,7 @@ class AuthController extends Controller
                 'status'  => 'success',
                 'message' => 'customer created successfully'
             ], 200);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return response()->json([
                 'status'  => 'failed',
                 'message' => 'something was wrong! try again...'
@@ -136,7 +136,7 @@ class AuthController extends Controller
         if ($check) {
             try {
                 Customer::where('email', $email)->update([
-                    'reset_token' => rand(100000, 999999)
+                    'reset_token' => $reset_token
                 ]);
 
                 $reset = JWTToken::createResetToken($email);
@@ -181,6 +181,31 @@ class AuthController extends Controller
             return response()->json([
                 'status' => 'failed',
                 'message' => "OTP didn't match"
+            ]);
+        }
+    }
+
+    public function changePasswordPage(Request $request)
+    {
+        return view("pages.change-password");
+    }
+
+    public function changePassword(Request $request)
+    {
+        $user_email = $request->header('email');
+        $user = Customer::where("email", $user_email)->first();
+
+        try {
+            $user->password = Hash::make($request->input('password'));
+            $user->save();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'password changed successfully'
+            ], 200);
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => "failed to change the password"
             ]);
         }
     }

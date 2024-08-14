@@ -14,98 +14,102 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Users\AuthController;
 
 
+// Homepage - Welcome Page
 Route::get('/', function () {
     return view('welcome');
 });
 
 
-// Test Routes 
-Route::get('/test', [TestController::class, 'testFunc'])->middleware('token');
-
 // Admin Routes
 Route::get('/admin-signup', [AdminController::class, 'adminSignupPage']);
 Route::post('/admin-signup', [AdminController::class, 'adminSignup']);
-Route::get('/admin-dashboard', [DashboardController::class, 'dashboardPage'])->middleware(['token', 'admin']);
-
-
-// Customer Routes
-Route::get('/customer-dashboard', [CustomerController::class, 'customerDashboardPage'])->middleware(['token', 'customer']);
-Route::get('/manage-customers', [CustomerController::class, 'customersPage'])->middleware(['token', 'admin']);
-Route::post('/delete-customer', [CustomerController::class, 'deleteCustomer'])->middleware('token');
-Route::post('/update-customer', [CustomerController::class, 'updateCustomer'])->middleware('token');
-Route::get('/customer-list', [CustomerController::class, 'getCustomer'])->middleware(['token', 'admin']);
-Route::post('/customer-info', [CustomerController::class, 'getCustomerInfo'])->middleware('token');
-Route::post('/customer-profile', [CustomerController::class, 'customerProfileInfo'])->middleware('token');
-Route::get('/customer-profile', [CustomerController::class, 'customerProfilePage'])->middleware(['token', 'customer']);
-
-
-// User Authentication
-Route::get('/user-login', [AuthController::class, 'userLoginPage'])->middleware('check');
 Route::post('/customer-login', [AuthController::class, 'customerLogin']);
-Route::get('/user-signup', [AuthController::class, 'userSignupPage'])->middleware('check');
-Route::post('/customer-signup', [AuthController::class, 'customerSignup']);
+Route::post('/customer-signup', [AuthController::class, 'userSignup']);
 Route::post('/admin-login', [AuthController::class, 'adminLogin']);
 Route::get('/logout', [AuthController::class, 'logout']);
-Route::get('/unauthorized', [AuthController::class, 'unauthorizedPage'])->middleware('token');
-Route::get('/user-signup', [AuthController::class, 'userSignupPage'])->middleware('check');
-Route::post('/user-signup', [AuthController::class, 'userSignup'])->middleware('check');
-Route::get('/reset-password', [AuthController::class, 'passwordResetPage'])->middleware('check');
-Route::post('/send-otp', [AuthController::class, 'sendOTP'])->middleware('check');
-Route::get('/verify-otp', [AuthController::class, 'verifyOTPPage'])->middleware(['check', 'reset-pass']);
-Route::post('/verify-otp', [AuthController::class, 'verifyOTP'])->middleware(['check', 'reset-pass']);
+Route::get('/test', [TestController::class, 'testFunc']);
 
 
-// Staff Routes
-Route::get('/manage-staffs', [StaffController::class, 'staffsPage'])->middleware(['token', 'admin']);
-Route::get('/staff-list', [StaffController::class, 'getStaff'])->middleware(['token', 'admin']);
-Route::post('/staff-info', [StaffController::class, 'getStaffInfo'])->middleware(['token', 'admin']);
-Route::post('/staff-signup', [StaffController::class, 'staffSignup'])->middleware(['token', 'admin']);
-Route::post('/delete-staff', [StaffController::class, 'deleteStaff'])->middleware(['token', 'admin']);
-Route::post('/update-staff', [StaffController::class, 'updateStaff'])->middleware(['token', 'admin']);
+// auth and admin middleware
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin-dashboard', [DashboardController::class, 'dashboardPage']);
+    Route::get('/manage-customers', [CustomerController::class, 'customersPage']);
+    Route::get('/customer-list', [CustomerController::class, 'getCustomer']);
+    Route::post('/delete-customer', [CustomerController::class, 'deleteCustomer']);
+    Route::post('/update-customer', [CustomerController::class, 'updateCustomer']);
+    Route::get('/manage-staffs', [StaffController::class, 'staffsPage']);
+    Route::get('/staff-list', [StaffController::class, 'getStaff']);
+    Route::post('/staff-info', [StaffController::class, 'getStaffInfo']);
+    Route::post('/staff-signup', [StaffController::class, 'staffSignup']);
+    Route::post('/delete-staff', [StaffController::class, 'deleteStaff']);
+    Route::post('/update-staff', [StaffController::class, 'updateStaff']);
+    Route::get('/manage-notices', [NoticeController::class, 'noticePage']);
+    Route::post('/create-notice', [NoticeController::class, 'createNotice']);
+    Route::post('/delete-notice', [NoticeController::class, 'deleteNotice']);
+    Route::post('/update-notice', [NoticeController::class, 'updateNotice']);
+    Route::get('/manage-plans', [PlanController::class, 'planPage']);
+    Route::post('/create-plan', [PlanController::class, 'createPlan']);
+    Route::post('/delete-plan', [PlanController::class, 'deletePlan']);
+    Route::post('/update-plan', [PlanController::class, 'updatePlan']);
+    Route::get('/manage-subscriptions', [SubscriptionController::class, 'subscriptionPage']);
+    Route::get('/all-subscriptions', [SubscriptionController::class, 'allSubscription']);
+    Route::post('/create-subscription', [SubscriptionController::class, 'createSubscription']);
+    Route::get('/subscription-list', [SubscriptionController::class, 'subscriptionList']);
+    Route::post('/delete-subscription', [SubscriptionController::class, 'deleteSubscription']);
+    Route::post('/update-subscription', [SubscriptionController::class, 'updateSubscription']);
+    Route::get('/manage-tickets', [TicketController::class, 'ticketPage']);
+    Route::get('/ticket-list', [TicketController::class, 'getTickets']);
+    Route::post('/update-ticket', [TicketController::class, 'updateTicket']);
+});
 
 
-// Notices Routes
-Route::get('/manage-notices', [NoticeController::class, 'noticePage'])->middleware(['token', 'admin']);
-Route::post('/create-notice', [NoticeController::class, 'createNotice'])->middleware(['token', 'admin']);
-Route::get('/notice-list', [NoticeController::class, 'noticeList'])->middleware('token');
-Route::post('/notice-info', [NoticeController::class, 'getNoticeInfo'])->middleware('token');
-Route::post('/delete-notice', [NoticeController::class, 'deleteNotice'])->middleware(['token', 'admin']);
-Route::post('/update-notice', [NoticeController::class, 'updateNotice'])->middleware(['token', 'admin']);
-Route::get('/customer-notices', [NoticeController::class, 'customerNoticesPage'])->middleware(['token', 'customer']);
+// auth and customer middleware
+Route::middleware(['auth', 'customer'])->group(function () {
+    Route::get('/customer-dashboard', [CustomerController::class, 'customerDashboardPage']);
+    Route::get('/customer-profile', [CustomerController::class, 'customerProfilePage']);
+    Route::get('/customer-notices', [NoticeController::class, 'customerNoticesPage']);
+    Route::get('/customer-checkout', [SubscriptionController::class, 'checkoutPage']);
+    Route::post('/create-order', [SubscriptionController::class, 'createOrder']);
+    Route::get('/customer-orders', [SubscriptionController::class, 'customerOrdersPage']);
+    Route::get('/customer-subscriptions', [SubscriptionController::class, 'customerSubscriptionPage']);
+    Route::post('/customer-ticket-list', [TicketController::class, 'getCustomerTickets']);
+    Route::post('/create-ticket', [TicketController::class, 'createTicket']);
+    Route::get('/customer-tickets', [TicketController::class, 'customerTicketPage']);
+});
 
 
-// Plans Routes
-Route::get('/manage-plans', [PlanController::class, 'planPage'])->middleware(['token', 'admin']);
-Route::post('/create-plan', [PlanController::class, 'createPlan'])->middleware(['token', 'admin']);
-Route::get('/plan-list', [PlanController::class, 'planList'])->middleware('token');
-Route::post('/plan-info', [PlanController::class, 'getPlanInfo'])->middleware('token');
-Route::post('/delete-plan', [PlanController::class, 'deletePlan'])->middleware(['token', 'admin']);
-Route::post('/update-plan', [PlanController::class, 'updatePlan'])->middleware(['token', 'admin']);
+// just the auth middleware
+Route::middleware('auth')->group(function () {
+    Route::get('/unauthorized', [AuthController::class, 'unauthorizedPage']);
+    Route::post('/customer-info', [CustomerController::class, 'getCustomerInfo']);
+    Route::post('/customer-profile', [CustomerController::class, 'customerProfileInfo']);
+    Route::get('/notice-list', [NoticeController::class, 'noticeList']);
+    Route::post('/notice-info', [NoticeController::class, 'getNoticeInfo']);
+    Route::get('/plan-list', [PlanController::class, 'planList']);
+    Route::post('/plan-info', [PlanController::class, 'getPlanInfo']);
+    Route::post('/customer-subscription', [SubscriptionController::class, 'customerSubscription']);
+    Route::post('/update-status', [SubscriptionController::class, 'updateStatus']);
+    Route::post('/subscription-info', [SubscriptionController::class, 'getSubscriptionInfo']);
+    Route::post('/customer-orders', [SubscriptionController::class, 'customerOrders']);
+    Route::post('/create-task', [TaskController::class, 'createTask']);
+});
 
 
-// Subscriptions Routes
-Route::get('/customer-subscriptions', [SubscriptionController::class, 'customerSubscriptionPage'])->middleware(['token', 'customer']);
-Route::post('/customer-subscription', [SubscriptionController::class, 'customerSubscription'])->middleware('token');
-Route::get('/manage-subscriptions', [SubscriptionController::class, 'subscriptionPage'])->middleware(['token', 'admin']);
-Route::post('/update-status', [SubscriptionController::class, 'updateStatus'])->middleware('token');
-Route::get('/all-subscriptions', [SubscriptionController::class, 'allSubscription'])->middleware(['token', 'admin']);
-Route::post('/create-subscription', [SubscriptionController::class, 'createSubscription'])->middleware(['token', 'admin']);
-Route::get('/subscription-list', [SubscriptionController::class, 'subscriptionList'])->middleware(['token', 'admin']);
-Route::post('/subscription-info', [SubscriptionController::class, 'getSubscriptionInfo'])->middleware('token');
-Route::post('/delete-subscription', [SubscriptionController::class, 'deleteSubscription'])->middleware(['token', 'admin']);
-Route::post('/update-subscription', [SubscriptionController::class, 'updateSubscription'])->middleware(['token', 'admin']);
-Route::get('/customer-checkout', [SubscriptionController::class, 'checkoutPage'])->middleware(['token', 'customer']);
-Route::post('/create-order', [SubscriptionController::class, 'createOrder'])->middleware(['token', 'customer']);
-Route::get('/customer-orders', [SubscriptionController::class, 'customerOrdersPage'])->middleware(['token', 'customer']);
-Route::post('/customer-orders', [SubscriptionController::class, 'customerOrders'])->middleware('token');
+// 'check' middleware
+Route::middleware('check')->group(function () {
+    Route::get('/user-login', [AuthController::class, 'userLoginPage']);
+    Route::get('/user-signup', [AuthController::class, 'userSignupPage']);
+    Route::get('/user-signup', [AuthController::class, 'userSignupPage']);
+    Route::post('/user-signup', [AuthController::class, 'userSignup']);
+    Route::get('/reset-password', [AuthController::class, 'passwordResetPage']);
+    Route::post('/send-otp', [AuthController::class, 'sendOTP']);
+    Route::get('/change-password', [AuthController::class, 'changePasswordPage']);
+    Route::post('/change-password', [AuthController::class, 'changePassword']);
+});
 
-// Tickets Routes
-Route::get('/customer-tickets', [TicketController::class, 'customerTicketPage'])->middleware('token', 'customer');
-Route::post('/customer-ticket-list', [TicketController::class, 'getCustomerTickets'])->middleware(['token', 'customer']);
-Route::post('/create-ticket', [TicketController::class, 'createTicket'])->middleware(['token', 'customer']);
-Route::get('/manage-tickets', [TicketController::class, 'ticketPage'])->middleware(['token', 'admin']);
-Route::get('/ticket-list', [TicketController::class, 'getTickets'])->middleware(['token', 'admin']);
-Route::post('/update-ticket', [TicketController::class, 'updateTicket'])->middleware(['token', 'admin']);
 
-// Tasks Routes
-Route::post('/create-task', [TaskController::class, 'createTask'])->middleware('token');
+// check and reset-pass middleware
+Route::middleware(['check', 'reset-pass'])->group(function () {
+    Route::get('/verify-otp', [AuthController::class, 'verifyOTPPage']);
+    Route::post('/verify-otp', [AuthController::class, 'verifyOTP']);
+});

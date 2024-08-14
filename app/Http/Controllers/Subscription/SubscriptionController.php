@@ -32,13 +32,13 @@ class SubscriptionController extends Controller
 
     public function updateStatus(Request $request)
     {
-        $id = $request->input('id');
+        $subscription_id = $request->input('id');
         $customer_id = $request->input('customer_id');
         $status = $request->input('status');
 
         DB::beginTransaction();
         try {
-            Subscription::where('id', $id)->update([
+            Subscription::where('id', $subscription_id)->update([
                 'status' => $status
             ]);
 
@@ -113,6 +113,10 @@ class SubscriptionController extends Controller
                 'next_billing_date' => date('Y-m-d', strtotime('+30 day')),
                 'status' => 'inactive',
                 'total_cost' => $total_price
+            ]);
+
+            Customer::where('id', $customer_id)->update([
+                'status' => 'inactive'
             ]);
 
             DB::commit();
@@ -249,7 +253,10 @@ class SubscriptionController extends Controller
 
     public function checkSubscriptions()
     {
-        $subscriptions = Subscription::where('next_billing_date', '<', Carbon::now()->format('Y-m-d'))->get();
+        $subscriptions = Subscription::where('next_billing_date', '<', Carbon::now()->format('Y-m-d'))
+            ->where('status', 'inactive')
+            ->where('status', 'active')
+            ->get();
 
         foreach ($subscriptions as $subscription) {
             $subscription->status = 'expired';
